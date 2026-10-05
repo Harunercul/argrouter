@@ -1,4 +1,5 @@
 """Konsol giris noktasi. `uvx thriftllm` ve MCP dagitimi icin gerekli."""
+
 import sys
 
 

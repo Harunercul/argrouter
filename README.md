@@ -86,10 +86,30 @@ You should know this before you install it, not after.
 
 ## How much does it actually save?
 
-Not measured yet. When it is, the number will be reported as all-in cost
-(including this library's own overhead and every retried call), per stratum,
-against **the best fixed single model** — not against the most expensive model in
-the pool, which is how savings in this category are usually inflated.
+**Model routing:** not measured yet. When it is, the number will be reported as
+all-in cost (including this library's own overhead and every retried call), per
+stratum, against **the best fixed single model** — not against the most expensive
+model in the pool, which is how savings in this category are usually inflated.
+
+**Provider selection (same model, many providers): measured, and the honest answer
+is "about the same as OpenRouter's own price sort".** Two runs, 377 billed calls,
+4 open-weight models × 3 workloads, every cost taken from OpenRouter's `usage.cost`
+([raw data and method](bench/results/README.md)):
+
+| strategy | billed, both runs | vs thrift |
+|---|---:|---:|
+| OpenRouter default routing | $0.03123 | +67% |
+| OpenRouter `sort: price` + same quantization floor | $0.01892 | +1% |
+| rank providers by input + output price (LiteLLM/Plano rule) | $0.01885 | +1% |
+| thriftllm | $0.01874 | — |
+
+What this means: if you call open-weight models through OpenRouter, **turning on
+any price-aware provider sort saves ~40% over the default**, and that is most of
+the win. thriftllm's mix-aware ranking only changes the pick when two providers'
+input/output prices cross (here: `gpt-oss-120b`, 1–4% cheaper on the output-heavy
+workloads, worse on RAG whenever its pick was busy); the rest of the
+gap between price-aware strategies is availability noise, not ranking. thriftllm
+also enforces a quality floor (≥ fp8, ≥ 99% uptime) that the price sort does not.
 
 We have pre-committed to publishing the result **when routing loses**.
 

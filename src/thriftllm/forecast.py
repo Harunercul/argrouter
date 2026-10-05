@@ -9,6 +9,7 @@ birbirine benzer; bu, dagilimi ogrenmenin en ucuz yolu.
 Soguk baslangicta tahmin `source="prior"` ile isaretlenir - karar kaydinda
 tahminin gozleme mi yoksa varsayima mi dayandigi gorunur.
 """
+
 from __future__ import annotations
 
 import statistics
@@ -19,14 +20,15 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class Forecast:
     tokens: float
-    source: str          # "observed" | "prior"
+    source: str  # "observed" | "prior"
     samples: int
     p90: float | None = None
 
 
 class OutputForecaster:
-    def __init__(self, *, prior_tokens: float = 400.0, window: int = 200,
-                 min_samples: int = 3) -> None:
+    def __init__(
+        self, *, prior_tokens: float = 400.0, window: int = 200, min_samples: int = 3
+    ) -> None:
         if prior_tokens < 0 or window < 1 or min_samples < 1:
             raise ValueError("gecersiz parametre")
         self.prior_tokens = prior_tokens

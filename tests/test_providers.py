@@ -1,20 +1,29 @@
 """Saglayici secimi. Gercek bir faturada gozlenen hatanin testi dahil."""
+
 import pytest
 
 from thriftllm.providers import Endpoint, NoEligibleProvider, Policy, select
 
 
 def ep(tag, inp, out, quant="fp8", up=99.5, **kw):
-    return Endpoint(model_id="m/x", provider_name=tag.split("/")[0], tag=tag,
-                    quantization=quant, input_per_mtok=inp, output_per_mtok=out,
-                    context_length=kw.pop("ctx", 128_000), uptime_30m=up, **kw)
+    return Endpoint(
+        model_id="m/x",
+        provider_name=tag.split("/")[0],
+        tag=tag,
+        quantization=quant,
+        input_per_mtok=inp,
+        output_per_mtok=out,
+        context_length=kw.pop("ctx", 128_000),
+        uptime_30m=up,
+        **kw,
+    )
 
 
 # 2026-10-05 glm-5.3-flash faturasindan: servis eden ucuz-girdi/pahali-cikti idi.
-RELACE    = ep("relace/fp8",     0.035, 0.50)
+RELACE = ep("relace/fp8", 0.035, 0.50)
 STREAMLAK = ep("streamlake/fp8", 0.087, 0.29)
-DEEPINFRA = ep("deepinfra/fp4",  0.075, 0.25, quant="fp4")
-NOVITA    = ep("novita/fp8",     0.084, 0.28, up=85.4)
+DEEPINFRA = ep("deepinfra/fp4", 0.075, 0.25, quant="fp4")
+NOVITA = ep("novita/fp8", 0.084, 0.28, up=85.4)
 
 
 class TestTokenMixDecides:
@@ -23,7 +32,7 @@ class TestTokenMixDecides:
         sel = select([RELACE, STREAMLAK], input_tokens=31, expected_output_tokens=197)
         assert sel.best.endpoint is STREAMLAK
         relace_cost = next(c for c in sel.ranked if c.endpoint is RELACE).cost.total_usd
-        assert sel.best.cost.total_usd < relace_cost * 0.7       # >%30 ucuz
+        assert sel.best.cost.total_usd < relace_cost * 0.7  # >%30 ucuz
 
     def test_input_heavy_request_flips_to_cheap_input_provider(self):
         sel = select([RELACE, STREAMLAK], input_tokens=20_000, expected_output_tokens=100)
@@ -37,8 +46,12 @@ class TestPolicyIsAHardFilter:
         assert any(e is DEEPINFRA and "quantization" in why for e, why in sel.rejected)
 
     def test_fp4_allowed_when_policy_relaxed(self):
-        sel = select([DEEPINFRA, STREAMLAK], input_tokens=31, expected_output_tokens=197,
-                     policy=Policy(min_quantization="fp4"))
+        sel = select(
+            [DEEPINFRA, STREAMLAK],
+            input_tokens=31,
+            expected_output_tokens=197,
+            policy=Policy(min_quantization="fp4"),
+        )
         assert sel.best.endpoint is DEEPINFRA
 
     def test_low_uptime_rejected(self):
@@ -68,8 +81,12 @@ class TestPolicyIsAHardFilter:
 
     def test_required_parameter(self):
         tools = ep("tools/fp8", 0.2, 0.6, supported_parameters=("tools",))
-        sel = select([STREAMLAK, tools], input_tokens=10, expected_output_tokens=10,
-                     policy=Policy(required_parameters=("tools",)))
+        sel = select(
+            [STREAMLAK, tools],
+            input_tokens=10,
+            expected_output_tokens=10,
+            policy=Policy(required_parameters=("tools",)),
+        )
         assert sel.best.endpoint is tools
 
     def test_nothing_eligible_raises_instead_of_falling_back(self):
@@ -84,12 +101,20 @@ class TestPolicyIsAHardFilter:
 
 class TestOpenRouterParams:
     def test_order_is_cost_sorted_eligible_only_no_escape(self):
-        sel = select([RELACE, STREAMLAK, DEEPINFRA, NOVITA],
-                     input_tokens=31, expected_output_tokens=197)
+        sel = select(
+            [RELACE, STREAMLAK, DEEPINFRA, NOVITA], input_tokens=31, expected_output_tokens=197
+        )
         p = sel.openrouter_provider(fallbacks=3)
         assert p["allow_fallbacks"] is False
-        assert p["order"] == ["streamlake/fp8", "relace/fp8"]   # fp4 ve dusuk uptime yok
+        assert p["order"] == ["streamlake/fp8", "relace/fp8"]  # fp4 ve dusuk uptime yok
         assert "deepinfra/fp4" not in p["order"]
+
+    def test_default_order_keeps_every_eligible_endpoint(self):
+        sel = select(
+            [RELACE, STREAMLAK, DEEPINFRA, NOVITA], input_tokens=31, expected_output_tokens=197
+        )
+        assert sel.openrouter_provider()["order"] == [c.endpoint.tag for c in sel.ranked]
+        assert sel.openrouter_provider(fallbacks=1)["order"] == ["streamlake/fp8"]
 
     def test_explain_lists_rejections(self):
         sel = select([RELACE, STREAMLAK, DEEPINFRA], input_tokens=31, expected_output_tokens=197)
@@ -99,13 +124,23 @@ class TestOpenRouterParams:
 
 class TestFromOpenRouter:
     def test_parses_real_endpoint_shape(self):
-        raw = {"model_id": "z-ai/glm-5.3-flash", "provider_name": "StreamLake",
-               "tag": "streamlake/fp8", "quantization": "fp8", "context_length": 1024000,
-               "pricing": {"prompt": "0.000000087", "completion": "0.00000029",
-                           "input_cache_read": "0.0000000174"},
-               "max_completion_tokens": 128000, "status": 0,
-               "uptime_last_30m": 99.39, "uptime_last_1d": 99.2,
-               "supported_parameters": ["max_tokens", "tools"]}
+        raw = {
+            "model_id": "z-ai/glm-5.3-flash",
+            "provider_name": "StreamLake",
+            "tag": "streamlake/fp8",
+            "quantization": "fp8",
+            "context_length": 1024000,
+            "pricing": {
+                "prompt": "0.000000087",
+                "completion": "0.00000029",
+                "input_cache_read": "0.0000000174",
+            },
+            "max_completion_tokens": 128000,
+            "status": 0,
+            "uptime_last_30m": 99.39,
+            "uptime_last_1d": 99.2,
+            "supported_parameters": ["max_tokens", "tools"],
+        }
         e = Endpoint.from_openrouter(raw)
         assert e.input_per_mtok == pytest.approx(0.087)
         assert e.output_per_mtok == pytest.approx(0.29)
@@ -114,11 +149,22 @@ class TestFromOpenRouter:
         assert "tools" in e.supported_parameters
 
     def test_cached_tokens_reduce_cost_when_provider_caches(self):
-        e = Endpoint.from_openrouter({"model_id": "m", "tag": "a/fp8", "quantization": "fp8",
-            "pricing": {"prompt": "0.000001", "completion": "0.000001",
-                        "input_cache_read": "0.0000001"},
-            "context_length": 100000, "uptime_last_30m": 100})
+        e = Endpoint.from_openrouter(
+            {
+                "model_id": "m",
+                "tag": "a/fp8",
+                "quantization": "fp8",
+                "pricing": {
+                    "prompt": "0.000001",
+                    "completion": "0.000001",
+                    "input_cache_read": "0.0000001",
+                },
+                "context_length": 100000,
+                "uptime_last_30m": 100,
+            }
+        )
         cold = select([e], input_tokens=10_000, expected_output_tokens=10)
-        warm = select([e], input_tokens=10_000, expected_output_tokens=10,
-                      cached_input_tokens=9_000)
+        warm = select(
+            [e], input_tokens=10_000, expected_output_tokens=10, cached_input_tokens=9_000
+        )
         assert warm.best.cost.total_usd < cold.best.cost.total_usd
