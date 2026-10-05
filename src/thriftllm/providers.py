@@ -9,6 +9,7 @@ Bu modul, istegin BEKLENEN maliyetine gore siralar ve politikayi (quantization,
 uptime, baglam, parametre destegi) sert filtre olarak uygular. Elenen her
 saglayicinin nedeni kaydedilir.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
@@ -19,10 +20,15 @@ from thriftllm.catalog.pricing import CacheRates, CostBreakdown, ModelPrice, exp
 
 # Yuksek = daha az kayipli. Bilinmeyen en altta: varsayilan politika elemesi icin.
 QUANT_RANK: dict[str, int] = {
-    "fp32": 5, "bf16": 4, "fp16": 4,
-    "fp8": 3, "int8": 3,
+    "fp32": 5,
+    "bf16": 4,
+    "fp16": 4,
+    "fp8": 3,
+    "int8": 3,
     "fp6": 2,
-    "fp4": 1, "nvfp4": 1, "int4": 1,
+    "fp4": 1,
+    "nvfp4": 1,
+    "int4": 1,
     "unknown": 0,
 }
 
@@ -35,7 +41,7 @@ class NoEligibleProvider(Exception):
 class Endpoint:
     model_id: str
     provider_name: str
-    tag: str                       # OpenRouter provider.order icin kullanilan kimlik
+    tag: str  # OpenRouter provider.order icin kullanilan kimlik
     quantization: str
     input_per_mtok: float
     output_per_mtok: float
@@ -94,6 +100,7 @@ class Endpoint:
 @dataclass(frozen=True)
 class Policy:
     """Sert filtreler. Maliyet bunlarin ICINDE optimize edilir, onlarla takas edilmez."""
+
     min_quantization: str = "fp8"
     allow_unknown_quantization: bool = False
     min_uptime: float = 99.0
@@ -117,15 +124,17 @@ class Selection:
     def best(self) -> Candidate:
         return self.ranked[0]
 
-    def openrouter_provider(self, fallbacks: int = 3) -> dict[str, Any]:
+    def openrouter_provider(self, fallbacks: int | None = None) -> dict[str, Any]:
         """OpenRouter `provider` parametresi.
 
-        Uygunlar arasindan en ucuz `fallbacks` tanesi, maliyet sirasiyla.
-        allow_fallbacks=False: biri duserse liste icinde sonrakine gecer,
-        ama politika disindaki bir saglayiciya ASLA gitmez.
+        Uygun saglayicilar maliyet sirasiyla; `fallbacks` verilmezse hepsi.
+        allow_fallbacks=False: biri duserse (429, kesinti) listede sonrakine
+        gecer, ama politika disindaki bir saglayiciya ASLA gitmez. Listeyi
+        kisa tutmak en ucuz saglayici sikistiginda istegi basarisiz kilar.
         """
+        ranked = self.ranked if fallbacks is None else self.ranked[: max(1, fallbacks)]
         return {
-            "order": [c.endpoint.tag for c in self.ranked[:max(1, fallbacks)]],
+            "order": [c.endpoint.tag for c in ranked],
             "allow_fallbacks": False,
         }
 
@@ -143,7 +152,7 @@ def _reject_reason(e: Endpoint, policy: Policy, need_ctx: int, need_out: float) 
     if e.status != 0:
         return f"status={e.status}"
     if e.input_per_mtok <= 0 and e.output_per_mtok <= 0:
-        return "fiyat_yok"          # fiyatsiz saglayici asla 'en ucuz' sayilmaz
+        return "fiyat_yok"  # fiyatsiz saglayici asla 'en ucuz' sayilmaz
     q = e.quantization.lower()
     if q in ("unknown", "") and not policy.allow_unknown_quantization:
         return "quantization_bilinmiyor"
@@ -195,15 +204,24 @@ def select(
         ranked.append(Candidate(e, cost))
 
     # Esitlikte: daha az kayipli quantization, sonra daha yuksek uptime.
-    ranked.sort(key=lambda c: (
-        c.cost.total_usd, -c.endpoint.quant_rank, -(c.endpoint.uptime_30m or 0.0),
-    ))
-    sel = Selection(model_id, ranked, rejected, inputs={
-        "input_tokens": input_tokens,
-        "expected_output_tokens": expected_output_tokens,
-        "cached_input_tokens": cached_input_tokens,
-        "policy": policy.__dict__,
-    })
+    ranked.sort(
+        key=lambda c: (
+            c.cost.total_usd,
+            -c.endpoint.quant_rank,
+            -(c.endpoint.uptime_30m or 0.0),
+        )
+    )
+    sel = Selection(
+        model_id,
+        ranked,
+        rejected,
+        inputs={
+            "input_tokens": input_tokens,
+            "expected_output_tokens": expected_output_tokens,
+            "cached_input_tokens": cached_input_tokens,
+            "policy": policy.__dict__,
+        },
+    )
     if not ranked:
         raise NoEligibleProvider(
             f"{model_id}: politikaya uyan saglayici yok ({len(rejected)} elendi). "

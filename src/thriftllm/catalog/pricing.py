@@ -16,6 +16,7 @@ Tasarim kararlari ve her birinin gerekcesi (rakip incelemesinden):
 
 4. CACHE VE KATMANLI FIYAT KARAR ANINDA HESABA KATILIR, sonradan degil.
 """
+
 from __future__ import annotations
 
 import json
@@ -36,7 +37,8 @@ class PricingError(Exception):
 @dataclass(frozen=True)
 class ContextTier:
     """Baglam uzunluguna gore degisen fiyat (orn. 200k ustu farkli ucret)."""
-    up_to_tokens: int | None          # None = ust sinir yok
+
+    up_to_tokens: int | None  # None = ust sinir yok
     input_per_mtok: float
     output_per_mtok: float
 
@@ -44,10 +46,11 @@ class ContextTier:
 @dataclass(frozen=True)
 class CacheRates:
     """Prompt cache carpanlari. Modele gore degisir - sabit 0.1x varsayimi yanlis."""
-    read_multiplier: float = 0.1       # Opus 5.5'te 0.05, Fable 5.1'de 0.025
-    write_multiplier: float = 1.25     # 5 dk TTL
+
+    read_multiplier: float = 0.1  # Opus 5.5'te 0.05, Fable 5.1'de 0.025
+    write_multiplier: float = 1.25  # 5 dk TTL
     write_multiplier_1h: float | None = 2.0
-    min_cacheable_tokens: int = 1024   # altinda sessizce cache'lenmez
+    min_cacheable_tokens: int = 1024  # altinda sessizce cache'lenmez
 
 
 @dataclass(frozen=True)
@@ -58,10 +61,10 @@ class ModelPrice:
     context_length: int
     cache: CacheRates | None = None
     context_tiers: tuple[ContextTier, ...] = ()
-    reasoning_per_mtok: float | None = None   # None => output ucretinden
+    reasoning_per_mtok: float | None = None  # None => output ucretinden
     per_request_usd: float = 0.0
-    batch_discount: float | None = None       # orn. 0.5 = %50 indirim
-    quality_index: float | None = None        # OpenRouter artificial_analysis
+    batch_discount: float | None = None  # orn. 0.5 = %50 indirim
+    quality_index: float | None = None  # OpenRouter artificial_analysis
     supports_logprobs: bool = False
     supports_tools: bool = False
 
@@ -76,6 +79,7 @@ class ModelPrice:
 @dataclass
 class CostBreakdown:
     """Her bilesen ayri - "nereden geldi" sorusu cevaplanabilir olmali."""
+
     model_id: str
     fresh_input_usd: float = 0.0
     cached_input_usd: float = 0.0
@@ -89,8 +93,12 @@ class CostBreakdown:
     @property
     def total_usd(self) -> float:
         return (
-            self.fresh_input_usd + self.cached_input_usd + self.cache_write_usd
-            + self.output_usd + self.reasoning_usd + self.per_request_usd
+            self.fresh_input_usd
+            + self.cached_input_usd
+            + self.cache_write_usd
+            + self.output_usd
+            + self.reasoning_usd
+            + self.per_request_usd
             - self.batch_discount_usd
         )
 
@@ -144,9 +152,7 @@ def expected_cost(
     if cache_write_tokens:
         if price.cache is None:
             raise PricingError(f"{price.model_id}: cache yazimi istendi, cache fiyati yok")
-        bd.cache_write_usd = (
-            cache_write_tokens * in_rate * price.cache.write_multiplier / 1_000_000
-        )
+        bd.cache_write_usd = cache_write_tokens * in_rate * price.cache.write_multiplier / 1_000_000
 
     bd.output_usd = expected_output_tokens * out_rate / 1_000_000
 
@@ -161,8 +167,11 @@ def expected_cost(
             bd.notes.append("batch_istendi_ama_model_batch_desteklemiyor")
         else:
             subtotal = (
-                bd.fresh_input_usd + bd.cached_input_usd + bd.cache_write_usd
-                + bd.output_usd + bd.reasoning_usd
+                bd.fresh_input_usd
+                + bd.cached_input_usd
+                + bd.cache_write_usd
+                + bd.output_usd
+                + bd.reasoning_usd
             )
             bd.batch_discount_usd = subtotal * price.batch_discount
 
@@ -225,7 +234,7 @@ class Catalog:
         scored: list[tuple[float, float, ModelPrice]] = [
             (p.quality_index, p.input_per_mtok * w_in + p.output_per_mtok * w_out, p)
             for p in self.with_quality()
-            if p.quality_index is not None      # with_quality() garanti ediyor; mypy icin acik
+            if p.quality_index is not None  # with_quality() garanti ediyor; mypy icin acik
         ]
         scored.sort(key=lambda r: (-r[0], r[1]))
         out: list[ModelPrice] = []
