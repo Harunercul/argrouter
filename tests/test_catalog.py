@@ -1,10 +1,14 @@
 """Katalog, Pareto siniri, anlik goruntu yukleme ve kalan fiyat bilesenleri."""
 import json
+
 import pytest
 
 from thriftllm.catalog.pricing import (
-    CacheRates, Catalog, ModelPrice, PricingError, UnpricedModel,
-    cost_per_quality_point, expected_cost,
+    Catalog,
+    ModelPrice,
+    PricingError,
+    cost_per_quality_point,
+    expected_cost,
 )
 
 A = ModelPrice(model_id="a/big",   input_per_mtok=8.0, output_per_mtok=24.0,
@@ -59,7 +63,7 @@ class TestFrontier:
 
 class TestCostPerQualityPoint:
     def test_cheaper_per_quality_point_can_beat_cheaper_absolute(self):
-        kw = dict(input_tokens=1_000, expected_output_tokens=1_000)
+        kw = {"input_tokens": 1_000, "expected_output_tokens": 1_000}
         bd_b, bd_c = expected_cost(B, **kw), expected_cost(C, **kw)
         assert bd_c.total_usd < bd_b.total_usd                   # mutlak olarak ucuz
         assert cost_per_quality_point(bd_c, C) < cost_per_quality_point(bd_b, B)

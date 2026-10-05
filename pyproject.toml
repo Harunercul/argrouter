@@ -75,6 +75,10 @@ packages = ["src/thriftllm"]
 line-length = 100
 target-version = "py310"
 
+[tool.ruff.lint]
+# Kural seti burada sabit: kullanicinin global ruff ayari CI sonucunu degistirmesin
+select = ["E", "F", "W", "I", "UP", "B", "C4", "EXE", "SIM"]
+
 [tool.mypy]
 python_version = "3.10"
 strict = true

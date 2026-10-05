@@ -20,9 +20,9 @@ from __future__ import annotations
 
 import json
 import math
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterator
 
 
 class UnpricedModel(Exception):
@@ -94,8 +94,8 @@ class CostBreakdown:
             - self.batch_discount_usd
         )
 
-    def as_dict(self) -> dict:
-        d = {k: v for k, v in self.__dict__.items()}
+    def as_dict(self) -> dict[str, object]:
+        d: dict[str, object] = dict(self.__dict__)
         d["total_usd"] = self.total_usd
         return d
 
@@ -222,9 +222,10 @@ class Catalog:
         """
         w_in = in_out_ratio / (in_out_ratio + 1.0)
         w_out = 1.0 - w_in
-        scored = [
+        scored: list[tuple[float, float, ModelPrice]] = [
             (p.quality_index, p.input_per_mtok * w_in + p.output_per_mtok * w_out, p)
             for p in self.with_quality()
+            if p.quality_index is not None      # with_quality() garanti ediyor; mypy icin acik
         ]
         scored.sort(key=lambda r: (-r[0], r[1]))
         out: list[ModelPrice] = []
@@ -236,7 +237,7 @@ class Catalog:
         return out
 
     @classmethod
-    def from_snapshot(cls, path: str | Path) -> "Catalog":
+    def from_snapshot(cls, path: str | Path) -> Catalog:
         """Vendorlanmis anlik goruntuden yukle. Uretim yolu budur."""
         data = json.loads(Path(path).read_text())
         prices: dict[str, ModelPrice] = {}

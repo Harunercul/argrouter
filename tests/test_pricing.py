@@ -7,8 +7,14 @@ model sectigini gosterir. Bu test projenin varlik sebebidir.
 import pytest
 
 from thriftllm.catalog.pricing import (
-    CacheRates, Catalog, ContextTier, ModelPrice, PricingError,
-    UnpricedModel, cost_per_quality_point, expected_cost,
+    CacheRates,
+    Catalog,
+    ContextTier,
+    ModelPrice,
+    PricingError,
+    UnpricedModel,
+    cost_per_quality_point,
+    expected_cost,
 )
 
 # Gercekci iki model: biri girdide ucuz/ciktida pahali, digeri tersi.
@@ -39,7 +45,7 @@ class TestNaiveRankingIsWrong:
 
     def test_but_rag_workload_wants_the_other_one(self):
         """20k girdi / 500 cikti - klasik RAG. Naif siralama YANLIS model secer."""
-        kw = dict(input_tokens=20_000, expected_output_tokens=500)
+        kw = {"input_tokens": 20_000, "expected_output_tokens": 500}
         rag = expected_cost(RAG_FRIENDLY, **kw).total_usd
         gen = expected_cost(GEN_FRIENDLY, **kw).total_usd
 
@@ -50,15 +56,15 @@ class TestNaiveRankingIsWrong:
 
     def test_and_reasoning_workload_flips_it_back(self):
         """2k girdi / 8k cikti - reasoning. Simdi diger model dogru."""
-        kw = dict(input_tokens=2_000, expected_output_tokens=8_000)
+        kw = {"input_tokens": 2_000, "expected_output_tokens": 8_000}
         rag = expected_cost(RAG_FRIENDLY, **kw).total_usd
         gen = expected_cost(GEN_FRIENDLY, **kw).total_usd
         assert gen < rag, "reasoning yukunde ucuz-cikti modeli kazanmali"
 
     def test_the_point(self):
         """Dogru model is yukune bagli. Sabit siralama ikisinde de dogru olamaz."""
-        rag_kw = dict(input_tokens=20_000, expected_output_tokens=500)
-        gen_kw = dict(input_tokens=2_000, expected_output_tokens=8_000)
+        rag_kw = {"input_tokens": 20_000, "expected_output_tokens": 500}
+        gen_kw = {"input_tokens": 2_000, "expected_output_tokens": 8_000}
         winner_rag = min([RAG_FRIENDLY, GEN_FRIENDLY],
                          key=lambda m: expected_cost(m, **rag_kw).total_usd)
         winner_gen = min([RAG_FRIENDLY, GEN_FRIENDLY],
