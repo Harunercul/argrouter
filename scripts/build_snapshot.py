@@ -8,6 +8,7 @@ Neden anlik goruntu:
 
 Calistir:  python scripts/build_snapshot.py -o src/thriftllm/catalog/prices.json
 """
+
 from __future__ import annotations
 
 import argparse
@@ -18,7 +19,7 @@ from pathlib import Path
 
 import httpx
 
-SOURCE_URL = "https://openrouter.ai/api/v1/models"   # anahtar gerekmez
+SOURCE_URL = "https://openrouter.ai/api/v1/models"  # anahtar gerekmez
 
 
 def _f(v) -> float:
@@ -73,13 +74,11 @@ def _context_tiers(p: dict, base_in: float, base_out: float) -> list[dict]:
         edge = int(o.get("min_prompt_tokens") or 0)
         if edge <= 0:
             continue
-        tiers.append({"up_to_tokens": edge,
-                      "input_per_mtok": prev_in, "output_per_mtok": prev_out})
+        tiers.append({"up_to_tokens": edge, "input_per_mtok": prev_in, "output_per_mtok": prev_out})
         prev_in = _per_mtok(o.get("prompt")) or prev_in
         prev_out = _per_mtok(o.get("completion")) or prev_out
     if tiers:
-        tiers.append({"up_to_tokens": None,
-                      "input_per_mtok": prev_in, "output_per_mtok": prev_out})
+        tiers.append({"up_to_tokens": None, "input_per_mtok": prev_in, "output_per_mtok": prev_out})
     return tiers
 
 
@@ -114,9 +113,9 @@ def build(raw: dict) -> dict:
             row["reasoning_per_mtok"] = round(ir, 6)
         if (ws := _f(p.get("request"))) > 0:
             row["per_request_usd"] = ws
-        if (cache := _cache_block(p, base_in)):
+        if cache := _cache_block(p, base_in):
             row["cache"] = cache
-        if (tiers := _context_tiers(p, base_in, base_out)):
+        if tiers := _context_tiers(p, base_in, base_out):
             row["context_tiers"] = tiers
 
         models.append(row)
@@ -140,8 +139,7 @@ def main() -> int:
     ap.add_argument("-o", "--out", default="src/thriftllm/catalog/prices.json")
     args = ap.parse_args()
 
-    with httpx.Client(timeout=httpx.Timeout(120.0, connect=20.0),
-                      follow_redirects=True) as c:
+    with httpx.Client(timeout=httpx.Timeout(120.0, connect=20.0), follow_redirects=True) as c:
         raw = c.get(SOURCE_URL, headers={"Accept": "application/json"}).raise_for_status().json()
 
     snap = build(raw)
