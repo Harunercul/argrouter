@@ -1,0 +1,20 @@
+name: Release
+on:
+  release: { types: [published] }
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi          # zorunlu inceleme kapisi - PyPI tavsiyesi
+    permissions:
+      id-token: write          # Trusted Publishing + PEP 740 attestation
+      attestations: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build
+      - run: unzip -l dist/*.whl | grep -q py.typed || (echo "py.typed wheel'de yok" && exit 1)
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: true   # vLLM, httpx, instructor ve guncel litellm'de YOK

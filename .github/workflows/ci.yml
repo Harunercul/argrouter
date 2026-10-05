@@ -1,0 +1,20 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions:
+  contents: read          # en dar varsayilan - Scorecard Token-Permissions
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install ${{ matrix.python }}
+      - run: uv sync --all-extras --group dev
+      - run: uv run pytest --cov=thriftllm --cov-report=term-missing
+      - run: uv run mypy src/
+      - run: uv run ruff check .

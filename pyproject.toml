@@ -1,0 +1,89 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "thriftllm"
+version = "0.0.0"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+# PyPI arama motoru "summary" ve "keywords" alanlarini 5x agirlikliyor
+# (warehouse/search/queries.py SEARCH_BOOSTS). Bu nisteki projelerin
+# neredeyse hicbiri doldurmuyor - bedava ve rakipsiz alan.
+description = "LLM cost routing with correct per-request cost: output-length forecasting, cache-aware tiered pricing, and $/quality ranking."
+keywords = [
+  "llm cost", "llm router", "llm routing", "cost optimization",
+  "openrouter", "llm gateway", "model selection", "llmops",
+  "token cost", "prompt caching", "model router", "llm observability",
+]
+
+authors = [{ name = "Harun Ercul" }]
+readme = "README.md"
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+
+# Piyasanin acik talebi: minimal bagimlilik.
+# ("700mb with all deps" litellm'in en cok sikayet edilen ozelligi.)
+dependencies = ["httpx>=0.27"]
+
+[project.optional-dependencies]
+server = ["fastapi>=0.115", "uvicorn[standard]>=0.34"]
+bench  = ["numpy>=1.26", "scipy>=1.12"]
+cli    = ["typer>=0.15"]
+
+# Saglayici takma adlari: cogu ayni istemciye cozumleniyor ama kurulum satirini
+# kendi kendini belgeleyen hale getiriyor ve her saglayici adini aranabilir
+# bir yuzey yapiyor. (pydantic-ai ayni teknigi kullaniyor.)
+openrouter = []
+together   = []
+groq       = []
+fireworks  = []
+deepinfra  = []
+
+[project.scripts]
+# Console script olmadan `uvx thriftllm` ve MCP sunucu dagitimi mumkun degil
+thriftllm = "thriftllm.__main__:main"
+
+[dependency-groups]
+# PEP 735 - dev bagimliliklari extras'ta degil burada olmali
+dev = ["pytest>=8", "pytest-asyncio>=0.24", "mypy>=1.13", "ruff>=0.8", "pytest-cov>=6"]
+
+[project.urls]
+Homepage      = "https://github.com/harunercul/thriftllm"
+Documentation = "https://github.com/harunercul/thriftllm#readme"
+Source        = "https://github.com/harunercul/thriftllm"
+Issues        = "https://github.com/harunercul/thriftllm/issues"
+Changelog     = "https://github.com/harunercul/thriftllm/releases"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/thriftllm"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.coverage.report]
+# Kapi burada - rozet degil. Inceleyen kisi kapinin gercek oldugunu gorur.
+fail_under = 90
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
