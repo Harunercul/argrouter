@@ -7,7 +7,7 @@ model sectigini gosterir. Bu test projenin varlik sebebidir.
 
 import pytest
 
-from thriftllm.catalog.pricing import (
+from argrouter.catalog.pricing import (
     CacheRates,
     Catalog,
     ContextTier,

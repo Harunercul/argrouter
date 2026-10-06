@@ -1,6 +1,6 @@
 import pytest
 
-from thriftllm.forecast import OutputForecaster
+from argrouter.forecast import OutputForecaster
 
 
 def test_cold_start_uses_prior_and_says_so():

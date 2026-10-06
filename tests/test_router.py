@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from thriftllm.router import Router
+from argrouter.router import Router
 
 
 def _router(lam=50.0):

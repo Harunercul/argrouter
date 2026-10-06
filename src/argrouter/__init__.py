@@ -1,11 +1,11 @@
-"""thriftllm — LLM cost routing with a correct per-request cost.
+"""argrouter — LLM cost routing with a correct per-request cost.
 
 Public API:
     expected_cost, Catalog, ModelPrice         — the cost model
     select, Endpoint, Policy                   — provider selection for one model
 """
 
-from thriftllm.catalog.pricing import (
+from argrouter.catalog.pricing import (
     CacheRates,
     Catalog,
     ContextTier,
@@ -16,8 +16,8 @@ from thriftllm.catalog.pricing import (
     cost_per_quality_point,
     expected_cost,
 )
-from thriftllm.forecast import Forecast, OutputForecaster
-from thriftllm.providers import (
+from argrouter.forecast import Forecast, OutputForecaster
+from argrouter.providers import (
     Endpoint,
     NoEligibleProvider,
     Policy,

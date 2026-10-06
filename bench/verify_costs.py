@@ -13,7 +13,7 @@ from pathlib import Path
 
 import httpx
 
-from thriftllm.catalog.pricing import Catalog, expected_cost
+from argrouter.catalog.pricing import Catalog, expected_cost
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV = dict(line.split("=", 1) for line in (ROOT / ".env").read_text().split() if "=" in line)
@@ -52,7 +52,7 @@ def call(model: str) -> dict:
 
 
 def main() -> int:
-    cat = Catalog.from_snapshot(ROOT / "src/thriftllm/catalog/prices.json")
+    cat = Catalog.from_snapshot(ROOT / "src/argrouter/catalog/prices.json")
     models = [m for m in CANDIDATES if m in cat][:5]
     print(f"katalog {cat.as_of} | test edilecek: {len(models)} model\n")
     print(f"{'model':40s} {'in':>5} {'out':>5} {'bizim $':>11} {'fatura $':>11} {'fark':>8}")

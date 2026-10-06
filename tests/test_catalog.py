@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from thriftllm.catalog.pricing import (
+from argrouter.catalog.pricing import (
     Catalog,
     ModelPrice,
     PricingError,

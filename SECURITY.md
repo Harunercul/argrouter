@@ -23,7 +23,7 @@ compromise on PyPI, so these are stated as commitments rather than intentions:
 ## Verifying a release
 
 ```bash
-pip download thriftllm --no-deps -d /tmp/t
+pip download argrouter --no-deps -d /tmp/t
 # PyPI publishes attestations alongside the wheel; check the project's
-# "Provenance" section on pypi.org/project/thriftllm/
+# "Provenance" section on pypi.org/project/argrouter/
 ```

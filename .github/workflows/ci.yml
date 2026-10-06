@@ -15,7 +15,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - run: uv python install ${{ matrix.python }}
       - run: uv sync --all-extras --group dev
-      - run: uv run pytest --cov=thriftllm --cov-report=term-missing
+      - run: uv run pytest --cov=argrouter --cov-report=term-missing
       - run: uv run mypy src/
       - run: uv run ruff check .
       - run: uv run ruff format --check .

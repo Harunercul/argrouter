@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
-name = "thriftllm"
+name = "argrouter"
 version = "0.0.0"
 requires-python = ">=3.10"
 license = "Apache-2.0"
@@ -12,7 +12,7 @@ license-files = ["LICENSE"]
 # PyPI arama motoru "summary" ve "keywords" alanlarini 5x agirlikliyor
 # (warehouse/search/queries.py SEARCH_BOOSTS). Bu nisteki projelerin
 # neredeyse hicbiri doldurmuyor - bedava ve rakipsiz alan.
-description = "LLM cost routing with correct per-request cost: output-length forecasting, cache-aware tiered pricing, and $/quality ranking."
+description = "LLM router that picks the model and reasoning effort per query from accuracy and real billed cost. #1 on RouterArena. Includes a correct per-request LLM cost engine."
 keywords = [
   "llm cost", "llm router", "llm routing", "cost optimization",
   "openrouter", "llm gateway", "model selection", "llmops",
@@ -55,22 +55,22 @@ fireworks  = []
 deepinfra  = []
 
 [project.scripts]
-# Console script olmadan `uvx thriftllm` ve MCP sunucu dagitimi mumkun degil
-thriftllm = "thriftllm.__main__:main"
+# Console script olmadan `uvx argrouter` ve MCP sunucu dagitimi mumkun degil
+argrouter = "argrouter.__main__:main"
 
 [dependency-groups]
 # PEP 735 - dev bagimliliklari extras'ta degil burada olmali
 dev = ["pytest>=8", "pytest-asyncio>=0.24", "mypy>=1.13", "ruff>=0.8", "pytest-cov>=6"]
 
 [project.urls]
-Homepage      = "https://github.com/harunercul/thriftllm"
-Documentation = "https://github.com/harunercul/thriftllm#readme"
-Source        = "https://github.com/harunercul/thriftllm"
-Issues        = "https://github.com/harunercul/thriftllm/issues"
-Changelog     = "https://github.com/harunercul/thriftllm/releases"
+Homepage      = "https://github.com/harunercul/argrouter"
+Documentation = "https://github.com/harunercul/argrouter#readme"
+Source        = "https://github.com/harunercul/argrouter"
+Issues        = "https://github.com/harunercul/argrouter/issues"
+Changelog     = "https://github.com/harunercul/argrouter/releases"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/thriftllm"]
+packages = ["src/argrouter"]
 
 [tool.ruff]
 line-length = 100
