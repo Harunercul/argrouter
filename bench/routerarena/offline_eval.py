@@ -129,6 +129,47 @@ def embed_v2(items: list[dict]) -> np.ndarray:
     return np.hstack([H, F])
 
 
+def embed_api(items: list[dict], model: str = "qwen/qwen3-embedding-8b") -> np.ndarray:
+    """OpenRouter embedding API ile (uzun baglam: prompt'un tamami okunur). Onbellekli."""
+    import concurrent.futures as cf
+
+    safe = model.replace("/", "__")
+    cache = ROOT / "route_data" / f"emb_{safe}.json"
+    store = json.loads(cache.read_text()) if cache.exists() else {}
+    missing = [it for it in items if it["Global Index"] not in store]
+    if missing:
+        env = dict(x.split("=", 1) for x in (ROOT / ".env").read_text().split() if "=" in x)
+        headers = {"Authorization": f"Bearer {env['OPENROUTER_API_KEY']}"}
+
+        def batch(chunk):
+            for attempt in range(4):
+                try:
+                    r = httpx.post(
+                        "https://openrouter.ai/api/v1/embeddings",
+                        headers=headers,
+                        json={"model": model, "input": [build_prompt(it) for it in chunk]},
+                        timeout=120,
+                    )
+                    data = r.json()["data"]
+                    return [
+                        (it["Global Index"], d["embedding"])
+                        for it, d in zip(chunk, data, strict=True)
+                    ]
+                except Exception:
+                    if attempt == 3:
+                        raise
+            return []
+
+        chunks = [missing[i : i + 32] for i in range(0, len(missing), 32)]
+        with cf.ThreadPoolExecutor(8) as ex:
+            for res in ex.map(batch, chunks):
+                for gidx, v in res:
+                    store[gidx] = [round(float(x), 5) for x in v]
+        cache.write_text(json.dumps(store))
+    E = np.array([store[it["Global Index"]] for it in items])
+    return E / np.linalg.norm(E, axis=1, keepdims=True)
+
+
 def ra_weights(items: list[dict]) -> np.ndarray:
     """Soruyu RouterArena aile payina gore agirlikla (egitim seti ailelere esit dagilmiyor)."""
     import collections
