@@ -1,16 +1,15 @@
-"""Quality/cost router: pick the model that maximises P(correct) - lambda * expected cost.
+"""Quality/cost router (inference): pick the model that maximises P(correct) - lambda * cost.
 
-Two signals per candidate model, both learned from a labelled response matrix
-(questions x models, with graded scores and billed token counts):
+For each candidate model a trained router predicts:
 
-* P(correct): average of a per-model logistic regression on the prompt embedding and a
-  similarity-weighted vote of the k nearest training prompts.
-* expected cost: similarity-weighted average of what each model actually spent on the k
-  nearest prompts. Output length (including hidden reasoning tokens) differs by an order of
-  magnitude between models on the same prompt, so list prices alone mis-rank them.
+* P(correct): a per-model linear classifier on the prompt embedding blended with a
+  similarity-weighted vote of the nearest labelled prompts.
+* expected cost: what each model actually spent (reasoning tokens included) on the nearest
+  labelled prompts. Output length differs by an order of magnitude between models on the same
+  prompt, so list prices alone mis-rank them.
 
-Inference is numpy-only. Training needs scikit-learn (``pip install thriftllm[router]``) and
-embedding prompts needs fastembed.
+This module loads and runs a trained router (`Router.load`). Training is not part of the
+open-source package. Inference is numpy-only; `Router.route` also needs `fastembed`.
 """
 
 from __future__ import annotations
@@ -52,46 +51,6 @@ class Router:
     k: int = 50
     knn_weight: float = 0.5
     embedder: str = DEFAULT_EMBEDDER
-
-    # ------------------------------------------------------------------ training
-    @classmethod
-    def fit(
-        cls,
-        models: list[str],
-        emb: Array,
-        scores: Array,
-        costs: Array,
-        *,
-        lam: float = 10.0,
-        k: int = 50,
-        knn_weight: float = 0.5,
-        reg: float = 1.0,
-        embedder: str = DEFAULT_EMBEDDER,
-    ) -> Router:
-        from sklearn.linear_model import LogisticRegression  # type: ignore[import-untyped]
-
-        emb = _normalise(np.asarray(emb, dtype=np.float64))
-        coef = np.zeros((len(models), emb.shape[1]))
-        intercept = np.zeros(len(models))
-        for j in range(len(models)):
-            y = (scores[:, j] >= 0.5).astype(int)
-            if y.min() == y.max():  # constant label: encode as a saturated intercept
-                intercept[j] = 20.0 if y[0] else -20.0
-                continue
-            clf = LogisticRegression(C=reg, max_iter=2000).fit(emb, y)
-            coef[j], intercept[j] = clf.coef_[0], clf.intercept_[0]
-        return cls(
-            models,
-            coef,
-            intercept,
-            emb,
-            np.asarray(scores, float),
-            np.asarray(costs, float),
-            lam=lam,
-            k=k,
-            knn_weight=knn_weight,
-            embedder=embedder,
-        )
 
     # ----------------------------------------------------------------- inference
     def _knn(self, emb: Array) -> tuple[Array, Array]:
