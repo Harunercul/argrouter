@@ -51,7 +51,7 @@ def split_variant(model: str) -> tuple[str, dict]:
     if "@" not in model:
         return model, {}
     mid, effort = model.split("@", 1)
-    return mid, {"reasoning": {"effort": effort}}
+    return mid, {"reasoning": {"effort": effort}}  # "none" = dusunme kapali
 
 
 async def call(client: httpx.AsyncClient, model: str, prompt: str) -> dict:

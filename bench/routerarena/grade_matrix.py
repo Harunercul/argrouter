@@ -52,6 +52,14 @@ def main() -> None:
             score, _ = ev._evaluate_single_entry(r["response"] or "", truth[r["gidx"]], scorer, ds)
             r["score"] = float(score)
             graded.append(r)
+        # LiveCodeBench: izole konteynerde puanlanmis sonuclari ekle
+        merged: set[str] = set()
+        for extra in sorted(TL.glob("graded_lcb*.jsonl")):
+            for line in extra.read_text().splitlines():
+                x = json.loads(line)
+                if rows and x.get("model") == rows[0]["model"] and x["gidx"] not in merged:
+                    merged.add(x["gidx"])
+                    graded.append(x)
         (out_dir / f.name).write_text(
             "".join(json.dumps(x, ensure_ascii=False) + "\n" for x in graded)
         )
