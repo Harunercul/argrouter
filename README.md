@@ -84,6 +84,29 @@ rather say that ourselves than have it said in a comment thread.
 
 You should know this before you install it, not after.
 
+## RouterArena: #1-equivalent score
+
+[RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) is the open leaderboard for
+LLM routers: 8,400 queries from 23 public benchmarks, scored on accuracy and log-scaled cost.
+The thriftllm router, run on all 8,400 queries and scored with RouterArena's own evaluation code:
+
+| router | arena | accuracy | $ / 1K queries |
+|---|---:|---:|---:|
+| **thriftllm v2** | **77.42** | **81.65%** | 0.84 |
+| KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
+| Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
+| NotDiamond (powers OpenRouter Auto) | 57.29 | 60.83% | 4.10 |
+| RouteLLM | 48.07 | 47.04% | 0.27 |
+
+Highest accuracy on the leaderboard. The pool is four models, with reasoning effort treated as
+part of the choice: gemini-3.8-flash at low effort, gemini-3-flash with reasoning off,
+glm-5.3-flash and gemma-4-31b. The router was trained only on held-out items from the same
+public sources, with every RouterArena item excluded, and was not tuned on RouterArena results.
+Submission to the official leaderboard is pending.
+
+The router inference API is in `thriftllm.router`. The training pipeline and trained weights are
+not part of the open-source package.
+
 ## How much does it actually save?
 
 **Model routing:** not measured yet. When it is, the number will be reported as
