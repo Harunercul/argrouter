@@ -16,7 +16,7 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
-from thriftllm.catalog.pricing import CacheRates, CostBreakdown, ModelPrice, expected_cost
+from argrouter.catalog.pricing import CacheRates, CostBreakdown, ModelPrice, expected_cost
 
 # Yuksek = daha az kayipli. Bilinmeyen en altta: varsayilan politika elemesi icin.
 QUANT_RANK: dict[str, int] = {

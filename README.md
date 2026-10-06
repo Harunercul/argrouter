@@ -1,12 +1,19 @@
-# thriftllm — route every LLM call to the cheapest model that can actually do it
+# argrouter — pick the LLM, and how hard it should think, per query
 
-Most "cost-aware" routers rank models by `input_rate + output_rate`. That sum
-assumes a 1:1 input/output ratio, and almost no real workload has one. thriftllm
-computes the **expected cost of this specific request** — forecast output length,
-tiered rates, cache state, reasoning tokens — and ranks on **$ per quality point**.
+argrouter routes each request to the model **and reasoning effort** that maximise
+`P(correct) − λ · expected cost`, where the cost is what that model actually bills on
+similar requests (hidden reasoning tokens included), not its list price. Two models with
+the same price tag can differ 10× in real cost because one of them thinks for 3,000
+tokens before answering.
+
+**On [RouterArena](https://github.com/RouteWorks/RouterArena)** (ICLR 2026, the open router
+leaderboard) argrouter scores **76.30**, ahead of the current #1 (76.28), at
+**$0.56 per 1,000 queries**. [Details below.](#routerarena)
+
+The cost engine underneath is usable on its own:
 
 ```python
-from thriftllm.catalog.pricing import Catalog, expected_cost
+from argrouter.catalog.pricing import Catalog, expected_cost
 
 catalog = Catalog.from_snapshot("prices.json")        # vendored, offline, SHA-pinned
 model   = catalog.get("anthropic/claude-sonnet-5.5")  # unknown id raises; never $0
@@ -23,14 +30,12 @@ print(cost.as_dict())      # every component separately auditable
 ```
 
 ```bash
-pip install thriftllm      # one dependency: httpx
+pip install argrouter      # one dependency: httpx
 ```
 
-> **Status: pre-release.** The pricing core and its tests are written. The
-> router, the benchmark and the measured savings number are not. This README
-> states no savings percentage because none has been measured yet — see
-> [PRE-REGISTRATION.md](PRE-REGISTRATION.md) for the claim we have committed to
-> making and the margin we committed to before running anything.
+> **Status: alpha.** The cost engine, provider selection and router inference API are
+> released and tested. Router training and the trained weights are not part of the
+> open-source package.
 
 ---
 
@@ -46,7 +51,7 @@ today:
 | A constant `expected_output_tokens` in YAML | The number that dominates the bill is a guess you typed |
 | Unpriced model treated as `$0` | The model nobody priced always wins "cheapest" |
 
-thriftllm's position is narrow and checkable: **be the project whose cost number
+argrouter's position is narrow and checkable: **be the project whose cost number
 is right.** Not another selection algorithm — a correct denominator.
 
 ## Does routing break prompt caching?
@@ -56,12 +61,12 @@ Prompt caches are **model-scoped**. Cache reads cost 0.1× base input — and as
 little as 0.025× on some models — so switching models mid-session can forfeit a
 75–97% discount to chase a smaller routing saving.
 
-thriftllm treats this as a first-class cost term rather than a footnote:
+argrouter treats this as a first-class cost term rather than a footnote:
 
 - **Cache state is priced at decision time.** The forfeited cache discount is
   subtracted from the candidate's expected saving *before* it is compared.
 - **Minimum-cacheable thresholds are honoured.** Below the per-model minimum,
-  providers silently do not cache and charge full rate. thriftllm records that
+  providers silently do not cache and charge full rate. argrouter records that
   explicitly instead of quietly over-estimating the discount.
 - **Session affinity** keeps a conversation on its model unless the measured
   saving exceeds the measured cache loss.
@@ -71,7 +76,7 @@ warmed**, and **the cache-hit rate of every arm is published next to its cost**.
 A cost claim measured against a cache-disabled baseline is void, and we would
 rather say that ourselves than have it said in a comment thread.
 
-## When thriftllm will not help you
+## When argrouter will not help you
 
 - **Long agentic sessions on one model with a warm cache.** Keep the cache. Use
   cost tracking only.
@@ -84,28 +89,41 @@ rather say that ourselves than have it said in a comment thread.
 
 You should know this before you install it, not after.
 
-## RouterArena: #1-equivalent score
+## RouterArena
 
-[RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) is the open leaderboard for
-LLM routers: 8,400 queries from 23 public benchmarks, scored on accuracy and log-scaled cost.
-The thriftllm router, run on all 8,400 queries and scored with RouterArena's own evaluation code:
+[RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) scores routers on 8,400
+queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β = 0.1).
+argrouter on all 8,400 queries, scored with RouterArena's own evaluation code:
 
 | router | arena | accuracy | $ / 1K queries |
 |---|---:|---:|---:|
-| **thriftllm v2** | **77.42** | **81.65%** | 0.84 |
+| **argrouter** | **76.30** | 79.40% | 0.56 |
 | KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
 | Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
+| Divyam (#3) | 75.85 | 78.59% | 0.48 |
 | NotDiamond (powers OpenRouter Auto) | 57.29 | 60.83% | 4.10 |
 | RouteLLM | 48.07 | 47.04% | 0.27 |
 
-Highest accuracy on the leaderboard. The pool is four models, with reasoning effort treated as
-part of the choice: gemini-3.8-flash at low effort, gemini-3-flash with reasoning off,
-glm-5.3-flash and gemma-4-31b. The router was trained only on held-out items from the same
-public sources, with every RouterArena item excluded, and was not tuned on RouterArena results.
-Submission to the official leaderboard is pending.
+**How it was run.** The pool is five models; reasoning effort is part of the choice
+(gemini-3.8-flash at low effort, gemma-4-31b, glm-5.3-flash, gpt-6-luna,
+mimo-v2.6-flash), chosen by greedy forward selection. The router reads **only the
+question content**: the instruction and answer-format paragraphs are dropped with generic
+rules, and no RouterArena file is read. It was trained on 3,562 held-out items from the
+same public sources, every RouterArena item excluded, with sources weighted equally.
 
-The router inference API is in `thriftllm.router`. The training pipeline and trained weights are
-not part of the open-source package.
+**What we got wrong along the way**, because a leaderboard number is only worth its
+history:
+
+| version | arena | why it is not the submission |
+|---|---:|---|
+| v1 | 75.90 | first run |
+| v2 | 77.42 | routed on full prompts (which include RouterArena's per-dataset instruction text) and weighted by RouterArena's dataset mix. Both count as fitting to RouterArena under its rules ([#213](https://github.com/RouteWorks/RouterArena/pull/213)), so v2 was withdrawn before submission. |
+| **v3** | **76.30** | content-only routing, equal source weights; λ and pool fixed before the run. |
+
+Routing on content only did not cost accuracy on our own data; it was the equal source
+weighting that shifted traffic to cheaper models (cost −34%, accuracy −2.3 points vs v2).
+Nothing was tuned after seeing a RouterArena result. Submission to the official
+leaderboard is pending.
 
 ## How much does it actually save?
 
@@ -124,14 +142,14 @@ is "about the same as OpenRouter's own price sort".** Two runs, 377 billed calls
 | OpenRouter default routing | $0.03123 | +67% |
 | OpenRouter `sort: price` + same quantization floor | $0.01892 | +1% |
 | rank providers by input + output price (LiteLLM/Plano rule) | $0.01885 | +1% |
-| thriftllm | $0.01874 | — |
+| argrouter | $0.01874 | — |
 
 What this means: if you call open-weight models through OpenRouter, **turning on
 any price-aware provider sort saves ~40% over the default**, and that is most of
-the win. thriftllm's mix-aware ranking only changes the pick when two providers'
+the win. argrouter's mix-aware ranking only changes the pick when two providers'
 input/output prices cross (here: `gpt-oss-120b`, 1–4% cheaper on the output-heavy
 workloads, worse on RAG whenever its pick was busy); the rest of the
-gap between price-aware strategies is availability noise, not ranking. thriftllm
+gap between price-aware strategies is availability noise, not ranking. argrouter
 also enforces a quality floor (≥ fp8, ≥ 99% uptime) that the price sort does not.
 
 We have pre-committed to publishing the result **when routing loses**.
@@ -139,15 +157,15 @@ We have pre-committed to publishing the result **when routing loses**.
 ## Install
 
 ```bash
-pip install thriftllm          # core: httpx only
-pip install "thriftllm[server]"  # optional /v1/decision sidecar
+pip install argrouter          # core: httpx only
+pip install "argrouter[server]"  # optional /v1/decision sidecar
 ```
 
 Python 3.10+. Fully typed, `py.typed` shipped.
 
 ## How it fits with your existing gateway
 
-thriftllm does **not** reimplement the OpenAI wire format. Over half of the open
+argrouter does **not** reimplement the OpenAI wire format. Over half of the open
 issues on the largest gateway in this space are request-translation bugs; that is
 a maintenance burden with no upside for a routing project.
 
@@ -158,7 +176,7 @@ transport.**
 ## Supply chain
 
 The dominant package in this category was compromised on PyPI, and that is a
-standing cost to everyone shipping here. thriftllm commits to:
+standing cost to everyone shipping here. argrouter commits to:
 
 - **One runtime dependency** (`httpx`)
 - **PyPI Trusted Publishing** with **PEP 740 attestations** — no long-lived token
@@ -174,7 +192,13 @@ informed by
 [vllm-project/semantic-router](https://github.com/vllm-project/semantic-router)
 (Apache-2.0), which is the strongest open implementation of multi-factor
 selection. [RouteLLM](https://github.com/lm-sys/RouteLLM) defined the evaluation
-vocabulary this project is measured in.
+vocabulary this project is measured in, and
+[RouterArena](https://github.com/RouteWorks/RouterArena) provides the benchmark, scorer
+and price table the leaderboard result above uses.
+
+This project was briefly published as `thriftllm`. It was renamed to avoid confusion with
+[ThriftLLM](https://arxiv.org/abs/2501.04901) (Huang et al., 2025), an unrelated paper on
+budget-constrained LLM ensemble selection, and with the thriftllm.com gateway.
 
 ## License
 

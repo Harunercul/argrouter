@@ -6,7 +6,7 @@ Neden anlik goruntu:
   - Fiyatlar degisince eski olcumler yeniden hesaplanabilmeli
   - SHA ile sabitlenip surum kontrolune girmeli
 
-Calistir:  python scripts/build_snapshot.py -o src/thriftllm/catalog/prices.json
+Calistir:  python scripts/build_snapshot.py -o src/argrouter/catalog/prices.json
 """
 
 from __future__ import annotations
@@ -136,7 +136,7 @@ def build(raw: dict) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("-o", "--out", default="src/thriftllm/catalog/prices.json")
+    ap.add_argument("-o", "--out", default="src/argrouter/catalog/prices.json")
     args = ap.parse_args()
 
     with httpx.Client(timeout=httpx.Timeout(120.0, connect=20.0), follow_redirects=True) as c:

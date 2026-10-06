@@ -2,7 +2,7 @@
 
 import pytest
 
-from thriftllm.providers import Endpoint, NoEligibleProvider, Policy, select
+from argrouter.providers import Endpoint, NoEligibleProvider, Policy, select
 
 
 def ep(tag, inp, out, quant="fp8", up=99.5, **kw):

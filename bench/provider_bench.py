@@ -23,7 +23,7 @@ from pathlib import Path
 
 import httpx
 
-from thriftllm import Endpoint, OutputForecaster, Policy, select
+from argrouter import Endpoint, OutputForecaster, Policy, select
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV = dict(line.split("=", 1) for line in (ROOT / ".env").read_text().split() if "=" in line)
