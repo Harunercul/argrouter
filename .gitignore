@@ -16,3 +16,4 @@ htmlcov/
 dist/
 !bench/results/
 !bench/results/*.jsonl
+route_data/
