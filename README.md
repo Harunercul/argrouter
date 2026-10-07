@@ -30,7 +30,7 @@ print(cost.as_dict())      # every component separately auditable
 ```
 
 ```bash
-pip install argrouter      # one dependency: httpx
+pip install --pre argrouter      # alpha; one dependency: httpx
 ```
 
 > **Status: alpha.** The cost engine, provider selection and router inference API are
