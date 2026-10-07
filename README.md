@@ -7,8 +7,8 @@ the same price tag can differ 10× in real cost because one of them thinks for 3
 tokens before answering.
 
 **On [RouterArena](https://github.com/RouteWorks/RouterArena)** (ICLR 2026, the open router
-leaderboard) argrouter scores **76.29** in RouterArena's automated evaluation, at
-**$0.54 per 1,000 queries**; the submission is under review. [Details below.](#routerarena)
+leaderboard) argrouter scores **76.30** in RouterArena's automated evaluation, at
+**$0.55 per 1,000 queries**; the submission is under review. [Details below.](#routerarena)
 
 The cost engine underneath is usable on its own:
 
@@ -98,7 +98,7 @@ argrouter on all 8,400 queries, scored by RouterArena's automated evaluation
 
 | router | arena | accuracy | $ / 1K queries |
 |---|---:|---:|---:|
-| **argrouter** (submitted, under review) | **76.29** | 79.34% | 0.54 |
+| **argrouter** (submitted, under review) | **76.30** | 79.36% | 0.55 |
 | KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
 | Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
 | Divyam (#3) | 75.85 | 78.59% | 0.48 |
