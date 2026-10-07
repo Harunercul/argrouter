@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "argrouter"
-version = "0.1.0a1"
+version = "0.1.0a2"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
@@ -12,7 +12,7 @@ license-files = ["LICENSE"]
 # PyPI arama motoru "summary" ve "keywords" alanlarini 5x agirlikliyor
 # (warehouse/search/queries.py SEARCH_BOOSTS). Bu nisteki projelerin
 # neredeyse hicbiri doldurmuyor - bedava ve rakipsiz alan.
-description = "LLM router that picks the model and reasoning effort per query from accuracy and real billed cost. #1 on RouterArena. Includes a correct per-request LLM cost engine."
+description = "LLM router that picks the model and reasoning effort per query from accuracy and real billed cost. Includes a correct per-request LLM cost engine."
 keywords = [
   "llm cost", "llm router", "llm routing", "cost optimization",
   "openrouter", "llm gateway", "model selection", "llmops",
