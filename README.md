@@ -7,8 +7,8 @@ the same price tag can differ 10× in real cost because one of them thinks for 3
 tokens before answering.
 
 **On [RouterArena](https://github.com/RouteWorks/RouterArena)** (ICLR 2026, the open router
-leaderboard) argrouter scores **76.29**, level with the current #1 (76.28), at
-**$0.56 per 1,000 queries**. [Details below.](#routerarena)
+leaderboard) argrouter scores **76.29** in RouterArena's automated evaluation, at
+**$0.54 per 1,000 queries**; the submission is under review. [Details below.](#routerarena)
 
 The cost engine underneath is usable on its own:
 
@@ -93,12 +93,12 @@ You should know this before you install it, not after.
 
 [RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) scores routers on 8,400
 queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β = 0.1).
-argrouter on all 8,400 queries, scored with RouterArena's own evaluation code
-(prices: OpenRouter list prices on 2026-10-07):
+argrouter on all 8,400 queries, scored by RouterArena's automated evaluation
+([PR #220](https://github.com/RouteWorks/RouterArena/pull/220); prices: OpenRouter list prices on 2026-10-07):
 
 | router | arena | accuracy | $ / 1K queries |
 |---|---:|---:|---:|
-| **argrouter** | **76.29** | 79.40% | 0.56 |
+| **argrouter** (submitted, under review) | **76.29** | 79.34% | 0.54 |
 | KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
 | Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
 | Divyam (#3) | 75.85 | 78.59% | 0.48 |
