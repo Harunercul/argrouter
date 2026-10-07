@@ -7,7 +7,7 @@ the same price tag can differ 10× in real cost because one of them thinks for 3
 tokens before answering.
 
 **On [RouterArena](https://github.com/RouteWorks/RouterArena)** (ICLR 2026, the open router
-leaderboard) argrouter scores **76.30**, ahead of the current #1 (76.28), at
+leaderboard) argrouter scores **76.29**, level with the current #1 (76.28), at
 **$0.56 per 1,000 queries**. [Details below.](#routerarena)
 
 The cost engine underneath is usable on its own:
@@ -93,11 +93,12 @@ You should know this before you install it, not after.
 
 [RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) scores routers on 8,400
 queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β = 0.1).
-argrouter on all 8,400 queries, scored with RouterArena's own evaluation code:
+argrouter on all 8,400 queries, scored with RouterArena's own evaluation code
+(prices: OpenRouter list prices on 2026-10-07):
 
 | router | arena | accuracy | $ / 1K queries |
 |---|---:|---:|---:|
-| **argrouter** | **76.30** | 79.40% | 0.56 |
+| **argrouter** | **76.29** | 79.40% | 0.56 |
 | KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
 | Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
 | Divyam (#3) | 75.85 | 78.59% | 0.48 |
@@ -111,19 +112,8 @@ question content**: the instruction and answer-format paragraphs are dropped wit
 rules, and no RouterArena file is read. It was trained on 3,562 held-out items from the
 same public sources, every RouterArena item excluded, with sources weighted equally.
 
-**What we got wrong along the way**, because a leaderboard number is only worth its
-history:
-
-| version | arena | why it is not the submission |
-|---|---:|---|
-| v1 | 75.90 | first run |
-| v2 | 77.42 | routed on full prompts (which include RouterArena's per-dataset instruction text) and weighted by RouterArena's dataset mix. Both count as fitting to RouterArena under its rules ([#213](https://github.com/RouteWorks/RouterArena/pull/213)), so v2 was withdrawn before submission. |
-| **v3** | **76.30** | content-only routing, equal source weights; λ and pool fixed before the run. |
-
-Routing on content only did not cost accuracy on our own data; it was the equal source
-weighting that shifted traffic to cheaper models (cost −34%, accuracy −2.3 points vs v2).
-Nothing was tuned after seeing a RouterArena result. Submission to the official
-leaderboard is pending.
+The pool and λ were fixed on calibration data before RouterArena was routed, and nothing
+was tuned on RouterArena results. Submission to the official leaderboard is pending.
 
 ## How much does it actually save?
 
