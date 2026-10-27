@@ -96,14 +96,35 @@ queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β =
 argrouter on all 8,400 queries, scored by RouterArena's automated evaluation
 ([PR #220](https://github.com/RouteWorks/RouterArena/pull/220); prices: OpenRouter list prices on 2026-10-07):
 
-| router | arena | accuracy | $ / 1K queries |
-|---|---:|---:|---:|
-| **argrouter** (submitted, under review) | **76.30** | 79.36% | 0.55 |
-| KT-ModelRouter (current #1) | 76.28 | 78.14% | 0.27 |
-| Sqwish Router (#2) | 76.21 | 79.76% | 0.70 |
-| Divyam (#3) | 75.85 | 78.59% | 0.48 |
-| NotDiamond (powers OpenRouter Auto) | 57.29 | 60.83% | 4.10 |
-| RouteLLM | 48.07 | 47.04% | 0.27 |
+| # | router | arena | accuracy | $ / 1K queries |
+|---:|---|---:|---:|---:|
+| — | **argrouter** (automated evaluation, [PR #220](https://github.com/RouteWorks/RouterArena/pull/220)) | **76.30** | **79.36%** | **0.55** |
+| 1 | KT-ModelRouter | 76.28 | 78.14% | 0.27 |
+| 2 | Sqwish Router | 76.21 | 79.76% | 0.70 |
+| 3 | Divyam | 75.85 | 78.59% | 0.48 |
+| 4 | Cross-Router | 75.75 | 78.14% | 0.40 |
+| 5 | LLM Router | 75.69 | 78.44% | 0.49 |
+| 6 | R\*\*2: Reasonometry Router | 75.53 | 78.11% | 0.45 |
+| 7 | SapientAI Auto Router (Publicis Sapient) | 75.41 | 77.89% | 0.43 |
+| 8 | vLLM Semantic Router | 74.86 | 77.18% | 0.42 |
+| 19 | Azure Model Router (Microsoft) | 70.42 | 72.94% | 0.73 |
+| 25 | GPT-5 (single model, no routing) | 64.32 | 73.96% | 10.02 |
+| 29 | NotDiamond (powers OpenRouter Auto) | 57.29 | 60.83% | 4.10 |
+| 32 | RouteLLM (Berkeley) | 48.07 | 47.04% | 0.27 |
+
+Numbered rows are the [published RouterArena leaderboard](https://github.com/RouteWorks/RouterArena#leaderboard)
+(unchanged since 2026-09-29). Our row is RouterArena's own CI evaluation of the submitted predictions;
+the maintainers have not reviewed any submission since 2026-09-29, so it is not on the official table
+yet, and a few other queued submissions also show higher bot scores on their PRs. With 8,400 queries
+the standard error of accuracy is about 0.45 points, so the top rows are statistically close; the
+clearer result is the frontier below.
+
+![argrouter on the RouterArena accuracy–cost plane](docs/routerarena-leaderboard.png)
+
+Every published router that is cheaper than argrouter is also less accurate, and the only one
+that is more accurate (Sqwish, 79.76%) costs about 1.3x as much. Method, measurements and
+ablations are in the paper: **[argrouter.pdf](paper/argrouter.pdf)**
+(arXiv submission in progress).
 
 **How it was run.** The pool is five models; reasoning effort is part of the choice
 (gemini-3.8-flash at low effort, gemma-4-31b, glm-5.3-flash, gpt-6-luna,
@@ -113,7 +134,7 @@ rules, and no RouterArena file is read. It was trained on 3,562 held-out items f
 same public sources, every RouterArena item excluded, with sources weighted equally.
 
 The pool and λ were fixed on calibration data before RouterArena was routed, and nothing
-was tuned on RouterArena results. Submission to the official leaderboard is pending.
+was tuned on RouterArena results.
 
 ## How much does it actually save?
 

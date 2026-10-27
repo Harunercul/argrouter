@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use argrouter, please cite it as below."
+title: "argrouter: Routing LLM Queries on Expected Utility with Real Billed Cost and Reasoning Effort"
+authors:
+  - family-names: Ercul
+    given-names: Hamza Harun
+    email: harunercul5@gmail.com
+type: software
+repository-code: "https://github.com/Harunercul/argrouter"
+license: Apache-2.0
+date-released: 2026-10-28
