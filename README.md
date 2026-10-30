@@ -7,8 +7,8 @@ the same price tag can differ 10× in real cost because one of them thinks for 3
 tokens before answering.
 
 **On [RouterArena](https://github.com/RouteWorks/RouterArena)** (ICLR 2026, the open router
-leaderboard) argrouter scores **76.30** in RouterArena's automated evaluation, at
-**$0.55 per 1,000 queries**; the submission is under review. [Details below.](#routerarena)
+leaderboard) argrouter is **not ranked**: our first submission was not accepted, and a
+rebuilt version (v4) is in preparation. [What happened and what changes.](#routerarena)
 
 The cost engine underneath is usable on its own:
 
@@ -92,49 +92,31 @@ You should know this before you install it, not after.
 ## RouterArena
 
 [RouterArena](https://github.com/RouteWorks/RouterArena) (ICLR 2026) scores routers on 8,400
-queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β = 0.1).
-argrouter on all 8,400 queries, scored by RouterArena's automated evaluation
-([PR #220](https://github.com/RouteWorks/RouterArena/pull/220); prices: OpenRouter list prices on 2026-10-07):
+queries from 23 public benchmarks: accuracy, weighted with log-scaled cost (β = 0.1). See its
+[current leaderboard](https://github.com/RouteWorks/RouterArena#leaderboard).
 
-| # | router | arena | accuracy | $ / 1K queries |
-|---:|---|---:|---:|---:|
-| — | **argrouter** (automated evaluation, [PR #220](https://github.com/RouteWorks/RouterArena/pull/220)) | **76.30** | **79.36%** | **0.55** |
-| 1 | KT-ModelRouter | 76.28 | 78.14% | 0.27 |
-| 2 | Sqwish Router | 76.21 | 79.76% | 0.70 |
-| 3 | Divyam | 75.85 | 78.59% | 0.48 |
-| 4 | Cross-Router | 75.75 | 78.14% | 0.40 |
-| 5 | LLM Router | 75.69 | 78.44% | 0.49 |
-| 6 | R\*\*2: Reasonometry Router | 75.53 | 78.11% | 0.45 |
-| 7 | SapientAI Auto Router (Publicis Sapient) | 75.41 | 77.89% | 0.43 |
-| 8 | vLLM Semantic Router | 74.86 | 77.18% | 0.42 |
-| 19 | Azure Model Router (Microsoft) | 70.42 | 72.94% | 0.73 |
-| 25 | GPT-5 (single model, no routing) | 64.32 | 73.96% | 10.02 |
-| 29 | NotDiamond (powers OpenRouter Auto) | 57.29 | 60.83% | 4.10 |
-| 32 | RouteLLM (Berkeley) | 48.07 | 47.04% | 0.27 |
+**Status: not ranked.** Our submission ([PR #220](https://github.com/RouteWorks/RouterArena/pull/220),
+v3, 76.30 / 79.36% / $0.55 per 1K queries in RouterArena's automated evaluation) was closed on
+2026-10-29. The maintainers confirmed the predictions were our own model calls, and closed it
+because of how the router's training data was built: the calibration prompts were rendered with
+RouterArena's prompt templates, which its rules (since clarified in the README) do not allow.
+That score should not be read as a leaderboard result.
 
-Numbered rows are the [published RouterArena leaderboard](https://github.com/RouteWorks/RouterArena#leaderboard)
-(unchanged since 2026-09-29). Our row is RouterArena's own CI evaluation of the submitted predictions;
-the maintainers have not reviewed any submission since 2026-09-29, so it is not on the official table
-yet, and a few other queued submissions also show higher bot scores on their PRs. With 8,400 queries
-the standard error of accuracy is about 0.45 points, so the top rows are statistically close; the
-clearer result is the frontier below.
+**Every version we scored on RouterArena**, because a leaderboard number is only worth its history:
 
-![argrouter on the RouterArena accuracy–cost plane](docs/routerarena-leaderboard.png)
+| version | arena | what was wrong |
+|---|---:|---|
+| v1 | 75.90 | routed on full prompts and weighted by RouterArena's dataset mix; calibration prompts rendered with RouterArena's templates |
+| v2 | 77.42 | same as v1; withdrawn before submission |
+| v3 | 76.30 | routed on question content only, equal source weights; but calibration prompts still rendered with RouterArena's templates, labels graded with RouterArena's scorer, and the calibration pool sized at 45% of RouterArena's per-source counts. Closed (PR #220). |
 
-Every published router that is cheaper than argrouter is also less accurate, and the only one
-that is more accurate (Sqwish, 79.76%) costs about 1.3x as much. Method, measurements and
-ablations are in the paper: **[argrouter.pdf](paper/argrouter.pdf)**
-(arXiv submission in progress).
+Between versions we also looked at RouterArena results (per-source and code accuracy) and changed
+the design in response, which RouterArena's rules count as tuning on it.
 
-**How it was run.** The pool is five models; reasoning effort is part of the choice
-(gemini-3.8-flash at low effort, gemma-4-31b, glm-5.3-flash, gpt-6-luna,
-mimo-v2.6-flash), chosen by greedy forward selection. The router reads **only the
-question content**: the instruction and answer-format paragraphs are dropped with generic
-rules, and no RouterArena file is read. It was trained on 3,562 held-out items from the
-same public sources, every RouterArena item excluded, with sources weighted equally.
-
-The pool and λ were fixed on calibration data before RouterArena was routed, and nothing
-was tuned on RouterArena results.
+**v4** is being rebuilt so that none of this applies: calibration data drawn fresh from the original
+public releases with a fixed, pre-registered allocation; prompts and graders written independently of
+RouterArena's; the configuration frozen and published (with hashes) before it is run on RouterArena
+once. The pre-registration lives in [`v4/`](v4/) and grows as each part is fixed.
 
 ## How much does it actually save?
 
@@ -205,7 +187,7 @@ informed by
 selection. [RouteLLM](https://github.com/lm-sys/RouteLLM) defined the evaluation
 vocabulary this project is measured in, and
 [RouterArena](https://github.com/RouteWorks/RouterArena) provides the benchmark, scorer
-and price table the leaderboard result above uses.
+and price table discussed above.
 
 This project was briefly published as `thriftllm`. It was renamed to avoid confusion with
 [ThriftLLM](https://arxiv.org/abs/2501.04901) (Huang et al., 2025), an unrelated paper on
