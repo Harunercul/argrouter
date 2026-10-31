@@ -1,0 +1,18 @@
+{
+ "anthropic/claude-haiku-5.5": "RouterArena main 44cc1ff model_cost.json",
+ "deepseek/deepseek-v4-flash-0731": "RouterArena main 44cc1ff model_cost.json",
+ "google/gemini-3-flash-preview": "RouterArena main 44cc1ff model_cost.json",
+ "google/gemini-3.1-flash-lite": "RouterArena main 44cc1ff model_cost.json",
+ "google/gemini-3.7-flash": "RouterArena main 44cc1ff model_cost.json",
+ "google/gemini-3.8-flash": "RouterArena main 44cc1ff model_cost.json",
+ "google/gemma-4-31b-it": "RouterArena main 44cc1ff model_cost.json",
+ "openai/gpt-6-luna": "RouterArena main 44cc1ff model_cost.json",
+ "z-ai/glm-5.3-flash": "RouterArena main 44cc1ff model_cost.json",
+ "xiaomi/mimo-v2.6-flash": "OpenRouter models API 2026-11-01",
+ "nex-agi/nex-n2.5-pro": "OpenRouter models API 2026-11-01",
+ "deepseek/deepseek-v4.1-flash-1017": "OpenRouter models API 2026-11-01",
+ "deepseek/deepseek-v4.1-flash": "RouterArena main 44cc1ff model_cost.json",
+ "openai/gpt-6-luna-pro": "OpenRouter models API 2026-11-01",
+ "qwen/qwen3.8-flash": "OpenRouter models API 2026-11-01",
+ "xiaomi/mimo-v2.6-pro": "OpenRouter models API 2026-11-01"
+}
