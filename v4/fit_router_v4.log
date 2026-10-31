@@ -1,0 +1,33 @@
+single models: {'gemma-4-31b-it': np.float64(82.98), 'gpt-6-luna': np.float64(83.8), 'gemini-3.1-flash-lite@none': np.float64(80.79), 'claude-haiku-5.5': np.float64(83.19), 'deepseek-v4-flash-0731': np.float64(82.69), 'gemini-3-flash-preview@none': np.float64(81.93)}
+seed 0 held-out wrapper bare lam 0.06: 84.19  acc 87.7% $0.321/1K
+seed 0 held-out wrapper bare lam 0.08: 84.12  acc 87.6% $0.309/1K
+seed 0 held-out wrapper bare lam 0.12: 84.24  acc 87.6% $0.288/1K
+seed 0 held-out wrapper bare lam 0.16: 84.31  acc 87.6% $0.272/1K
+seed 0 held-out wrapper bare lam 0.24: 84.28  acc 87.3% $0.240/1K
+seed 0 held-out wrapper A    lam 0.06: 83.89  acc 87.3% $0.313/1K
+seed 0 held-out wrapper A    lam 0.08: 84.16  acc 87.5% $0.289/1K
+seed 0 held-out wrapper A    lam 0.12: 84.15  acc 87.3% $0.265/1K
+seed 0 held-out wrapper A    lam 0.16: 84.24  acc 87.3% $0.249/1K
+seed 0 held-out wrapper A    lam 0.24: 83.78  acc 86.5% $0.218/1K
+seed 0 held-out wrapper B    lam 0.06: 84.03  acc 87.4% $0.302/1K
+seed 0 held-out wrapper B    lam 0.08: 84.32  acc 87.6% $0.276/1K
+seed 0 held-out wrapper B    lam 0.12: 84.05  acc 87.1% $0.254/1K
+seed 0 held-out wrapper B    lam 0.16: 83.94  acc 86.9% $0.239/1K
+seed 0 held-out wrapper B    lam 0.24: 83.98  acc 86.7% $0.207/1K
+seed 1 held-out wrapper bare lam 0.06: 84.52  acc 88.2% $0.328/1K
+seed 1 held-out wrapper bare lam 0.08: 84.53  acc 88.1% $0.311/1K
+seed 1 held-out wrapper bare lam 0.12: 84.44  acc 87.8% $0.292/1K
+seed 1 held-out wrapper bare lam 0.16: 84.51  acc 87.8% $0.277/1K
+seed 1 held-out wrapper bare lam 0.24: 84.19  acc 87.1% $0.236/1K
+seed 1 held-out wrapper A    lam 0.06: 84.43  acc 87.9% $0.299/1K
+seed 1 held-out wrapper A    lam 0.08: 84.52  acc 87.9% $0.283/1K
+seed 1 held-out wrapper A    lam 0.12: 84.36  acc 87.5% $0.261/1K
+seed 1 held-out wrapper A    lam 0.16: 84.23  acc 87.3% $0.247/1K
+seed 1 held-out wrapper A    lam 0.24: 83.58  acc 86.2% $0.212/1K
+seed 1 held-out wrapper B    lam 0.06: 84.13  acc 87.5% $0.301/1K
+seed 1 held-out wrapper B    lam 0.08: 84.10  acc 87.3% $0.279/1K
+seed 1 held-out wrapper B    lam 0.12: 84.01  acc 87.1% $0.258/1K
+seed 1 held-out wrapper B    lam 0.16: 83.91  acc 86.9% $0.248/1K
+seed 1 held-out wrapper B    lam 0.24: 83.51  acc 86.1% $0.209/1K
+mean over held-out wrappers: {0.06: 84.2, 0.08: 84.29, 0.12: 84.21, 0.16: 84.19, 0.24: 83.89} -> lam 0.08
+saved /Users/harun.ercul/Desktop/thriftllm-lab/route_data/v4/router_v4.npz  sha256 cdd8063c303b250c04f52efae463c2d1404712daaf4ce4ec039d279f770c7b66

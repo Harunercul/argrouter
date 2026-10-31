@@ -116,7 +116,9 @@ the design in response, which RouterArena's rules count as tuning on it.
 **v4** is being rebuilt so that none of this applies: calibration data drawn fresh from the original
 public releases with a fixed, pre-registered allocation; prompts and graders written independently of
 RouterArena's; the configuration frozen and published (with hashes) before it is run on RouterArena
-once. The pre-registration lives in [`v4/`](v4/) and grows as each part is fixed.
+once. The pre-registration lives in [`v4/`](v4/) and grows as each part is fixed: data spec (part 1),
+calibration set, prompts, graders and candidates (part 2), and the frozen router
+([part 3](v4/PREREG_3_frozen_router.md)).
 
 ## How much does it actually save?
 
