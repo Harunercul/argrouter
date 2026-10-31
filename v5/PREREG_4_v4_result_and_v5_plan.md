@@ -71,3 +71,23 @@ RouterArena data, templates, configs or per-query results. They are decided here
 ## Then
 Part 5 freezes the v5 router (hashes of the weights and code, the selection log) before it routes any
 RouterArena query. After that we run RouterArena once and submit once, with v4's result and this file disclosed.
+
+## Amendment (2026-11-01, same day, before any v5 label is seen)
+The 0.25 floor in item 1 is replaced by **0.5**.
+
+Why: a dry run of the selection rule on the 8 v4 candidates only (labels already public in part 3) showed that
+0.25 makes our set much harder than RouterArena, and the rule then picks a pool costing $2 to $3 per 1K queries.
+We calibrated the floor against one number, v4's measured RouterArena accuracy (74.99 %). The calibration
+used the v4 router's out-of-fold picks on our set (pool and λ = 0.08 of part 3):
+
+| floor | weighted accuracy | $ / 1K | score |
+|---|---:|---:|---:|
+| 0.25 | 68.3 % | 0.422 | 67.18 |
+| **0.5** | **75.9 %** | 0.372 | 73.95 |
+| 0.75 | 79.2 % | 0.350 | 76.82 |
+| 1.0 | 81.0 % | 0.339 | 78.40 |
+| equal weights | 87.3 % | 0.298 | 83.91 |
+
+The grid was 0.25, 0.5, 0.75, 1, 1.5, 2 and 4; we took the value closest to 74.99 %. This is the only use of a
+RouterArena result in v5, and it is one aggregate number from our own v4 run. The floor is set in
+`fit_router_v5.py` as `HARD_FLOOR`.
