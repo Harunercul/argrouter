@@ -1,0 +1,85 @@
+{
+  "benchmark": "math",
+  "exclusion_family": "math",
+  "source": "EleutherAI/hendrycks_math@21a5633873b6a120296cce3e2df9d5550074f4a3",
+  "subsets": [
+    "algebra",
+    "counting_and_probability",
+    "geometry",
+    "intermediate_algebra",
+    "number_theory",
+    "prealgebra",
+    "precalculus"
+  ],
+  "budget": 200,
+  "available": 12498,
+  "dropped_before_exclusion": {
+    "number_theory": {
+      "no_boxed_answer": 2
+    }
+  },
+  "excluded_question_hash": 71,
+  "excluded_id_hash": 750,
+  "usable": 11677,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "algebra": {
+      "available": 2931,
+      "excluded_question_hash": 12,
+      "excluded_id_hash": 108,
+      "usable": 2811,
+      "taken": 29
+    },
+    "counting_and_probability": {
+      "available": 1245,
+      "excluded_question_hash": 8,
+      "excluded_id_hash": 104,
+      "usable": 1133,
+      "taken": 29
+    },
+    "geometry": {
+      "available": 1349,
+      "excluded_question_hash": 6,
+      "excluded_id_hash": 103,
+      "usable": 1240,
+      "taken": 29
+    },
+    "intermediate_algebra": {
+      "available": 2198,
+      "excluded_question_hash": 13,
+      "excluded_id_hash": 110,
+      "usable": 2075,
+      "taken": 29
+    },
+    "number_theory": {
+      "available": 1407,
+      "excluded_question_hash": 11,
+      "excluded_id_hash": 108,
+      "usable": 1288,
+      "taken": 28
+    },
+    "prealgebra": {
+      "available": 2076,
+      "excluded_question_hash": 11,
+      "excluded_id_hash": 109,
+      "usable": 1956,
+      "taken": 28
+    },
+    "precalculus": {
+      "available": 1292,
+      "excluded_question_hash": 10,
+      "excluded_id_hash": 108,
+      "usable": 1174,
+      "taken": 28
+    }
+  },
+  "notes": [
+    "authors' MATH.tar / hendrycks/competition_math unavailable (403 / DMCA); EleutherAI parquet mirror used",
+    "answer = last \\boxed{} in the solution; full solution in meta.solution",
+    "native id = row index within <subject>/<split> parquet (no ids in the mirror), so id-hash matches are positional and unrelated to the exclusion file's MATH ids"
+  ]
+}

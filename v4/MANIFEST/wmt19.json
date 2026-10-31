@@ -1,0 +1,157 @@
+{
+  "benchmark": "wmt19",
+  "exclusion_family": "wmt19",
+  "source": "wmt/wmt19@c8a87a86736e7bf10c74c22e9033eba9146774e9",
+  "subsets": [
+    "cs-en",
+    "de-en",
+    "de-fr",
+    "en-cs",
+    "en-de",
+    "en-fi",
+    "en-gu",
+    "en-kk",
+    "en-lt",
+    "en-ru",
+    "en-zh",
+    "fi-en",
+    "fr-de",
+    "gu-en",
+    "kk-en",
+    "lt-en",
+    "ru-en",
+    "zh-en"
+  ],
+  "budget": 200,
+  "available": 47076,
+  "excluded_question_hash": 607,
+  "excluded_id_hash": 4097,
+  "usable": 42372,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "validation": 200
+  },
+  "per_subset": {
+    "cs-en": {
+      "available": 2983,
+      "excluded_id_hash": 231,
+      "usable": 2752,
+      "taken": 12
+    },
+    "de-en": {
+      "available": 2998,
+      "excluded_id_hash": 231,
+      "usable": 2767,
+      "taken": 12
+    },
+    "de-fr": {
+      "available": 1512,
+      "excluded_id_hash": 231,
+      "usable": 1281,
+      "taken": 11
+    },
+    "en-cs": {
+      "available": 2983,
+      "excluded_question_hash": 80,
+      "excluded_id_hash": 226,
+      "usable": 2677,
+      "taken": 11
+    },
+    "en-de": {
+      "available": 2998,
+      "excluded_id_hash": 221,
+      "excluded_question_hash": 98,
+      "usable": 2679,
+      "taken": 11
+    },
+    "en-fi": {
+      "available": 3000,
+      "excluded_id_hash": 217,
+      "excluded_question_hash": 86,
+      "usable": 2697,
+      "taken": 11
+    },
+    "en-gu": {
+      "available": 1998,
+      "excluded_id_hash": 218,
+      "excluded_question_hash": 98,
+      "usable": 1682,
+      "taken": 11
+    },
+    "en-kk": {
+      "available": 2066,
+      "excluded_id_hash": 231,
+      "excluded_question_hash": 5,
+      "usable": 1830,
+      "taken": 11
+    },
+    "en-lt": {
+      "available": 2000,
+      "excluded_id_hash": 223,
+      "excluded_question_hash": 68,
+      "usable": 1709,
+      "taken": 11
+    },
+    "en-ru": {
+      "available": 3000,
+      "excluded_id_hash": 225,
+      "excluded_question_hash": 73,
+      "usable": 2702,
+      "taken": 11
+    },
+    "en-zh": {
+      "available": 3981,
+      "excluded_question_hash": 98,
+      "excluded_id_hash": 226,
+      "usable": 3657,
+      "taken": 11
+    },
+    "fi-en": {
+      "available": 3000,
+      "excluded_id_hash": 231,
+      "usable": 2769,
+      "taken": 11
+    },
+    "fr-de": {
+      "available": 1512,
+      "excluded_id_hash": 231,
+      "usable": 1281,
+      "taken": 11
+    },
+    "gu-en": {
+      "available": 1998,
+      "excluded_id_hash": 231,
+      "usable": 1767,
+      "taken": 11
+    },
+    "kk-en": {
+      "available": 2066,
+      "excluded_id_hash": 231,
+      "usable": 1835,
+      "taken": 11
+    },
+    "lt-en": {
+      "available": 2000,
+      "excluded_id_hash": 231,
+      "excluded_question_hash": 1,
+      "usable": 1768,
+      "taken": 11
+    },
+    "ru-en": {
+      "available": 3000,
+      "excluded_id_hash": 231,
+      "usable": 2769,
+      "taken": 11
+    },
+    "zh-en": {
+      "available": 3981,
+      "excluded_id_hash": 231,
+      "usable": 3750,
+      "taken": 11
+    }
+  },
+  "output": "data/wmt19.jsonl",
+  "split_used": "validation (official WMT news dev/test sentences shipped by the release; train = parallel corpora, unused)",
+  "native_id": "row index within <config>/validation"
+}

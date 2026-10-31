@@ -1,0 +1,189 @@
+{
+  "benchmark": "medmcqa",
+  "exclusion_family": "medmcqa",
+  "source": "openlifescienceai/medmcqa@91c6572c454088bf71b679ad90aa8dffcd0d5868",
+  "subsets": [
+    "Anaesthesia",
+    "Anatomy",
+    "Biochemistry",
+    "Dental",
+    "ENT",
+    "Forensic Medicine",
+    "Gynaecology & Obstetrics",
+    "Medicine",
+    "Microbiology",
+    "Ophthalmology",
+    "Orthopaedics",
+    "Pathology",
+    "Pediatrics",
+    "Pharmacology",
+    "Physiology",
+    "Psychiatry",
+    "Radiology",
+    "Skin",
+    "Social & Preventive Medicine",
+    "Surgery",
+    "Unknown"
+  ],
+  "budget": 200,
+  "available": 187005,
+  "excluded_question_hash": 316,
+  "excluded_id_hash": 0,
+  "usable": 186689,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "Anaesthesia": {
+      "available": 3206,
+      "excluded_question_hash": 2,
+      "excluded_id_hash": 0,
+      "usable": 3204,
+      "taken": 10
+    },
+    "Anatomy": {
+      "available": 14794,
+      "excluded_question_hash": 1,
+      "excluded_id_hash": 0,
+      "usable": 14793,
+      "taken": 10
+    },
+    "Biochemistry": {
+      "available": 8453,
+      "excluded_question_hash": 16,
+      "excluded_id_hash": 0,
+      "usable": 8437,
+      "taken": 10
+    },
+    "Dental": {
+      "available": 10256,
+      "excluded_question_hash": 123,
+      "excluded_id_hash": 0,
+      "usable": 10133,
+      "taken": 10
+    },
+    "ENT": {
+      "available": 4972,
+      "excluded_question_hash": 1,
+      "excluded_id_hash": 0,
+      "usable": 4971,
+      "taken": 10
+    },
+    "Forensic Medicine": {
+      "available": 5967,
+      "excluded_question_hash": 5,
+      "excluded_id_hash": 0,
+      "usable": 5962,
+      "taken": 10
+    },
+    "Gynaecology & Obstetrics": {
+      "available": 10237,
+      "excluded_question_hash": 20,
+      "excluded_id_hash": 0,
+      "usable": 10217,
+      "taken": 10
+    },
+    "Medicine": {
+      "available": 18182,
+      "excluded_question_hash": 17,
+      "excluded_id_hash": 0,
+      "usable": 18165,
+      "taken": 10
+    },
+    "Microbiology": {
+      "available": 11436,
+      "excluded_question_hash": 10,
+      "excluded_id_hash": 0,
+      "usable": 11426,
+      "taken": 10
+    },
+    "Ophthalmology": {
+      "available": 6990,
+      "excluded_question_hash": 1,
+      "excluded_id_hash": 0,
+      "usable": 6989,
+      "taken": 10
+    },
+    "Orthopaedics": {
+      "available": 3019,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 3019,
+      "taken": 10
+    },
+    "Pathology": {
+      "available": 15221,
+      "excluded_question_hash": 15,
+      "excluded_id_hash": 0,
+      "usable": 15206,
+      "taken": 9
+    },
+    "Pediatrics": {
+      "available": 8271,
+      "excluded_question_hash": 3,
+      "excluded_id_hash": 0,
+      "usable": 8268,
+      "taken": 9
+    },
+    "Pharmacology": {
+      "available": 14001,
+      "excluded_question_hash": 24,
+      "excluded_id_hash": 0,
+      "usable": 13977,
+      "taken": 9
+    },
+    "Physiology": {
+      "available": 9001,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 0,
+      "usable": 8982,
+      "taken": 9
+    },
+    "Psychiatry": {
+      "available": 4458,
+      "excluded_question_hash": 1,
+      "excluded_id_hash": 0,
+      "usable": 4457,
+      "taken": 9
+    },
+    "Radiology": {
+      "available": 4464,
+      "excluded_question_hash": 8,
+      "excluded_id_hash": 0,
+      "usable": 4456,
+      "taken": 9
+    },
+    "Skin": {
+      "available": 1788,
+      "excluded_question_hash": 1,
+      "excluded_id_hash": 0,
+      "usable": 1787,
+      "taken": 9
+    },
+    "Social & Preventive Medicine": {
+      "available": 12011,
+      "excluded_question_hash": 32,
+      "excluded_id_hash": 0,
+      "usable": 11979,
+      "taken": 9
+    },
+    "Surgery": {
+      "available": 17231,
+      "excluded_question_hash": 17,
+      "excluded_id_hash": 0,
+      "usable": 17214,
+      "taken": 9
+    },
+    "Unknown": {
+      "available": 3047,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 3047,
+      "taken": 9
+    }
+  },
+  "output": "data/medmcqa.jsonl",
+  "dropped_unlabeled_test": 6150
+}

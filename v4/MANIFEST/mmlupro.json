@@ -1,0 +1,133 @@
+{
+  "benchmark": "mmlupro",
+  "exclusion_family": "mmlupro",
+  "source": "TIGER-Lab/MMLU-Pro@b189ec765aa7ed75c8acfea42df31fdae71f97be",
+  "subsets": [
+    "biology",
+    "business",
+    "chemistry",
+    "computer science",
+    "economics",
+    "engineering",
+    "health",
+    "history",
+    "law",
+    "math",
+    "other",
+    "philosophy",
+    "physics",
+    "psychology"
+  ],
+  "budget": 200,
+  "available": 12102,
+  "excluded_question_hash": 2735,
+  "excluded_id_hash": 1904,
+  "usable": 7463,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "validation": 48,
+    "test": 152
+  },
+  "per_subset": {
+    "biology": {
+      "available": 722,
+      "excluded_question_hash": 174,
+      "excluded_id_hash": 104,
+      "usable": 444,
+      "taken": 15
+    },
+    "business": {
+      "available": 794,
+      "excluded_question_hash": 183,
+      "excluded_id_hash": 129,
+      "usable": 482,
+      "taken": 15
+    },
+    "chemistry": {
+      "available": 1137,
+      "excluded_question_hash": 90,
+      "excluded_id_hash": 220,
+      "usable": 827,
+      "taken": 15
+    },
+    "computer science": {
+      "available": 415,
+      "excluded_question_hash": 392,
+      "excluded_id_hash": 2,
+      "usable": 21,
+      "taken": 15
+    },
+    "economics": {
+      "available": 849,
+      "excluded_question_hash": 187,
+      "excluded_id_hash": 98,
+      "usable": 564,
+      "taken": 14
+    },
+    "engineering": {
+      "available": 974,
+      "excluded_question_hash": 280,
+      "excluded_id_hash": 3,
+      "usable": 691,
+      "taken": 14
+    },
+    "health": {
+      "available": 823,
+      "excluded_question_hash": 267,
+      "excluded_id_hash": 106,
+      "usable": 450,
+      "taken": 14
+    },
+    "history": {
+      "available": 386,
+      "excluded_question_hash": 327,
+      "excluded_id_hash": 37,
+      "usable": 22,
+      "taken": 14
+    },
+    "law": {
+      "available": 1106,
+      "excluded_question_hash": 191,
+      "excluded_id_hash": 152,
+      "usable": 763,
+      "taken": 14
+    },
+    "math": {
+      "available": 1356,
+      "excluded_question_hash": 209,
+      "excluded_id_hash": 93,
+      "usable": 1054,
+      "taken": 14
+    },
+    "other": {
+      "available": 929,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 248,
+      "usable": 681,
+      "taken": 14
+    },
+    "philosophy": {
+      "available": 504,
+      "excluded_question_hash": 148,
+      "excluded_id_hash": 36,
+      "usable": 320,
+      "taken": 14
+    },
+    "physics": {
+      "available": 1304,
+      "excluded_question_hash": 99,
+      "excluded_id_hash": 544,
+      "usable": 661,
+      "taken": 14
+    },
+    "psychology": {
+      "available": 803,
+      "excluded_question_hash": 188,
+      "excluded_id_hash": 132,
+      "usable": 483,
+      "taken": 14
+    }
+  },
+  "output": "data/mmlupro.jsonl"
+}

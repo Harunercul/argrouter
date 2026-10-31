@@ -1,0 +1,38 @@
+{
+  "benchmark": "narrativeqa",
+  "exclusion_family": "narrativeqa",
+  "source": "deepmind/narrativeqa@2e643e7363944af1c33a652d1c87320d0871c4e4:data/narrativeqa-master.zip (github.com/deepmind/narrativeqa@904246f6d1fe99a99a08a03501fe3e619af2cee5)",
+  "subsets": [
+    "gutenberg",
+    "movie"
+  ],
+  "budget": 200,
+  "available": 46765,
+  "excluded_question_hash": 387,
+  "excluded_id_hash": 504,
+  "usable": 45874,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "gutenberg": {
+      "available": 23290,
+      "excluded_id_hash": 225,
+      "excluded_question_hash": 197,
+      "usable": 22868,
+      "taken": 100
+    },
+    "movie": {
+      "available": 23475,
+      "excluded_question_hash": 190,
+      "excluded_id_hash": 279,
+      "usable": 23006,
+      "taken": 100
+    }
+  },
+  "output": "data/narrativeqa.jsonl",
+  "context_decision": "Wikipedia summary (summaries-only setting); full stories median ~34k words, too long",
+  "native_id": "row index within split (qaps.csv order)"
+}

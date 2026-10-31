@@ -1,0 +1,214 @@
+{
+  "benchmark": "opentdb",
+  "exclusion_family": "opentdb",
+  "source": "https://github.com/kickturn/opentdb-scraper (opentdb.json)@40221acc1fc3440a5c2b07621cbd05460e4eafac",
+  "subsets": [
+    "Animals",
+    "Art",
+    "Celebrities",
+    "Entertainment: Board Games",
+    "Entertainment: Books",
+    "Entertainment: Cartoon & Animations",
+    "Entertainment: Comics",
+    "Entertainment: Film",
+    "Entertainment: Japanese Anime & Manga",
+    "Entertainment: Music",
+    "Entertainment: Musicals & Theatres",
+    "Entertainment: Television",
+    "Entertainment: Video Games",
+    "General Knowledge",
+    "Geography",
+    "History",
+    "Mythology",
+    "Politics",
+    "Science & Nature",
+    "Science: Computers",
+    "Science: Gadgets",
+    "Science: Mathematics",
+    "Sports",
+    "Vehicles"
+  ],
+  "budget": 200,
+  "available": 5250,
+  "excluded_question_hash": 874,
+  "excluded_id_hash": 733,
+  "usable": 3643,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "Animals": {
+      "available": 99,
+      "excluded_question_hash": 25,
+      "excluded_id_hash": 6,
+      "usable": 68,
+      "taken": 9
+    },
+    "Art": {
+      "available": 59,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 3,
+      "usable": 37,
+      "taken": 9
+    },
+    "Celebrities": {
+      "available": 53,
+      "excluded_question_hash": 51,
+      "excluded_id_hash": 0,
+      "usable": 2,
+      "taken": 2
+    },
+    "Entertainment: Board Games": {
+      "available": 78,
+      "excluded_question_hash": 20,
+      "excluded_id_hash": 10,
+      "usable": 48,
+      "taken": 9
+    },
+    "Entertainment: Books": {
+      "available": 120,
+      "excluded_question_hash": 96,
+      "excluded_id_hash": 3,
+      "usable": 21,
+      "taken": 9
+    },
+    "Entertainment: Cartoon & Animations": {
+      "available": 107,
+      "excluded_question_hash": 18,
+      "excluded_id_hash": 16,
+      "usable": 73,
+      "taken": 9
+    },
+    "Entertainment: Comics": {
+      "available": 78,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 10,
+      "usable": 49,
+      "taken": 9
+    },
+    "Entertainment: Film": {
+      "available": 298,
+      "excluded_question_hash": 21,
+      "excluded_id_hash": 44,
+      "usable": 233,
+      "taken": 9
+    },
+    "Entertainment: Japanese Anime & Manga": {
+      "available": 203,
+      "excluded_question_hash": 21,
+      "excluded_id_hash": 17,
+      "usable": 165,
+      "taken": 9
+    },
+    "Entertainment: Music": {
+      "available": 491,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 86,
+      "usable": 386,
+      "taken": 9
+    },
+    "Entertainment: Musicals & Theatres": {
+      "available": 36,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 3,
+      "usable": 14,
+      "taken": 9
+    },
+    "Entertainment: Television": {
+      "available": 195,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 29,
+      "usable": 147,
+      "taken": 9
+    },
+    "Entertainment: Video Games": {
+      "available": 1170,
+      "excluded_question_hash": 59,
+      "excluded_id_hash": 186,
+      "usable": 925,
+      "taken": 9
+    },
+    "General Knowledge": {
+      "available": 467,
+      "excluded_question_hash": 108,
+      "excluded_id_hash": 48,
+      "usable": 311,
+      "taken": 9
+    },
+    "Geography": {
+      "available": 382,
+      "excluded_question_hash": 60,
+      "excluded_id_hash": 68,
+      "usable": 254,
+      "taken": 9
+    },
+    "History": {
+      "available": 405,
+      "excluded_question_hash": 56,
+      "excluded_id_hash": 66,
+      "usable": 283,
+      "taken": 8
+    },
+    "Mythology": {
+      "available": 71,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 13,
+      "usable": 58,
+      "taken": 8
+    },
+    "Politics": {
+      "available": 77,
+      "excluded_question_hash": 2,
+      "excluded_id_hash": 11,
+      "usable": 64,
+      "taken": 8
+    },
+    "Science & Nature": {
+      "available": 294,
+      "excluded_question_hash": 26,
+      "excluded_id_hash": 50,
+      "usable": 218,
+      "taken": 8
+    },
+    "Science: Computers": {
+      "available": 188,
+      "excluded_question_hash": 112,
+      "excluded_id_hash": 10,
+      "usable": 66,
+      "taken": 8
+    },
+    "Science: Gadgets": {
+      "available": 40,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 6,
+      "usable": 34,
+      "taken": 8
+    },
+    "Science: Mathematics": {
+      "available": 79,
+      "excluded_question_hash": 30,
+      "excluded_id_hash": 12,
+      "usable": 37,
+      "taken": 8
+    },
+    "Sports": {
+      "available": 174,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 30,
+      "usable": 125,
+      "taken": 8
+    },
+    "Vehicles": {
+      "available": 86,
+      "excluded_question_hash": 55,
+      "excluded_id_hash": 6,
+      "usable": 25,
+      "taken": 8
+    }
+  },
+  "output": "data/opentdb.jsonl",
+  "file_sha256": "1fbf6cae570a3dd61657a3cfd2849126016ba1833f605abb7732d9f0bcea51fc",
+  "source_note": "community dump of the opentdb.com API"
+}

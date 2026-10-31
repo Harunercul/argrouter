@@ -1,0 +1,65 @@
+{
+  "benchmark": "ethics",
+  "exclusion_family": "ethics",
+  "source": "hendrycks/ethics@b8b47c589f8bee77175b8648e5497278b68da48a",
+  "subsets": [
+    "commonsense",
+    "deontology",
+    "justice",
+    "utilitarianism",
+    "virtue"
+  ],
+  "budget": 200,
+  "available": 134417,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 1070,
+  "excluded_id_hash": 1465,
+  "usable": 131882,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "commonsense": {
+      "available": 21759,
+      "excluded_question_hash": 100,
+      "excluded_id_hash": 298,
+      "usable": 21361,
+      "taken": 40
+    },
+    "deontology": {
+      "available": 25296,
+      "excluded_question_hash": 330,
+      "excluded_id_hash": 280,
+      "usable": 24686,
+      "taken": 40
+    },
+    "justice": {
+      "available": 26547,
+      "excluded_question_hash": 52,
+      "excluded_id_hash": 296,
+      "usable": 26199,
+      "taken": 40
+    },
+    "utilitarianism": {
+      "available": 22815,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 300,
+      "usable": 22515,
+      "taken": 40
+    },
+    "virtue": {
+      "available": 38000,
+      "excluded_question_hash": 588,
+      "excluded_id_hash": 291,
+      "usable": 37121,
+      "taken": 40
+    }
+  },
+  "notes": [
+    "label semantics per subset in meta.label_semantics (commonsense 1 = wrong; deontology/justice 1 = reasonable; virtue 1 = trait fits)",
+    "utilitarianism has no labels: rendered as a 2-way choice with deterministic per-item order randomisation; answer = index of the baseline (more pleasant) scenario",
+    "native id = row index within <subset>/<split>.csv; id-hash matches are positional (the exclusion file's ethics ids are 0..99)"
+  ]
+}

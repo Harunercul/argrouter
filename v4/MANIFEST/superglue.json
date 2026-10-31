@@ -1,0 +1,106 @@
+{
+  "benchmark": "superglue",
+  "exclusion_family": "superglue",
+  "source": "https://dl.fbaipublicfiles.com/glue/superglue/data/v2/combined.zip@sha256:01760fa182188f26ed89ac09b654617caed309639de8e14862d34b02473f3690",
+  "subsets": [
+    "AX-b",
+    "AX-g",
+    "BoolQ",
+    "CB",
+    "COPA",
+    "MultiRC",
+    "RTE",
+    "ReCoRD",
+    "WSC",
+    "WiC"
+  ],
+  "budget": 200,
+  "available": 167275,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 69,
+  "excluded_id_hash": 557,
+  "usable": 166649,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "test": 40,
+    "train": 160
+  },
+  "per_subset": {
+    "AX-b": {
+      "available": 1104,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 30,
+      "usable": 1074,
+      "taken": 20
+    },
+    "AX-g": {
+      "available": 356,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 3,
+      "usable": 353,
+      "taken": 20
+    },
+    "BoolQ": {
+      "available": 12697,
+      "excluded_question_hash": 69,
+      "excluded_id_hash": 284,
+      "usable": 12344,
+      "taken": 20
+    },
+    "CB": {
+      "available": 306,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 6,
+      "usable": 300,
+      "taken": 20
+    },
+    "COPA": {
+      "available": 500,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 6,
+      "usable": 494,
+      "taken": 20
+    },
+    "MultiRC": {
+      "available": 32091,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 32091,
+      "taken": 20
+    },
+    "RTE": {
+      "available": 2767,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 60,
+      "usable": 2707,
+      "taken": 20
+    },
+    "ReCoRD": {
+      "available": 110730,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 110730,
+      "taken": 20
+    },
+    "WSC": {
+      "available": 658,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 8,
+      "usable": 650,
+      "taken": 20
+    },
+    "WiC": {
+      "available": 6066,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 160,
+      "usable": 5906,
+      "taken": 20
+    }
+  },
+  "notes": [
+    "subsets = all 10 SuperGLUE tasks incl. diagnostics AX-b/AX-g (labelled; only file is the test split); the 8 main tasks use train/val only (test unlabelled)",
+    "COPA/WiC/WSC/MultiRC question strings are fixed renderings of the native fields (kept in meta)",
+    "native id = release idx; id-hash matches are positional (exclusion file's superglue ids are ints)"
+  ]
+}

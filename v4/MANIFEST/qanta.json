@@ -1,0 +1,116 @@
+{
+  "benchmark": "qanta",
+  "exclusion_family": "qanta",
+  "source": "qanta@e3c5602229e5c0c8572636a81cb366eb9ccfa890 (config mode=full,char_skip=25)",
+  "subsets": [
+    "Current Events",
+    "Fine Arts",
+    "Geography",
+    "History",
+    "Literature",
+    "Mythology",
+    "Philosophy",
+    "Religion",
+    "Science",
+    "Social Science",
+    "Trash"
+  ],
+  "budget": 200,
+  "available": 119247,
+  "excluded_question_hash": 645,
+  "excluded_id_hash": 3521,
+  "usable": 115081,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "Current Events": {
+      "available": 438,
+      "excluded_id_hash": 18,
+      "usable": 420,
+      "taken": 19
+    },
+    "Fine Arts": {
+      "available": 14293,
+      "excluded_id_hash": 477,
+      "excluded_question_hash": 74,
+      "usable": 13742,
+      "taken": 19
+    },
+    "Geography": {
+      "available": 3637,
+      "excluded_id_hash": 39,
+      "excluded_question_hash": 46,
+      "usable": 3552,
+      "taken": 18
+    },
+    "History": {
+      "available": 27768,
+      "excluded_id_hash": 786,
+      "excluded_question_hash": 116,
+      "usable": 26866,
+      "taken": 18
+    },
+    "Literature": {
+      "available": 27626,
+      "excluded_id_hash": 699,
+      "excluded_question_hash": 222,
+      "usable": 26705,
+      "taken": 18
+    },
+    "Mythology": {
+      "available": 4778,
+      "excluded_id_hash": 77,
+      "usable": 4701,
+      "taken": 18
+    },
+    "Philosophy": {
+      "available": 3579,
+      "excluded_id_hash": 70,
+      "excluded_question_hash": 45,
+      "usable": 3464,
+      "taken": 18
+    },
+    "Religion": {
+      "available": 3348,
+      "excluded_id_hash": 111,
+      "usable": 3237,
+      "taken": 18
+    },
+    "Science": {
+      "available": 23800,
+      "excluded_id_hash": 727,
+      "excluded_question_hash": 87,
+      "usable": 22986,
+      "taken": 18
+    },
+    "Social Science": {
+      "available": 6036,
+      "excluded_id_hash": 419,
+      "excluded_question_hash": 55,
+      "usable": 5562,
+      "taken": 18
+    },
+    "Trash": {
+      "available": 3944,
+      "excluded_id_hash": 98,
+      "usable": 3846,
+      "taken": 18
+    }
+  },
+  "output": "data/qanta.jsonl",
+  "dropped_no_category": 1145,
+  "fold_to_split": {
+    "guesstrain": "train",
+    "buzztrain": "train",
+    "guessdev": "validation",
+    "buzzdev": "validation",
+    "guesstest": "test",
+    "buzztest": "test",
+    "adversarial": "test"
+  },
+  "native_id": "qanta_id, and row index within fold",
+  "question_hash_texts": "full_question and first_sentence"
+}

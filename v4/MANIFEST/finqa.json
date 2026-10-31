@@ -1,0 +1,34 @@
+{
+  "benchmark": "finqa",
+  "exclusion_family": "finqa",
+  "source": "https://github.com/czyssrs/FinQA@0f16e2867befa6840783e58be38c9efb9229d742 (dataset/train,dev,test.json; sha256 train=49f237eb9779, dev=a847fb7e0d61, test=831dbfb2e785)",
+  "subsets": [
+    "finqa"
+  ],
+  "budget": 200,
+  "available": 8281,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 75,
+  "excluded_id_hash": 0,
+  "usable": 8206,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "finqa": {
+      "available": 8281,
+      "excluded_question_hash": 75,
+      "excluded_id_hash": 0,
+      "usable": 8206,
+      "taken": 200
+    }
+  },
+  "notes": [
+    "context = pre_text lines + table (rows as 'a | b | c' lines, header first) + post_text lines",
+    "answer = qa.answer, falling back to str(qa.exe_ans) when empty; exe_ans kept in aliases and meta",
+    "yes/no questions keep their 'yes'/'no' answers (task stays 'numeric', as in the release)",
+    "native id = FinQA example id; the exclusion file's finqa ids are integers (row indices of a test-like file), so the id rule cannot match these ids"
+  ]
+}

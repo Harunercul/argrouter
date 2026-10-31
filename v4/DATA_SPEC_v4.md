@@ -35,3 +35,17 @@ Canonical answers: `mc` → 0-based int index into `options`; `numeric` → stri
 `binary` → `options` holds the two labels in the source's order and `answer` the index; `code` → `meta` holds the
 test cases (public and private, decoded) and `meta.starter_code`/`meta.fn_name` when present.
 A `MANIFEST.json` lists per benchmark: source + revision, subsets, available/excluded/taken counts, shortfalls.
+
+## Amendment 1 (2026-10-31): data validity
+Decided on 2026-10-31, before any model was run on v4 data. General rule: an item is dropped (before exclusion and
+allocation, counted in the manifest) when its released gold fails a mechanical validity check against the source's own
+generator/semantics, or when its answer is visible in (or identical to) the input. The benchmark's 200 budget is then
+refilled by the same round-robin (`random.Random(20261031)`) over the remaining valid items and subsets; a subset with
+no valid items drops out of the round-robin.
+Applied to ChessInstruct (python-chess replay; generator read in github.com/Thytu/StockLLM@b98c5e8):
+- FIND_NEXT_BEST_MOVE: 20000/20000 dropped (gold computed one ply after the shown moves: 15512 legal only for the
+  opponent, 4421 illegal in the shown position, 67 "chess mate").
+- MLM_ON_MOVES: 15000/15000 dropped (no "?" masks; the gold moves are in the input).
+- SORT_FENS: 10000/10000 dropped (input FENs already in gold order).
+- FIND_LAST_MOVE, FIND_FINAL_SCORE, FIND_ADVANTAGED_PLAYER: 0 dropped (all pass).
+Result: 200 items over the 3 valid task types (67/67/66). Details in MANIFEST/chessinstruct.json ("validity_rule").

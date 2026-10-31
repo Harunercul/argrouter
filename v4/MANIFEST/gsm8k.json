@@ -1,0 +1,32 @@
+{
+  "benchmark": "gsm8k",
+  "exclusion_family": "gsm8k",
+  "source": "openai/gsm8k@740312add88f781978c0658806c59bc2815b9866",
+  "subsets": [
+    "main"
+  ],
+  "budget": 200,
+  "available": 8792,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 24,
+  "excluded_id_hash": 24,
+  "usable": 8744,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "main": {
+      "available": 8792,
+      "excluded_question_hash": 24,
+      "excluded_id_hash": 24,
+      "usable": 8744,
+      "taken": 200
+    }
+  },
+  "notes": [
+    "answer = text after '####' in the source solution; full solution in meta.solution",
+    "native id = row index within split (train/test); id-hash matches are therefore positional"
+  ]
+}

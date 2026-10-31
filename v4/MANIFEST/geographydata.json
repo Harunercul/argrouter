@@ -1,0 +1,15 @@
+{
+  "benchmark": "geographydata",
+  "exclusion_family": "geographydata",
+  "status": "source_not_found",
+  "source": null,
+  "subsets": [],
+  "budget": 200,
+  "available": 0,
+  "excluded_question_hash": 0,
+  "excluded_id_hash": 0,
+  "usable": 0,
+  "taken": 0,
+  "shortfall": 200,
+  "note": "no authoritative public release found (HF hub, GitHub, web); not substituted with another dataset"
+}

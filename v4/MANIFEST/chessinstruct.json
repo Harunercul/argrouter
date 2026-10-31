@@ -1,0 +1,123 @@
+{
+  "benchmark": "chessinstruct",
+  "exclusion_family": "chessinstruct",
+  "source": "Thytu/ChessInstruct@dcfd1a8075dffd498fa190916fe28b1e0f8300e9",
+  "subsets": [
+    "FIND_ADVANTAGED_PLAYER",
+    "FIND_FINAL_SCORE",
+    "FIND_LAST_MOVE",
+    "FIND_NEXT_BEST_MOVE",
+    "MLM_ON_MOVES",
+    "SORT_FENS"
+  ],
+  "budget": 200,
+  "available": 55000,
+  "dropped_before_exclusion": {
+    "MLM_ON_MOVES": {
+      "invalid:unmasked_gold_in_input": 15000
+    },
+    "SORT_FENS": {
+      "invalid:input_already_sorted": 10000
+    },
+    "FIND_NEXT_BEST_MOVE": {
+      "invalid:legal_only_for_opponent": 15512,
+      "invalid:illegal_in_shown_position": 4421,
+      "invalid:gold_chess_mate": 67
+    }
+  },
+  "excluded_question_hash": 116,
+  "excluded_id_hash": 266,
+  "usable": 54618,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "FIND_ADVANTAGED_PLAYER": {
+      "available": 20000,
+      "excluded_question_hash": 40,
+      "excluded_id_hash": 0,
+      "usable": 19960,
+      "taken": 67
+    },
+    "FIND_FINAL_SCORE": {
+      "available": 20000,
+      "excluded_question_hash": 43,
+      "excluded_id_hash": 0,
+      "usable": 19957,
+      "taken": 67
+    },
+    "FIND_LAST_MOVE": {
+      "available": 15000,
+      "excluded_question_hash": 33,
+      "excluded_id_hash": 266,
+      "usable": 14701,
+      "taken": 66
+    },
+    "FIND_NEXT_BEST_MOVE": {
+      "available": 0,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 0,
+      "taken": 0
+    },
+    "MLM_ON_MOVES": {
+      "available": 0,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 0,
+      "taken": 0
+    },
+    "SORT_FENS": {
+      "available": 0,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 0,
+      "usable": 0,
+      "taken": 0
+    }
+  },
+  "notes": [
+    "subsets = the 6 KIND values; question = instruction + input JSON verbatim; answer = expected_output value",
+    "FIND_NEXT_BEST_MOVE golds are one ply off (generator indexes FENs without the start position): never legal for the side to move in the shown position",
+    "MLM_ON_MOVES inputs carry no '?' masks; SORT_FENS inputs are already in gold order",
+    "Amendment 1 validity rule applied: invalid/degenerate items dropped, budget refilled by round-robin over the remaining task types; per-item meta.check, totals in gold_validation",
+    "native id = row index within split; id-hash matches are positional"
+  ],
+  "gold_validation": {
+    "FIND_ADVANTAGED_PLAYER": {
+      "history_legal": 20000
+    },
+    "FIND_FINAL_SCORE": {
+      "terminal_agrees": 20000
+    },
+    "FIND_LAST_MOVE": {
+      "legal_result_agrees": 15000
+    },
+    "FIND_NEXT_BEST_MOVE": {
+      "legal_only_for_opponent": 15512,
+      "illegal_in_shown_position": 4421,
+      "gold_chess_mate": 67
+    },
+    "MLM_ON_MOVES": {
+      "unmasked_gold_in_input": 15000
+    },
+    "SORT_FENS": {
+      "input_already_sorted": 10000
+    }
+  },
+  "validity_rule": "Items whose released gold fails a mechanical python-chess check against the generator's own semantics (best move not legal for the side to move; last move illegal or contradicting the result; final score contradicting a terminal position; illegal move history), or whose answer is visible in the input (MLM_ON_MOVES without '?' masks; SORT_FENS inputs already in gold order), are dropped before exclusion; the 200 budget is refilled by the spec round-robin (seed 20261031) over the remaining valid items/task types.",
+  "validity_dropped_per_task_type": {
+    "FIND_ADVANTAGED_PLAYER": 0,
+    "FIND_FINAL_SCORE": 0,
+    "FIND_LAST_MOVE": 0,
+    "FIND_NEXT_BEST_MOVE": 20000,
+    "MLM_ON_MOVES": 15000,
+    "SORT_FENS": 10000
+  },
+  "valid_task_types": [
+    "FIND_ADVANTAGED_PLAYER",
+    "FIND_FINAL_SCORE",
+    "FIND_LAST_MOVE"
+  ]
+}

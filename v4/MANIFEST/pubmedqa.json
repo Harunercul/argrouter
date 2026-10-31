@@ -1,0 +1,29 @@
+{
+  "benchmark": "pubmedqa",
+  "exclusion_family": "pubmedqa",
+  "source": "qiaojin/PubMedQA@9001f2853fb87cab8d220904e0de81ac6973b318",
+  "subsets": [
+    "pqa_labeled"
+  ],
+  "budget": 200,
+  "available": 1000,
+  "excluded_question_hash": 466,
+  "excluded_id_hash": 0,
+  "usable": 534,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "pqa_labeled": {
+      "available": 1000,
+      "excluded_question_hash": 466,
+      "usable": 534,
+      "taken": 200
+    }
+  },
+  "output": "data/pubmedqa.jsonl",
+  "split_source": "https://raw.githubusercontent.com/pubmedqa/pubmedqa/1cbae8e92f72f20c8d3747cbb3bf5bc53554d997/data/test_ground_truth.json (sha256 939fe566f09017d13b1ca64d2ddfee0bc2374b366048152997669cccedc44d51): 500 official test PMIDs -> test, rest -> train",
+  "native_id": "pubid, and row index in pqa_labeled parquet"
+}

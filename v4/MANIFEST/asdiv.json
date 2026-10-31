@@ -1,0 +1,33 @@
+{
+  "benchmark": "asdiv",
+  "exclusion_family": "asdiv",
+  "source": "https://raw.githubusercontent.com/chaochun/nlu-asdiv-dataset/883f90a9a65bf00304ba8f37423910fe743abc47/dataset/ASDiv.xml@sha256:ef8904068482919ac48c8eeaaf6df344b8a308ba66d048c2d4d87eab82dc4929",
+  "subsets": [
+    "all"
+  ],
+  "budget": 200,
+  "available": 2305,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 91,
+  "excluded_id_hash": 0,
+  "usable": 2214,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "all": 200
+  },
+  "per_subset": {
+    "all": {
+      "available": 2305,
+      "excluded_question_hash": 91,
+      "excluded_id_hash": 0,
+      "usable": 2214,
+      "taken": 200
+    }
+  },
+  "notes": [
+    "single corpus, no train/test split in the release -> subset 'all', split 'all'",
+    "numeric answers stripped of the unit in parentheses (raw kept in aliases/meta.raw_answer); non-numeric answers are task 'short'",
+    "native id = Problem ID (nluds-xxxx). The exclusion file's asdiv ids are integers: they coincide with the 0-based XML row index up to ~row 733 and are shifted by one after it, so they index some other ordering; every one of them is caught by the question hash (Question field), so the row index is not used as an id"
+  ]
+}

@@ -1,0 +1,2182 @@
+{
+  "aime": {
+    "benchmark": "aime",
+    "exclusion_family": "aime",
+    "source": "di-zhang-fdu/AIME_1983_2024@3e2cc86390666c5c756622afc0eeb9e6194496bc + MathArena/aime_2025@c94da77eb22bbd6439e62a323bec18493a421302 + MathArena/aime_2026@d61f486805306e6e6b5913504c07763a99e1b112",
+    "subsets": [
+      "aime"
+    ],
+    "budget": 200,
+    "available": 993,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 21,
+    "excluded_id_hash": 0,
+    "usable": 972,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "test": 200
+    },
+    "per_subset": {
+      "aime": {
+        "available": 993,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 0,
+        "usable": 972,
+        "taken": 200
+      }
+    },
+    "notes": [
+      "1983-2024 from di-zhang-fdu/AIME_1983_2024 (2024: AIME II only in that release); 2025 and 2026 from MathArena (problem_idx 1-15 = I, 16-30 = II)",
+      "single subset; split 'test'; the exclusion file's aime ids are small integers, which cannot match these string ids (the question hash is the effective rule)"
+    ]
+  },
+  "arcmmlu": {
+    "benchmark": "arcmmlu",
+    "exclusion_family": "arcmmlu",
+    "source": "patrickshitou/ArcMMLU@5c2eccb5cfb586a5ac9176c3685ab581545bd230",
+    "subsets": [
+      "archive",
+      "data_science",
+      "information",
+      "library"
+    ],
+    "budget": 200,
+    "available": 6212,
+    "excluded_question_hash": 406,
+    "excluded_id_hash": 1590,
+    "usable": 4216,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "dev": 8,
+      "test": 192
+    },
+    "per_subset": {
+      "archive": {
+        "available": 2220,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 401,
+        "usable": 1819,
+        "taken": 50
+      },
+      "data_science": {
+        "available": 1504,
+        "excluded_question_hash": 61,
+        "excluded_id_hash": 399,
+        "usable": 1044,
+        "taken": 50
+      },
+      "information": {
+        "available": 1679,
+        "excluded_question_hash": 345,
+        "excluded_id_hash": 391,
+        "usable": 943,
+        "taken": 50
+      },
+      "library": {
+        "available": 809,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 399,
+        "usable": 410,
+        "taken": 50
+      }
+    },
+    "output": "data/arcmmlu.jsonl"
+  },
+  "asdiv": {
+    "benchmark": "asdiv",
+    "exclusion_family": "asdiv",
+    "source": "https://raw.githubusercontent.com/chaochun/nlu-asdiv-dataset/883f90a9a65bf00304ba8f37423910fe743abc47/dataset/ASDiv.xml@sha256:ef8904068482919ac48c8eeaaf6df344b8a308ba66d048c2d4d87eab82dc4929",
+    "subsets": [
+      "all"
+    ],
+    "budget": 200,
+    "available": 2305,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 91,
+    "excluded_id_hash": 0,
+    "usable": 2214,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "all": 200
+    },
+    "per_subset": {
+      "all": {
+        "available": 2305,
+        "excluded_question_hash": 91,
+        "excluded_id_hash": 0,
+        "usable": 2214,
+        "taken": 200
+      }
+    },
+    "notes": [
+      "single corpus, no train/test split in the release -> subset 'all', split 'all'",
+      "numeric answers stripped of the unit in parentheses (raw kept in aliases/meta.raw_answer); non-numeric answers are task 'short'",
+      "native id = Problem ID (nluds-xxxx). The exclusion file's asdiv ids are integers: they coincide with the 0-based XML row index up to ~row 733 and are shifted by one after it, so they index some other ordering; every one of them is caught by the question hash (Question field), so the row index is not used as an id"
+    ]
+  },
+  "chessinstruct": {
+    "benchmark": "chessinstruct",
+    "exclusion_family": "chessinstruct",
+    "source": "Thytu/ChessInstruct@dcfd1a8075dffd498fa190916fe28b1e0f8300e9",
+    "subsets": [
+      "FIND_ADVANTAGED_PLAYER",
+      "FIND_FINAL_SCORE",
+      "FIND_LAST_MOVE",
+      "FIND_NEXT_BEST_MOVE",
+      "MLM_ON_MOVES",
+      "SORT_FENS"
+    ],
+    "budget": 200,
+    "available": 55000,
+    "dropped_before_exclusion": {
+      "MLM_ON_MOVES": {
+        "invalid:unmasked_gold_in_input": 15000
+      },
+      "SORT_FENS": {
+        "invalid:input_already_sorted": 10000
+      },
+      "FIND_NEXT_BEST_MOVE": {
+        "invalid:legal_only_for_opponent": 15512,
+        "invalid:illegal_in_shown_position": 4421,
+        "invalid:gold_chess_mate": 67
+      }
+    },
+    "excluded_question_hash": 116,
+    "excluded_id_hash": 266,
+    "usable": 54618,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "FIND_ADVANTAGED_PLAYER": {
+        "available": 20000,
+        "excluded_question_hash": 40,
+        "excluded_id_hash": 0,
+        "usable": 19960,
+        "taken": 67
+      },
+      "FIND_FINAL_SCORE": {
+        "available": 20000,
+        "excluded_question_hash": 43,
+        "excluded_id_hash": 0,
+        "usable": 19957,
+        "taken": 67
+      },
+      "FIND_LAST_MOVE": {
+        "available": 15000,
+        "excluded_question_hash": 33,
+        "excluded_id_hash": 266,
+        "usable": 14701,
+        "taken": 66
+      },
+      "FIND_NEXT_BEST_MOVE": {
+        "available": 0,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 0,
+        "taken": 0
+      },
+      "MLM_ON_MOVES": {
+        "available": 0,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 0,
+        "taken": 0
+      },
+      "SORT_FENS": {
+        "available": 0,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 0,
+        "taken": 0
+      }
+    },
+    "notes": [
+      "subsets = the 6 KIND values; question = instruction + input JSON verbatim; answer = expected_output value",
+      "FIND_NEXT_BEST_MOVE golds are one ply off (generator indexes FENs without the start position): never legal for the side to move in the shown position",
+      "MLM_ON_MOVES inputs carry no '?' masks; SORT_FENS inputs are already in gold order",
+      "Amendment 1 validity rule applied: invalid/degenerate items dropped, budget refilled by round-robin over the remaining task types; per-item meta.check, totals in gold_validation",
+      "native id = row index within split; id-hash matches are positional"
+    ],
+    "gold_validation": {
+      "FIND_ADVANTAGED_PLAYER": {
+        "history_legal": 20000
+      },
+      "FIND_FINAL_SCORE": {
+        "terminal_agrees": 20000
+      },
+      "FIND_LAST_MOVE": {
+        "legal_result_agrees": 15000
+      },
+      "FIND_NEXT_BEST_MOVE": {
+        "legal_only_for_opponent": 15512,
+        "illegal_in_shown_position": 4421,
+        "gold_chess_mate": 67
+      },
+      "MLM_ON_MOVES": {
+        "unmasked_gold_in_input": 15000
+      },
+      "SORT_FENS": {
+        "input_already_sorted": 10000
+      }
+    },
+    "validity_rule": "Items whose released gold fails a mechanical python-chess check against the generator's own semantics (best move not legal for the side to move; last move illegal or contradicting the result; final score contradicting a terminal position; illegal move history), or whose answer is visible in the input (MLM_ON_MOVES without '?' masks; SORT_FENS inputs already in gold order), are dropped before exclusion; the 200 budget is refilled by the spec round-robin (seed 20261031) over the remaining valid items/task types.",
+    "validity_dropped_per_task_type": {
+      "FIND_ADVANTAGED_PLAYER": 0,
+      "FIND_FINAL_SCORE": 0,
+      "FIND_LAST_MOVE": 0,
+      "FIND_NEXT_BEST_MOVE": 20000,
+      "MLM_ON_MOVES": 15000,
+      "SORT_FENS": 10000
+    },
+    "valid_task_types": [
+      "FIND_ADVANTAGED_PLAYER",
+      "FIND_FINAL_SCORE",
+      "FIND_LAST_MOVE"
+    ]
+  },
+  "ethics": {
+    "benchmark": "ethics",
+    "exclusion_family": "ethics",
+    "source": "hendrycks/ethics@b8b47c589f8bee77175b8648e5497278b68da48a",
+    "subsets": [
+      "commonsense",
+      "deontology",
+      "justice",
+      "utilitarianism",
+      "virtue"
+    ],
+    "budget": 200,
+    "available": 134417,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 1070,
+    "excluded_id_hash": 1465,
+    "usable": 131882,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "commonsense": {
+        "available": 21759,
+        "excluded_question_hash": 100,
+        "excluded_id_hash": 298,
+        "usable": 21361,
+        "taken": 40
+      },
+      "deontology": {
+        "available": 25296,
+        "excluded_question_hash": 330,
+        "excluded_id_hash": 280,
+        "usable": 24686,
+        "taken": 40
+      },
+      "justice": {
+        "available": 26547,
+        "excluded_question_hash": 52,
+        "excluded_id_hash": 296,
+        "usable": 26199,
+        "taken": 40
+      },
+      "utilitarianism": {
+        "available": 22815,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 300,
+        "usable": 22515,
+        "taken": 40
+      },
+      "virtue": {
+        "available": 38000,
+        "excluded_question_hash": 588,
+        "excluded_id_hash": 291,
+        "usable": 37121,
+        "taken": 40
+      }
+    },
+    "notes": [
+      "label semantics per subset in meta.label_semantics (commonsense 1 = wrong; deontology/justice 1 = reasonable; virtue 1 = trait fits)",
+      "utilitarianism has no labels: rendered as a 2-way choice with deterministic per-item order randomisation; answer = index of the baseline (more pleasant) scenario",
+      "native id = row index within <subset>/<split>.csv; id-hash matches are positional (the exclusion file's ethics ids are 0..99)"
+    ]
+  },
+  "finqa": {
+    "benchmark": "finqa",
+    "exclusion_family": "finqa",
+    "source": "https://github.com/czyssrs/FinQA@0f16e2867befa6840783e58be38c9efb9229d742 (dataset/train,dev,test.json; sha256 train=49f237eb9779, dev=a847fb7e0d61, test=831dbfb2e785)",
+    "subsets": [
+      "finqa"
+    ],
+    "budget": 200,
+    "available": 8281,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 75,
+    "excluded_id_hash": 0,
+    "usable": 8206,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "finqa": {
+        "available": 8281,
+        "excluded_question_hash": 75,
+        "excluded_id_hash": 0,
+        "usable": 8206,
+        "taken": 200
+      }
+    },
+    "notes": [
+      "context = pre_text lines + table (rows as 'a | b | c' lines, header first) + post_text lines",
+      "answer = qa.answer, falling back to str(qa.exe_ans) when empty; exe_ans kept in aliases and meta",
+      "yes/no questions keep their 'yes'/'no' answers (task stays 'numeric', as in the release)",
+      "native id = FinQA example id; the exclusion file's finqa ids are integers (row indices of a test-like file), so the id rule cannot match these ids"
+    ]
+  },
+  "geobench": {
+    "benchmark": "geobench",
+    "exclusion_family": "geobench",
+    "source": "daven3/geobench@fa6f583ad38f93a7e7f5a3ea1582fe6593437747",
+    "subsets": [
+      "apstudy",
+      "npee_choice",
+      "npee_tf"
+    ],
+    "budget": 200,
+    "available": 1708,
+    "excluded_question_hash": 333,
+    "excluded_id_hash": 43,
+    "usable": 1332,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "test": 200
+    },
+    "per_subset": {
+      "apstudy": {
+        "available": 1395,
+        "excluded_question_hash": 333,
+        "excluded_id_hash": 0,
+        "usable": 1062,
+        "taken": 67
+      },
+      "npee_choice": {
+        "available": 179,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 25,
+        "usable": 154,
+        "taken": 67
+      },
+      "npee_tf": {
+        "available": 134,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 18,
+        "usable": 116,
+        "taken": 66
+      }
+    },
+    "output": "data/geobench.jsonl",
+    "npee_choice_unparsed_dropped": [
+      127,
+      155,
+      175
+    ],
+    "subjective_subsets_not_used": {
+      "noun": 454,
+      "completion": 150,
+      "qa": 153,
+      "discussion": 335
+    }
+  },
+  "geographydata": {
+    "benchmark": "geographydata",
+    "exclusion_family": "geographydata",
+    "status": "source_not_found",
+    "source": null,
+    "subsets": [],
+    "budget": 200,
+    "available": 0,
+    "excluded_question_hash": 0,
+    "excluded_id_hash": 0,
+    "usable": 0,
+    "taken": 0,
+    "shortfall": 200,
+    "note": "no authoritative public release found (HF hub, GitHub, web); not substituted with another dataset"
+  },
+  "gsm8k": {
+    "benchmark": "gsm8k",
+    "exclusion_family": "gsm8k",
+    "source": "openai/gsm8k@740312add88f781978c0658806c59bc2815b9866",
+    "subsets": [
+      "main"
+    ],
+    "budget": 200,
+    "available": 8792,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 24,
+    "excluded_id_hash": 24,
+    "usable": 8744,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "main": {
+        "available": 8792,
+        "excluded_question_hash": 24,
+        "excluded_id_hash": 24,
+        "usable": 8744,
+        "taken": 200
+      }
+    },
+    "notes": [
+      "answer = text after '####' in the source solution; full solution in meta.solution",
+      "native id = row index within split (train/test); id-hash matches are therefore positional"
+    ]
+  },
+  "livecodebench": {
+    "benchmark": "livecodebench",
+    "exclusion_family": "livecodebench",
+    "source": "livecodebench/code_generation_lite@0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "subsets": [
+      "atcoder",
+      "codeforces",
+      "leetcode"
+    ],
+    "budget": 200,
+    "available": 1055,
+    "excluded_question_hash": 385,
+    "excluded_id_hash": 0,
+    "usable": 670,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "test": 200
+    },
+    "per_subset": {
+      "atcoder": {
+        "available": 602,
+        "excluded_question_hash": 193,
+        "usable": 409,
+        "taken": 100
+      },
+      "codeforces": {
+        "available": 9,
+        "excluded_question_hash": 9,
+        "usable": 0,
+        "taken": 0
+      },
+      "leetcode": {
+        "available": 444,
+        "excluded_question_hash": 183,
+        "usable": 261,
+        "taken": 100
+      }
+    },
+    "output": "data/livecodebench.jsonl",
+    "files": [
+      "test.jsonl",
+      "test2.jsonl",
+      "test3.jsonl",
+      "test4.jsonl",
+      "test5.jsonl",
+      "test6.jsonl"
+    ],
+    "native_id": "question_id, and row index in the concatenated release (test.jsonl..test6.jsonl)",
+    "dropped_modality": 0,
+    "private_tests": "base64->zlib->restricted unpickle (no globals)->json; stored decoded in meta.private_tests"
+  },
+  "math": {
+    "benchmark": "math",
+    "exclusion_family": "math",
+    "source": "EleutherAI/hendrycks_math@21a5633873b6a120296cce3e2df9d5550074f4a3",
+    "subsets": [
+      "algebra",
+      "counting_and_probability",
+      "geometry",
+      "intermediate_algebra",
+      "number_theory",
+      "prealgebra",
+      "precalculus"
+    ],
+    "budget": 200,
+    "available": 12498,
+    "dropped_before_exclusion": {
+      "number_theory": {
+        "no_boxed_answer": 2
+      }
+    },
+    "excluded_question_hash": 71,
+    "excluded_id_hash": 750,
+    "usable": 11677,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "algebra": {
+        "available": 2931,
+        "excluded_question_hash": 12,
+        "excluded_id_hash": 108,
+        "usable": 2811,
+        "taken": 29
+      },
+      "counting_and_probability": {
+        "available": 1245,
+        "excluded_question_hash": 8,
+        "excluded_id_hash": 104,
+        "usable": 1133,
+        "taken": 29
+      },
+      "geometry": {
+        "available": 1349,
+        "excluded_question_hash": 6,
+        "excluded_id_hash": 103,
+        "usable": 1240,
+        "taken": 29
+      },
+      "intermediate_algebra": {
+        "available": 2198,
+        "excluded_question_hash": 13,
+        "excluded_id_hash": 110,
+        "usable": 2075,
+        "taken": 29
+      },
+      "number_theory": {
+        "available": 1407,
+        "excluded_question_hash": 11,
+        "excluded_id_hash": 108,
+        "usable": 1288,
+        "taken": 28
+      },
+      "prealgebra": {
+        "available": 2076,
+        "excluded_question_hash": 11,
+        "excluded_id_hash": 109,
+        "usable": 1956,
+        "taken": 28
+      },
+      "precalculus": {
+        "available": 1292,
+        "excluded_question_hash": 10,
+        "excluded_id_hash": 108,
+        "usable": 1174,
+        "taken": 28
+      }
+    },
+    "notes": [
+      "authors' MATH.tar / hendrycks/competition_math unavailable (403 / DMCA); EleutherAI parquet mirror used",
+      "answer = last \\boxed{} in the solution; full solution in meta.solution",
+      "native id = row index within <subject>/<split> parquet (no ids in the mirror), so id-hash matches are positional and unrelated to the exclusion file's MATH ids"
+    ]
+  },
+  "mathqa": {
+    "benchmark": "mathqa",
+    "exclusion_family": "mathqa",
+    "source": "https://math-qa.github.io/math-QA/data/MathQA.zip@sha256:7344f30456a7aef3176d4866cc953b35b41bec44eda6b00cdbcfde2876b2f07a",
+    "subsets": [
+      "gain",
+      "general",
+      "geometry",
+      "other",
+      "physics",
+      "probability"
+    ],
+    "budget": 200,
+    "available": 37297,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 176,
+    "excluded_id_hash": 364,
+    "usable": 36757,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "gain": {
+        "available": 6421,
+        "excluded_question_hash": 5,
+        "excluded_id_hash": 60,
+        "usable": 6356,
+        "taken": 34
+      },
+      "general": {
+        "available": 16580,
+        "excluded_question_hash": 106,
+        "excluded_id_hash": 166,
+        "usable": 16308,
+        "taken": 34
+      },
+      "geometry": {
+        "available": 2625,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 35,
+        "usable": 2571,
+        "taken": 33
+      },
+      "other": {
+        "available": 2274,
+        "excluded_question_hash": 9,
+        "excluded_id_hash": 25,
+        "usable": 2240,
+        "taken": 33
+      },
+      "physics": {
+        "available": 8821,
+        "excluded_question_hash": 18,
+        "excluded_id_hash": 72,
+        "usable": 8731,
+        "taken": 33
+      },
+      "probability": {
+        "available": 576,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 6,
+        "usable": 551,
+        "taken": 33
+      }
+    },
+    "notes": [
+      "subsets = the 6 MathQA categories; dev.json mapped to split 'validation'; challenge_test.json skipped",
+      "native id = row index within the split file, so id-hash matches are positional"
+    ]
+  },
+  "medmcqa": {
+    "benchmark": "medmcqa",
+    "exclusion_family": "medmcqa",
+    "source": "openlifescienceai/medmcqa@91c6572c454088bf71b679ad90aa8dffcd0d5868",
+    "subsets": [
+      "Anaesthesia",
+      "Anatomy",
+      "Biochemistry",
+      "Dental",
+      "ENT",
+      "Forensic Medicine",
+      "Gynaecology & Obstetrics",
+      "Medicine",
+      "Microbiology",
+      "Ophthalmology",
+      "Orthopaedics",
+      "Pathology",
+      "Pediatrics",
+      "Pharmacology",
+      "Physiology",
+      "Psychiatry",
+      "Radiology",
+      "Skin",
+      "Social & Preventive Medicine",
+      "Surgery",
+      "Unknown"
+    ],
+    "budget": 200,
+    "available": 187005,
+    "excluded_question_hash": 316,
+    "excluded_id_hash": 0,
+    "usable": 186689,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "Anaesthesia": {
+        "available": 3206,
+        "excluded_question_hash": 2,
+        "excluded_id_hash": 0,
+        "usable": 3204,
+        "taken": 10
+      },
+      "Anatomy": {
+        "available": 14794,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 0,
+        "usable": 14793,
+        "taken": 10
+      },
+      "Biochemistry": {
+        "available": 8453,
+        "excluded_question_hash": 16,
+        "excluded_id_hash": 0,
+        "usable": 8437,
+        "taken": 10
+      },
+      "Dental": {
+        "available": 10256,
+        "excluded_question_hash": 123,
+        "excluded_id_hash": 0,
+        "usable": 10133,
+        "taken": 10
+      },
+      "ENT": {
+        "available": 4972,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 0,
+        "usable": 4971,
+        "taken": 10
+      },
+      "Forensic Medicine": {
+        "available": 5967,
+        "excluded_question_hash": 5,
+        "excluded_id_hash": 0,
+        "usable": 5962,
+        "taken": 10
+      },
+      "Gynaecology & Obstetrics": {
+        "available": 10237,
+        "excluded_question_hash": 20,
+        "excluded_id_hash": 0,
+        "usable": 10217,
+        "taken": 10
+      },
+      "Medicine": {
+        "available": 18182,
+        "excluded_question_hash": 17,
+        "excluded_id_hash": 0,
+        "usable": 18165,
+        "taken": 10
+      },
+      "Microbiology": {
+        "available": 11436,
+        "excluded_question_hash": 10,
+        "excluded_id_hash": 0,
+        "usable": 11426,
+        "taken": 10
+      },
+      "Ophthalmology": {
+        "available": 6990,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 0,
+        "usable": 6989,
+        "taken": 10
+      },
+      "Orthopaedics": {
+        "available": 3019,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 3019,
+        "taken": 10
+      },
+      "Pathology": {
+        "available": 15221,
+        "excluded_question_hash": 15,
+        "excluded_id_hash": 0,
+        "usable": 15206,
+        "taken": 9
+      },
+      "Pediatrics": {
+        "available": 8271,
+        "excluded_question_hash": 3,
+        "excluded_id_hash": 0,
+        "usable": 8268,
+        "taken": 9
+      },
+      "Pharmacology": {
+        "available": 14001,
+        "excluded_question_hash": 24,
+        "excluded_id_hash": 0,
+        "usable": 13977,
+        "taken": 9
+      },
+      "Physiology": {
+        "available": 9001,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 0,
+        "usable": 8982,
+        "taken": 9
+      },
+      "Psychiatry": {
+        "available": 4458,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 0,
+        "usable": 4457,
+        "taken": 9
+      },
+      "Radiology": {
+        "available": 4464,
+        "excluded_question_hash": 8,
+        "excluded_id_hash": 0,
+        "usable": 4456,
+        "taken": 9
+      },
+      "Skin": {
+        "available": 1788,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 0,
+        "usable": 1787,
+        "taken": 9
+      },
+      "Social & Preventive Medicine": {
+        "available": 12011,
+        "excluded_question_hash": 32,
+        "excluded_id_hash": 0,
+        "usable": 11979,
+        "taken": 9
+      },
+      "Surgery": {
+        "available": 17231,
+        "excluded_question_hash": 17,
+        "excluded_id_hash": 0,
+        "usable": 17214,
+        "taken": 9
+      },
+      "Unknown": {
+        "available": 3047,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 3047,
+        "taken": 9
+      }
+    },
+    "output": "data/medmcqa.jsonl",
+    "dropped_unlabeled_test": 6150
+  },
+  "mmlu": {
+    "benchmark": "mmlu",
+    "exclusion_family": "mmlu",
+    "source": "cais/mmlu@c30699e8356da336a370243923dbaf21066bb9fe",
+    "subsets": [
+      "abstract_algebra",
+      "anatomy",
+      "astronomy",
+      "business_ethics",
+      "clinical_knowledge",
+      "college_biology",
+      "college_chemistry",
+      "college_computer_science",
+      "college_mathematics",
+      "college_medicine",
+      "college_physics",
+      "computer_security",
+      "conceptual_physics",
+      "econometrics",
+      "electrical_engineering",
+      "elementary_mathematics",
+      "formal_logic",
+      "global_facts",
+      "high_school_biology",
+      "high_school_chemistry",
+      "high_school_computer_science",
+      "high_school_european_history",
+      "high_school_geography",
+      "high_school_government_and_politics",
+      "high_school_macroeconomics",
+      "high_school_mathematics",
+      "high_school_microeconomics",
+      "high_school_physics",
+      "high_school_psychology",
+      "high_school_statistics",
+      "high_school_us_history",
+      "high_school_world_history",
+      "human_aging",
+      "human_sexuality",
+      "international_law",
+      "jurisprudence",
+      "logical_fallacies",
+      "machine_learning",
+      "management",
+      "marketing",
+      "medical_genetics",
+      "miscellaneous",
+      "moral_disputes",
+      "moral_scenarios",
+      "nutrition",
+      "philosophy",
+      "prehistory",
+      "professional_accounting",
+      "professional_law",
+      "professional_medicine",
+      "professional_psychology",
+      "public_relations",
+      "security_studies",
+      "sociology",
+      "us_foreign_policy",
+      "virology",
+      "world_religions"
+    ],
+    "budget": 200,
+    "available": 15858,
+    "excluded_question_hash": 2147,
+    "excluded_id_hash": 6721,
+    "usable": 6990,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "test": 162,
+      "validation": 38
+    },
+    "per_subset": {
+      "abstract_algebra": {
+        "available": 116,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 91,
+        "usable": 4,
+        "taken": 4
+      },
+      "anatomy": {
+        "available": 154,
+        "excluded_question_hash": 10,
+        "excluded_id_hash": 127,
+        "usable": 17,
+        "taken": 4
+      },
+      "astronomy": {
+        "available": 173,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 122,
+        "usable": 30,
+        "taken": 4
+      },
+      "business_ethics": {
+        "available": 116,
+        "excluded_question_hash": 9,
+        "excluded_id_hash": 102,
+        "usable": 5,
+        "taken": 4
+      },
+      "clinical_knowledge": {
+        "available": 299,
+        "excluded_question_hash": 34,
+        "excluded_id_hash": 135,
+        "usable": 130,
+        "taken": 4
+      },
+      "college_biology": {
+        "available": 165,
+        "excluded_question_hash": 14,
+        "excluded_id_hash": 126,
+        "usable": 25,
+        "taken": 4
+      },
+      "college_chemistry": {
+        "available": 113,
+        "excluded_question_hash": 15,
+        "excluded_id_hash": 93,
+        "usable": 5,
+        "taken": 4
+      },
+      "college_computer_science": {
+        "available": 116,
+        "excluded_question_hash": 69,
+        "excluded_id_hash": 45,
+        "usable": 2,
+        "taken": 2
+      },
+      "college_mathematics": {
+        "available": 116,
+        "excluded_question_hash": 17,
+        "excluded_id_hash": 96,
+        "usable": 3,
+        "taken": 3
+      },
+      "college_medicine": {
+        "available": 200,
+        "excluded_question_hash": 29,
+        "excluded_id_hash": 122,
+        "usable": 49,
+        "taken": 4
+      },
+      "college_physics": {
+        "available": 118,
+        "excluded_question_hash": 12,
+        "excluded_id_hash": 101,
+        "usable": 5,
+        "taken": 4
+      },
+      "computer_security": {
+        "available": 116,
+        "excluded_question_hash": 47,
+        "excluded_id_hash": 66,
+        "usable": 3,
+        "taken": 3
+      },
+      "conceptual_physics": {
+        "available": 266,
+        "excluded_question_hash": 45,
+        "excluded_id_hash": 122,
+        "usable": 99,
+        "taken": 4
+      },
+      "econometrics": {
+        "available": 131,
+        "excluded_question_hash": 61,
+        "excluded_id_hash": 68,
+        "usable": 2,
+        "taken": 2
+      },
+      "electrical_engineering": {
+        "available": 166,
+        "excluded_question_hash": 56,
+        "excluded_id_hash": 93,
+        "usable": 17,
+        "taken": 4
+      },
+      "elementary_mathematics": {
+        "available": 424,
+        "excluded_question_hash": 15,
+        "excluded_id_hash": 157,
+        "usable": 252,
+        "taken": 4
+      },
+      "formal_logic": {
+        "available": 145,
+        "excluded_question_hash": 115,
+        "excluded_id_hash": 24,
+        "usable": 6,
+        "taken": 4
+      },
+      "global_facts": {
+        "available": 115,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 110,
+        "usable": 5,
+        "taken": 4
+      },
+      "high_school_biology": {
+        "available": 347,
+        "excluded_question_hash": 22,
+        "excluded_id_hash": 142,
+        "usable": 183,
+        "taken": 4
+      },
+      "high_school_chemistry": {
+        "available": 230,
+        "excluded_question_hash": 32,
+        "excluded_id_hash": 126,
+        "usable": 72,
+        "taken": 4
+      },
+      "high_school_computer_science": {
+        "available": 114,
+        "excluded_question_hash": 60,
+        "excluded_id_hash": 52,
+        "usable": 2,
+        "taken": 2
+      },
+      "high_school_european_history": {
+        "available": 188,
+        "excluded_question_hash": 142,
+        "excluded_id_hash": 35,
+        "usable": 11,
+        "taken": 4
+      },
+      "high_school_geography": {
+        "available": 225,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 144,
+        "usable": 81,
+        "taken": 4
+      },
+      "high_school_government_and_politics": {
+        "available": 219,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 143,
+        "usable": 76,
+        "taken": 4
+      },
+      "high_school_macroeconomics": {
+        "available": 438,
+        "excluded_question_hash": 36,
+        "excluded_id_hash": 152,
+        "usable": 250,
+        "taken": 4
+      },
+      "high_school_mathematics": {
+        "available": 304,
+        "excluded_question_hash": 23,
+        "excluded_id_hash": 139,
+        "usable": 142,
+        "taken": 4
+      },
+      "high_school_microeconomics": {
+        "available": 269,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 137,
+        "usable": 111,
+        "taken": 4
+      },
+      "high_school_physics": {
+        "available": 173,
+        "excluded_question_hash": 10,
+        "excluded_id_hash": 134,
+        "usable": 29,
+        "taken": 4
+      },
+      "high_school_psychology": {
+        "available": 610,
+        "excluded_question_hash": 49,
+        "excluded_id_hash": 165,
+        "usable": 396,
+        "taken": 4
+      },
+      "high_school_statistics": {
+        "available": 244,
+        "excluded_question_hash": 42,
+        "excluded_id_hash": 125,
+        "usable": 77,
+        "taken": 4
+      },
+      "high_school_us_history": {
+        "available": 231,
+        "excluded_question_hash": 183,
+        "excluded_id_hash": 32,
+        "usable": 16,
+        "taken": 4
+      },
+      "high_school_world_history": {
+        "available": 268,
+        "excluded_question_hash": 188,
+        "excluded_id_hash": 47,
+        "usable": 33,
+        "taken": 4
+      },
+      "human_aging": {
+        "available": 251,
+        "excluded_question_hash": 43,
+        "excluded_id_hash": 124,
+        "usable": 84,
+        "taken": 4
+      },
+      "human_sexuality": {
+        "available": 148,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 135,
+        "usable": 13,
+        "taken": 4
+      },
+      "international_law": {
+        "available": 139,
+        "excluded_question_hash": 27,
+        "excluded_id_hash": 106,
+        "usable": 6,
+        "taken": 4
+      },
+      "jurisprudence": {
+        "available": 124,
+        "excluded_question_hash": 23,
+        "excluded_id_hash": 96,
+        "usable": 5,
+        "taken": 4
+      },
+      "logical_fallacies": {
+        "available": 186,
+        "excluded_question_hash": 17,
+        "excluded_id_hash": 129,
+        "usable": 40,
+        "taken": 4
+      },
+      "machine_learning": {
+        "available": 128,
+        "excluded_question_hash": 87,
+        "excluded_id_hash": 39,
+        "usable": 2,
+        "taken": 2
+      },
+      "management": {
+        "available": 119,
+        "excluded_question_hash": 73,
+        "excluded_id_hash": 41,
+        "usable": 5,
+        "taken": 4
+      },
+      "marketing": {
+        "available": 264,
+        "excluded_question_hash": 26,
+        "excluded_id_hash": 136,
+        "usable": 102,
+        "taken": 3
+      },
+      "medical_genetics": {
+        "available": 116,
+        "excluded_question_hash": 12,
+        "excluded_id_hash": 99,
+        "usable": 5,
+        "taken": 3
+      },
+      "miscellaneous": {
+        "available": 874,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 203,
+        "usable": 670,
+        "taken": 3
+      },
+      "moral_disputes": {
+        "available": 389,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 149,
+        "usable": 221,
+        "taken": 3
+      },
+      "moral_scenarios": {
+        "available": 1000,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 218,
+        "usable": 782,
+        "taken": 3
+      },
+      "nutrition": {
+        "available": 344,
+        "excluded_question_hash": 49,
+        "excluded_id_hash": 137,
+        "usable": 158,
+        "taken": 3
+      },
+      "philosophy": {
+        "available": 350,
+        "excluded_question_hash": 8,
+        "excluded_id_hash": 153,
+        "usable": 189,
+        "taken": 3
+      },
+      "prehistory": {
+        "available": 364,
+        "excluded_question_hash": 89,
+        "excluded_id_hash": 121,
+        "usable": 154,
+        "taken": 3
+      },
+      "professional_accounting": {
+        "available": 318,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 153,
+        "usable": 165,
+        "taken": 3
+      },
+      "professional_law": {
+        "available": 1709,
+        "excluded_question_hash": 109,
+        "excluded_id_hash": 227,
+        "usable": 1373,
+        "taken": 3
+      },
+      "professional_medicine": {
+        "available": 308,
+        "excluded_question_hash": 51,
+        "excluded_id_hash": 132,
+        "usable": 125,
+        "taken": 3
+      },
+      "professional_psychology": {
+        "available": 686,
+        "excluded_question_hash": 85,
+        "excluded_id_hash": 167,
+        "usable": 434,
+        "taken": 3
+      },
+      "public_relations": {
+        "available": 127,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 121,
+        "usable": 6,
+        "taken": 3
+      },
+      "security_studies": {
+        "available": 277,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 149,
+        "usable": 128,
+        "taken": 3
+      },
+      "sociology": {
+        "available": 228,
+        "excluded_question_hash": 1,
+        "excluded_id_hash": 144,
+        "usable": 83,
+        "taken": 3
+      },
+      "us_foreign_policy": {
+        "available": 116,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 111,
+        "usable": 5,
+        "taken": 3
+      },
+      "virology": {
+        "available": 189,
+        "excluded_question_hash": 14,
+        "excluded_id_hash": 129,
+        "usable": 46,
+        "taken": 3
+      },
+      "world_religions": {
+        "available": 195,
+        "excluded_question_hash": 15,
+        "excluded_id_hash": 129,
+        "usable": 51,
+        "taken": 3
+      }
+    },
+    "output": "data/mmlu.jsonl"
+  },
+  "mmlupro": {
+    "benchmark": "mmlupro",
+    "exclusion_family": "mmlupro",
+    "source": "TIGER-Lab/MMLU-Pro@b189ec765aa7ed75c8acfea42df31fdae71f97be",
+    "subsets": [
+      "biology",
+      "business",
+      "chemistry",
+      "computer science",
+      "economics",
+      "engineering",
+      "health",
+      "history",
+      "law",
+      "math",
+      "other",
+      "philosophy",
+      "physics",
+      "psychology"
+    ],
+    "budget": 200,
+    "available": 12102,
+    "excluded_question_hash": 2735,
+    "excluded_id_hash": 1904,
+    "usable": 7463,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "validation": 48,
+      "test": 152
+    },
+    "per_subset": {
+      "biology": {
+        "available": 722,
+        "excluded_question_hash": 174,
+        "excluded_id_hash": 104,
+        "usable": 444,
+        "taken": 15
+      },
+      "business": {
+        "available": 794,
+        "excluded_question_hash": 183,
+        "excluded_id_hash": 129,
+        "usable": 482,
+        "taken": 15
+      },
+      "chemistry": {
+        "available": 1137,
+        "excluded_question_hash": 90,
+        "excluded_id_hash": 220,
+        "usable": 827,
+        "taken": 15
+      },
+      "computer science": {
+        "available": 415,
+        "excluded_question_hash": 392,
+        "excluded_id_hash": 2,
+        "usable": 21,
+        "taken": 15
+      },
+      "economics": {
+        "available": 849,
+        "excluded_question_hash": 187,
+        "excluded_id_hash": 98,
+        "usable": 564,
+        "taken": 14
+      },
+      "engineering": {
+        "available": 974,
+        "excluded_question_hash": 280,
+        "excluded_id_hash": 3,
+        "usable": 691,
+        "taken": 14
+      },
+      "health": {
+        "available": 823,
+        "excluded_question_hash": 267,
+        "excluded_id_hash": 106,
+        "usable": 450,
+        "taken": 14
+      },
+      "history": {
+        "available": 386,
+        "excluded_question_hash": 327,
+        "excluded_id_hash": 37,
+        "usable": 22,
+        "taken": 14
+      },
+      "law": {
+        "available": 1106,
+        "excluded_question_hash": 191,
+        "excluded_id_hash": 152,
+        "usable": 763,
+        "taken": 14
+      },
+      "math": {
+        "available": 1356,
+        "excluded_question_hash": 209,
+        "excluded_id_hash": 93,
+        "usable": 1054,
+        "taken": 14
+      },
+      "other": {
+        "available": 929,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 248,
+        "usable": 681,
+        "taken": 14
+      },
+      "philosophy": {
+        "available": 504,
+        "excluded_question_hash": 148,
+        "excluded_id_hash": 36,
+        "usable": 320,
+        "taken": 14
+      },
+      "physics": {
+        "available": 1304,
+        "excluded_question_hash": 99,
+        "excluded_id_hash": 544,
+        "usable": 661,
+        "taken": 14
+      },
+      "psychology": {
+        "available": 803,
+        "excluded_question_hash": 188,
+        "excluded_id_hash": 132,
+        "usable": 483,
+        "taken": 14
+      }
+    },
+    "output": "data/mmlupro.jsonl"
+  },
+  "musictheorybench": {
+    "benchmark": "musictheorybench",
+    "exclusion_family": "musictheorybench",
+    "source": "m-a-p/MusicTheoryBench@81b65609885be1fba19ce167a2a9604ae676c5ae",
+    "subsets": [
+      "knowledge",
+      "reasoning"
+    ],
+    "budget": 200,
+    "available": 372,
+    "excluded_question_hash": 222,
+    "excluded_id_hash": 86,
+    "usable": 64,
+    "taken": 64,
+    "shortfall": 136,
+    "taken_by_split": {
+      "dev": 1,
+      "test": 63
+    },
+    "per_subset": {
+      "knowledge": {
+        "available": 274,
+        "excluded_question_hash": 147,
+        "excluded_id_hash": 72,
+        "usable": 55,
+        "taken": 55
+      },
+      "reasoning": {
+        "available": 98,
+        "excluded_question_hash": 75,
+        "excluded_id_hash": 14,
+        "usable": 9,
+        "taken": 9
+      }
+    },
+    "output": "data/musictheorybench.jsonl"
+  },
+  "narrativeqa": {
+    "benchmark": "narrativeqa",
+    "exclusion_family": "narrativeqa",
+    "source": "deepmind/narrativeqa@2e643e7363944af1c33a652d1c87320d0871c4e4:data/narrativeqa-master.zip (github.com/deepmind/narrativeqa@904246f6d1fe99a99a08a03501fe3e619af2cee5)",
+    "subsets": [
+      "gutenberg",
+      "movie"
+    ],
+    "budget": 200,
+    "available": 46765,
+    "excluded_question_hash": 387,
+    "excluded_id_hash": 504,
+    "usable": 45874,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "gutenberg": {
+        "available": 23290,
+        "excluded_id_hash": 225,
+        "excluded_question_hash": 197,
+        "usable": 22868,
+        "taken": 100
+      },
+      "movie": {
+        "available": 23475,
+        "excluded_question_hash": 190,
+        "excluded_id_hash": 279,
+        "usable": 23006,
+        "taken": 100
+      }
+    },
+    "output": "data/narrativeqa.jsonl",
+    "context_decision": "Wikipedia summary (summaries-only setting); full stories median ~34k words, too long",
+    "native_id": "row index within split (qaps.csv order)"
+  },
+  "opentdb": {
+    "benchmark": "opentdb",
+    "exclusion_family": "opentdb",
+    "source": "https://github.com/kickturn/opentdb-scraper (opentdb.json)@40221acc1fc3440a5c2b07621cbd05460e4eafac",
+    "subsets": [
+      "Animals",
+      "Art",
+      "Celebrities",
+      "Entertainment: Board Games",
+      "Entertainment: Books",
+      "Entertainment: Cartoon & Animations",
+      "Entertainment: Comics",
+      "Entertainment: Film",
+      "Entertainment: Japanese Anime & Manga",
+      "Entertainment: Music",
+      "Entertainment: Musicals & Theatres",
+      "Entertainment: Television",
+      "Entertainment: Video Games",
+      "General Knowledge",
+      "Geography",
+      "History",
+      "Mythology",
+      "Politics",
+      "Science & Nature",
+      "Science: Computers",
+      "Science: Gadgets",
+      "Science: Mathematics",
+      "Sports",
+      "Vehicles"
+    ],
+    "budget": 200,
+    "available": 5250,
+    "excluded_question_hash": 874,
+    "excluded_id_hash": 733,
+    "usable": 3643,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "Animals": {
+        "available": 99,
+        "excluded_question_hash": 25,
+        "excluded_id_hash": 6,
+        "usable": 68,
+        "taken": 9
+      },
+      "Art": {
+        "available": 59,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 3,
+        "usable": 37,
+        "taken": 9
+      },
+      "Celebrities": {
+        "available": 53,
+        "excluded_question_hash": 51,
+        "excluded_id_hash": 0,
+        "usable": 2,
+        "taken": 2
+      },
+      "Entertainment: Board Games": {
+        "available": 78,
+        "excluded_question_hash": 20,
+        "excluded_id_hash": 10,
+        "usable": 48,
+        "taken": 9
+      },
+      "Entertainment: Books": {
+        "available": 120,
+        "excluded_question_hash": 96,
+        "excluded_id_hash": 3,
+        "usable": 21,
+        "taken": 9
+      },
+      "Entertainment: Cartoon & Animations": {
+        "available": 107,
+        "excluded_question_hash": 18,
+        "excluded_id_hash": 16,
+        "usable": 73,
+        "taken": 9
+      },
+      "Entertainment: Comics": {
+        "available": 78,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 10,
+        "usable": 49,
+        "taken": 9
+      },
+      "Entertainment: Film": {
+        "available": 298,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 44,
+        "usable": 233,
+        "taken": 9
+      },
+      "Entertainment: Japanese Anime & Manga": {
+        "available": 203,
+        "excluded_question_hash": 21,
+        "excluded_id_hash": 17,
+        "usable": 165,
+        "taken": 9
+      },
+      "Entertainment: Music": {
+        "available": 491,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 86,
+        "usable": 386,
+        "taken": 9
+      },
+      "Entertainment: Musicals & Theatres": {
+        "available": 36,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 3,
+        "usable": 14,
+        "taken": 9
+      },
+      "Entertainment: Television": {
+        "available": 195,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 29,
+        "usable": 147,
+        "taken": 9
+      },
+      "Entertainment: Video Games": {
+        "available": 1170,
+        "excluded_question_hash": 59,
+        "excluded_id_hash": 186,
+        "usable": 925,
+        "taken": 9
+      },
+      "General Knowledge": {
+        "available": 467,
+        "excluded_question_hash": 108,
+        "excluded_id_hash": 48,
+        "usable": 311,
+        "taken": 9
+      },
+      "Geography": {
+        "available": 382,
+        "excluded_question_hash": 60,
+        "excluded_id_hash": 68,
+        "usable": 254,
+        "taken": 9
+      },
+      "History": {
+        "available": 405,
+        "excluded_question_hash": 56,
+        "excluded_id_hash": 66,
+        "usable": 283,
+        "taken": 8
+      },
+      "Mythology": {
+        "available": 71,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 13,
+        "usable": 58,
+        "taken": 8
+      },
+      "Politics": {
+        "available": 77,
+        "excluded_question_hash": 2,
+        "excluded_id_hash": 11,
+        "usable": 64,
+        "taken": 8
+      },
+      "Science & Nature": {
+        "available": 294,
+        "excluded_question_hash": 26,
+        "excluded_id_hash": 50,
+        "usable": 218,
+        "taken": 8
+      },
+      "Science: Computers": {
+        "available": 188,
+        "excluded_question_hash": 112,
+        "excluded_id_hash": 10,
+        "usable": 66,
+        "taken": 8
+      },
+      "Science: Gadgets": {
+        "available": 40,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 6,
+        "usable": 34,
+        "taken": 8
+      },
+      "Science: Mathematics": {
+        "available": 79,
+        "excluded_question_hash": 30,
+        "excluded_id_hash": 12,
+        "usable": 37,
+        "taken": 8
+      },
+      "Sports": {
+        "available": 174,
+        "excluded_question_hash": 19,
+        "excluded_id_hash": 30,
+        "usable": 125,
+        "taken": 8
+      },
+      "Vehicles": {
+        "available": 86,
+        "excluded_question_hash": 55,
+        "excluded_id_hash": 6,
+        "usable": 25,
+        "taken": 8
+      }
+    },
+    "output": "data/opentdb.jsonl",
+    "file_sha256": "1fbf6cae570a3dd61657a3cfd2849126016ba1833f605abb7732d9f0bcea51fc",
+    "source_note": "community dump of the opentdb.com API"
+  },
+  "pubmedqa": {
+    "benchmark": "pubmedqa",
+    "exclusion_family": "pubmedqa",
+    "source": "qiaojin/PubMedQA@9001f2853fb87cab8d220904e0de81ac6973b318",
+    "subsets": [
+      "pqa_labeled"
+    ],
+    "budget": 200,
+    "available": 1000,
+    "excluded_question_hash": 466,
+    "excluded_id_hash": 0,
+    "usable": 534,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "pqa_labeled": {
+        "available": 1000,
+        "excluded_question_hash": 466,
+        "usable": 534,
+        "taken": 200
+      }
+    },
+    "output": "data/pubmedqa.jsonl",
+    "split_source": "https://raw.githubusercontent.com/pubmedqa/pubmedqa/1cbae8e92f72f20c8d3747cbb3bf5bc53554d997/data/test_ground_truth.json (sha256 939fe566f09017d13b1ca64d2ddfee0bc2374b366048152997669cccedc44d51): 500 official test PMIDs -> test, rest -> train",
+    "native_id": "pubid, and row index in pqa_labeled parquet"
+  },
+  "qanta": {
+    "benchmark": "qanta",
+    "exclusion_family": "qanta",
+    "source": "qanta@e3c5602229e5c0c8572636a81cb366eb9ccfa890 (config mode=full,char_skip=25)",
+    "subsets": [
+      "Current Events",
+      "Fine Arts",
+      "Geography",
+      "History",
+      "Literature",
+      "Mythology",
+      "Philosophy",
+      "Religion",
+      "Science",
+      "Social Science",
+      "Trash"
+    ],
+    "budget": 200,
+    "available": 119247,
+    "excluded_question_hash": 645,
+    "excluded_id_hash": 3521,
+    "usable": 115081,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "Current Events": {
+        "available": 438,
+        "excluded_id_hash": 18,
+        "usable": 420,
+        "taken": 19
+      },
+      "Fine Arts": {
+        "available": 14293,
+        "excluded_id_hash": 477,
+        "excluded_question_hash": 74,
+        "usable": 13742,
+        "taken": 19
+      },
+      "Geography": {
+        "available": 3637,
+        "excluded_id_hash": 39,
+        "excluded_question_hash": 46,
+        "usable": 3552,
+        "taken": 18
+      },
+      "History": {
+        "available": 27768,
+        "excluded_id_hash": 786,
+        "excluded_question_hash": 116,
+        "usable": 26866,
+        "taken": 18
+      },
+      "Literature": {
+        "available": 27626,
+        "excluded_id_hash": 699,
+        "excluded_question_hash": 222,
+        "usable": 26705,
+        "taken": 18
+      },
+      "Mythology": {
+        "available": 4778,
+        "excluded_id_hash": 77,
+        "usable": 4701,
+        "taken": 18
+      },
+      "Philosophy": {
+        "available": 3579,
+        "excluded_id_hash": 70,
+        "excluded_question_hash": 45,
+        "usable": 3464,
+        "taken": 18
+      },
+      "Religion": {
+        "available": 3348,
+        "excluded_id_hash": 111,
+        "usable": 3237,
+        "taken": 18
+      },
+      "Science": {
+        "available": 23800,
+        "excluded_id_hash": 727,
+        "excluded_question_hash": 87,
+        "usable": 22986,
+        "taken": 18
+      },
+      "Social Science": {
+        "available": 6036,
+        "excluded_id_hash": 419,
+        "excluded_question_hash": 55,
+        "usable": 5562,
+        "taken": 18
+      },
+      "Trash": {
+        "available": 3944,
+        "excluded_id_hash": 98,
+        "usable": 3846,
+        "taken": 18
+      }
+    },
+    "output": "data/qanta.jsonl",
+    "dropped_no_category": 1145,
+    "fold_to_split": {
+      "guesstrain": "train",
+      "buzztrain": "train",
+      "guessdev": "validation",
+      "buzzdev": "validation",
+      "guesstest": "test",
+      "buzztest": "test",
+      "adversarial": "test"
+    },
+    "native_id": "qanta_id, and row index within fold",
+    "question_hash_texts": "full_question and first_sentence"
+  },
+  "socialiqa": {
+    "benchmark": "socialiqa",
+    "exclusion_family": "socialiqa",
+    "source": "https://storage.googleapis.com/ai2-mosaic/public/socialiqa/socialiqa-train-dev.zip@sha256:ee073914a0fc33265cfbcfc50ec20df9b2e07809c3f420f599138d1f394ef5c3",
+    "subsets": [
+      "socialiqa"
+    ],
+    "budget": 200,
+    "available": 35364,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 3501,
+    "excluded_id_hash": 54,
+    "usable": 31809,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "train": 200
+    },
+    "per_subset": {
+      "socialiqa": {
+        "available": 35364,
+        "excluded_question_hash": 3501,
+        "excluded_id_hash": 54,
+        "usable": 31809,
+        "taken": 200
+      }
+    },
+    "notes": [
+      "labels are 1-based in the .lst files (1=A); stored 0-based",
+      "question rule applied to the native question field, which is a template for most items: every item sharing a listed template is dropped (over-exclusion, see excluded_question_hash)",
+      "native id = row index within split; id-hash matches are positional"
+    ]
+  },
+  "superglue": {
+    "benchmark": "superglue",
+    "exclusion_family": "superglue",
+    "source": "https://dl.fbaipublicfiles.com/glue/superglue/data/v2/combined.zip@sha256:01760fa182188f26ed89ac09b654617caed309639de8e14862d34b02473f3690",
+    "subsets": [
+      "AX-b",
+      "AX-g",
+      "BoolQ",
+      "CB",
+      "COPA",
+      "MultiRC",
+      "RTE",
+      "ReCoRD",
+      "WSC",
+      "WiC"
+    ],
+    "budget": 200,
+    "available": 167275,
+    "dropped_before_exclusion": {},
+    "excluded_question_hash": 69,
+    "excluded_id_hash": 557,
+    "usable": 166649,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "test": 40,
+      "train": 160
+    },
+    "per_subset": {
+      "AX-b": {
+        "available": 1104,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 30,
+        "usable": 1074,
+        "taken": 20
+      },
+      "AX-g": {
+        "available": 356,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 3,
+        "usable": 353,
+        "taken": 20
+      },
+      "BoolQ": {
+        "available": 12697,
+        "excluded_question_hash": 69,
+        "excluded_id_hash": 284,
+        "usable": 12344,
+        "taken": 20
+      },
+      "CB": {
+        "available": 306,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 6,
+        "usable": 300,
+        "taken": 20
+      },
+      "COPA": {
+        "available": 500,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 6,
+        "usable": 494,
+        "taken": 20
+      },
+      "MultiRC": {
+        "available": 32091,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 32091,
+        "taken": 20
+      },
+      "RTE": {
+        "available": 2767,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 60,
+        "usable": 2707,
+        "taken": 20
+      },
+      "ReCoRD": {
+        "available": 110730,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 0,
+        "usable": 110730,
+        "taken": 20
+      },
+      "WSC": {
+        "available": 658,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 8,
+        "usable": 650,
+        "taken": 20
+      },
+      "WiC": {
+        "available": 6066,
+        "excluded_question_hash": 0,
+        "excluded_id_hash": 160,
+        "usable": 5906,
+        "taken": 20
+      }
+    },
+    "notes": [
+      "subsets = all 10 SuperGLUE tasks incl. diagnostics AX-b/AX-g (labelled; only file is the test split); the 8 main tasks use train/val only (test unlabelled)",
+      "COPA/WiC/WSC/MultiRC question strings are fixed renderings of the native fields (kept in meta)",
+      "native id = release idx; id-hash matches are positional (exclusion file's superglue ids are ints)"
+    ]
+  },
+  "wmt19": {
+    "benchmark": "wmt19",
+    "exclusion_family": "wmt19",
+    "source": "wmt/wmt19@c8a87a86736e7bf10c74c22e9033eba9146774e9",
+    "subsets": [
+      "cs-en",
+      "de-en",
+      "de-fr",
+      "en-cs",
+      "en-de",
+      "en-fi",
+      "en-gu",
+      "en-kk",
+      "en-lt",
+      "en-ru",
+      "en-zh",
+      "fi-en",
+      "fr-de",
+      "gu-en",
+      "kk-en",
+      "lt-en",
+      "ru-en",
+      "zh-en"
+    ],
+    "budget": 200,
+    "available": 47076,
+    "excluded_question_hash": 607,
+    "excluded_id_hash": 4097,
+    "usable": 42372,
+    "taken": 200,
+    "shortfall": 0,
+    "taken_by_split": {
+      "validation": 200
+    },
+    "per_subset": {
+      "cs-en": {
+        "available": 2983,
+        "excluded_id_hash": 231,
+        "usable": 2752,
+        "taken": 12
+      },
+      "de-en": {
+        "available": 2998,
+        "excluded_id_hash": 231,
+        "usable": 2767,
+        "taken": 12
+      },
+      "de-fr": {
+        "available": 1512,
+        "excluded_id_hash": 231,
+        "usable": 1281,
+        "taken": 11
+      },
+      "en-cs": {
+        "available": 2983,
+        "excluded_question_hash": 80,
+        "excluded_id_hash": 226,
+        "usable": 2677,
+        "taken": 11
+      },
+      "en-de": {
+        "available": 2998,
+        "excluded_id_hash": 221,
+        "excluded_question_hash": 98,
+        "usable": 2679,
+        "taken": 11
+      },
+      "en-fi": {
+        "available": 3000,
+        "excluded_id_hash": 217,
+        "excluded_question_hash": 86,
+        "usable": 2697,
+        "taken": 11
+      },
+      "en-gu": {
+        "available": 1998,
+        "excluded_id_hash": 218,
+        "excluded_question_hash": 98,
+        "usable": 1682,
+        "taken": 11
+      },
+      "en-kk": {
+        "available": 2066,
+        "excluded_id_hash": 231,
+        "excluded_question_hash": 5,
+        "usable": 1830,
+        "taken": 11
+      },
+      "en-lt": {
+        "available": 2000,
+        "excluded_id_hash": 223,
+        "excluded_question_hash": 68,
+        "usable": 1709,
+        "taken": 11
+      },
+      "en-ru": {
+        "available": 3000,
+        "excluded_id_hash": 225,
+        "excluded_question_hash": 73,
+        "usable": 2702,
+        "taken": 11
+      },
+      "en-zh": {
+        "available": 3981,
+        "excluded_question_hash": 98,
+        "excluded_id_hash": 226,
+        "usable": 3657,
+        "taken": 11
+      },
+      "fi-en": {
+        "available": 3000,
+        "excluded_id_hash": 231,
+        "usable": 2769,
+        "taken": 11
+      },
+      "fr-de": {
+        "available": 1512,
+        "excluded_id_hash": 231,
+        "usable": 1281,
+        "taken": 11
+      },
+      "gu-en": {
+        "available": 1998,
+        "excluded_id_hash": 231,
+        "usable": 1767,
+        "taken": 11
+      },
+      "kk-en": {
+        "available": 2066,
+        "excluded_id_hash": 231,
+        "usable": 1835,
+        "taken": 11
+      },
+      "lt-en": {
+        "available": 2000,
+        "excluded_id_hash": 231,
+        "excluded_question_hash": 1,
+        "usable": 1768,
+        "taken": 11
+      },
+      "ru-en": {
+        "available": 3000,
+        "excluded_id_hash": 231,
+        "usable": 2769,
+        "taken": 11
+      },
+      "zh-en": {
+        "available": 3981,
+        "excluded_id_hash": 231,
+        "usable": 3750,
+        "taken": 11
+      }
+    },
+    "output": "data/wmt19.jsonl",
+    "split_used": "validation (official WMT news dev/test sentences shipped by the release; train = parallel corpora, unused)",
+    "native_id": "row index within <config>/validation"
+  }
+}

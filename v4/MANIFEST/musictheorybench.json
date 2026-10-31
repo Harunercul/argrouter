@@ -1,0 +1,37 @@
+{
+  "benchmark": "musictheorybench",
+  "exclusion_family": "musictheorybench",
+  "source": "m-a-p/MusicTheoryBench@81b65609885be1fba19ce167a2a9604ae676c5ae",
+  "subsets": [
+    "knowledge",
+    "reasoning"
+  ],
+  "budget": 200,
+  "available": 372,
+  "excluded_question_hash": 222,
+  "excluded_id_hash": 86,
+  "usable": 64,
+  "taken": 64,
+  "shortfall": 136,
+  "taken_by_split": {
+    "dev": 1,
+    "test": 63
+  },
+  "per_subset": {
+    "knowledge": {
+      "available": 274,
+      "excluded_question_hash": 147,
+      "excluded_id_hash": 72,
+      "usable": 55,
+      "taken": 55
+    },
+    "reasoning": {
+      "available": 98,
+      "excluded_question_hash": 75,
+      "excluded_id_hash": 14,
+      "usable": 9,
+      "taken": 9
+    }
+  },
+  "output": "data/musictheorybench.jsonl"
+}

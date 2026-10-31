@@ -1,0 +1,72 @@
+{
+  "benchmark": "mathqa",
+  "exclusion_family": "mathqa",
+  "source": "https://math-qa.github.io/math-QA/data/MathQA.zip@sha256:7344f30456a7aef3176d4866cc953b35b41bec44eda6b00cdbcfde2876b2f07a",
+  "subsets": [
+    "gain",
+    "general",
+    "geometry",
+    "other",
+    "physics",
+    "probability"
+  ],
+  "budget": 200,
+  "available": 37297,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 176,
+  "excluded_id_hash": 364,
+  "usable": 36757,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "gain": {
+      "available": 6421,
+      "excluded_question_hash": 5,
+      "excluded_id_hash": 60,
+      "usable": 6356,
+      "taken": 34
+    },
+    "general": {
+      "available": 16580,
+      "excluded_question_hash": 106,
+      "excluded_id_hash": 166,
+      "usable": 16308,
+      "taken": 34
+    },
+    "geometry": {
+      "available": 2625,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 35,
+      "usable": 2571,
+      "taken": 33
+    },
+    "other": {
+      "available": 2274,
+      "excluded_question_hash": 9,
+      "excluded_id_hash": 25,
+      "usable": 2240,
+      "taken": 33
+    },
+    "physics": {
+      "available": 8821,
+      "excluded_question_hash": 18,
+      "excluded_id_hash": 72,
+      "usable": 8731,
+      "taken": 33
+    },
+    "probability": {
+      "available": 576,
+      "excluded_question_hash": 19,
+      "excluded_id_hash": 6,
+      "usable": 551,
+      "taken": 33
+    }
+  },
+  "notes": [
+    "subsets = the 6 MathQA categories; dev.json mapped to split 'validation'; challenge_test.json skipped",
+    "native id = row index within the split file, so id-hash matches are positional"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "benchmark": "socialiqa",
+  "exclusion_family": "socialiqa",
+  "source": "https://storage.googleapis.com/ai2-mosaic/public/socialiqa/socialiqa-train-dev.zip@sha256:ee073914a0fc33265cfbcfc50ec20df9b2e07809c3f420f599138d1f394ef5c3",
+  "subsets": [
+    "socialiqa"
+  ],
+  "budget": 200,
+  "available": 35364,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 3501,
+  "excluded_id_hash": 54,
+  "usable": 31809,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "train": 200
+  },
+  "per_subset": {
+    "socialiqa": {
+      "available": 35364,
+      "excluded_question_hash": 3501,
+      "excluded_id_hash": 54,
+      "usable": 31809,
+      "taken": 200
+    }
+  },
+  "notes": [
+    "labels are 1-based in the .lst files (1=A); stored 0-based",
+    "question rule applied to the native question field, which is a template for most items: every item sharing a listed template is dropped (over-exclusion, see excluded_question_hash)",
+    "native id = row index within split; id-hash matches are positional"
+  ]
+}

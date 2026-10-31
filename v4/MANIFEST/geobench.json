@@ -1,0 +1,55 @@
+{
+  "benchmark": "geobench",
+  "exclusion_family": "geobench",
+  "source": "daven3/geobench@fa6f583ad38f93a7e7f5a3ea1582fe6593437747",
+  "subsets": [
+    "apstudy",
+    "npee_choice",
+    "npee_tf"
+  ],
+  "budget": 200,
+  "available": 1708,
+  "excluded_question_hash": 333,
+  "excluded_id_hash": 43,
+  "usable": 1332,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "test": 200
+  },
+  "per_subset": {
+    "apstudy": {
+      "available": 1395,
+      "excluded_question_hash": 333,
+      "excluded_id_hash": 0,
+      "usable": 1062,
+      "taken": 67
+    },
+    "npee_choice": {
+      "available": 179,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 25,
+      "usable": 154,
+      "taken": 67
+    },
+    "npee_tf": {
+      "available": 134,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 18,
+      "usable": 116,
+      "taken": 66
+    }
+  },
+  "output": "data/geobench.jsonl",
+  "npee_choice_unparsed_dropped": [
+    127,
+    155,
+    175
+  ],
+  "subjective_subsets_not_used": {
+    "noun": 454,
+    "completion": 150,
+    "qa": 153,
+    "discussion": 335
+  }
+}

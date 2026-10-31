@@ -1,0 +1,53 @@
+{
+  "benchmark": "arcmmlu",
+  "exclusion_family": "arcmmlu",
+  "source": "patrickshitou/ArcMMLU@5c2eccb5cfb586a5ac9176c3685ab581545bd230",
+  "subsets": [
+    "archive",
+    "data_science",
+    "information",
+    "library"
+  ],
+  "budget": 200,
+  "available": 6212,
+  "excluded_question_hash": 406,
+  "excluded_id_hash": 1590,
+  "usable": 4216,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "dev": 8,
+    "test": 192
+  },
+  "per_subset": {
+    "archive": {
+      "available": 2220,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 401,
+      "usable": 1819,
+      "taken": 50
+    },
+    "data_science": {
+      "available": 1504,
+      "excluded_question_hash": 61,
+      "excluded_id_hash": 399,
+      "usable": 1044,
+      "taken": 50
+    },
+    "information": {
+      "available": 1679,
+      "excluded_question_hash": 345,
+      "excluded_id_hash": 391,
+      "usable": 943,
+      "taken": 50
+    },
+    "library": {
+      "available": 809,
+      "excluded_question_hash": 0,
+      "excluded_id_hash": 399,
+      "usable": 410,
+      "taken": 50
+    }
+  },
+  "output": "data/arcmmlu.jsonl"
+}

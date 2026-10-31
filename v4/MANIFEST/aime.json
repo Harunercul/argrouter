@@ -1,0 +1,32 @@
+{
+  "benchmark": "aime",
+  "exclusion_family": "aime",
+  "source": "di-zhang-fdu/AIME_1983_2024@3e2cc86390666c5c756622afc0eeb9e6194496bc + MathArena/aime_2025@c94da77eb22bbd6439e62a323bec18493a421302 + MathArena/aime_2026@d61f486805306e6e6b5913504c07763a99e1b112",
+  "subsets": [
+    "aime"
+  ],
+  "budget": 200,
+  "available": 993,
+  "dropped_before_exclusion": {},
+  "excluded_question_hash": 21,
+  "excluded_id_hash": 0,
+  "usable": 972,
+  "taken": 200,
+  "shortfall": 0,
+  "taken_by_split": {
+    "test": 200
+  },
+  "per_subset": {
+    "aime": {
+      "available": 993,
+      "excluded_question_hash": 21,
+      "excluded_id_hash": 0,
+      "usable": 972,
+      "taken": 200
+    }
+  },
+  "notes": [
+    "1983-2024 from di-zhang-fdu/AIME_1983_2024 (2024: AIME II only in that release); 2025 and 2026 from MathArena (problem_idx 1-15 = I, 16-30 = II)",
+    "single subset; split 'test'; the exclusion file's aime ids are small integers, which cannot match these string ids (the question hash is the effective rule)"
+  ]
+}
