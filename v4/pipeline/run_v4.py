@@ -36,7 +36,7 @@ def done_keys(model: str) -> set[str]:
     if not p.exists():
         return set()
     keys = set()
-    for line in p.read_text().splitlines():
+    for line in p.read_text().split("\n"):
         r = json.loads(line)
         if not r.get("error"):
             keys.add(r["gidx"])
@@ -92,7 +92,7 @@ async def main(
     items_path: Path, models: list[str], concurrency: int, limit: int | None
 ) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    items = [json.loads(x) for x in items_path.read_text().splitlines() if x.strip()]
+    items = [json.loads(x) for x in items_path.read_text().split("\n") if x.strip()]
     if limit:
         items = items[:limit]
     headers = {"Authorization": f"Bearer {ENV['OPENROUTER_API_KEY']}"}

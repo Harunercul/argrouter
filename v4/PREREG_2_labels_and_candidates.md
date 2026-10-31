@@ -64,3 +64,7 @@ The routing policy (pool, decision rule, thresholds) is chosen on this set only,
 equally and at the providers' standard (non-introductory) list prices, also reported at the price table's current
 prices. The frozen router (code + weights + config, with sha256) is committed as part 3; only then is it run on
 RouterArena, once.
+
+**Amendment (2026-10-31, before the first call):** `run_v4.py` read the item file with `splitlines()`, which also
+splits on Unicode line separators inside JSON strings, and crashed before making any call. It now splits on "\n"
+only. New sha256: `ce890381cd4348324d054eb23bb50c122ab76017e8e0f0b95055a7e058fd19a5`. Prompts, graders and data are unchanged.
