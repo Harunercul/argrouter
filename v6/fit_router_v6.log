@@ -1,0 +1,84 @@
+  ok   anthropic/claude-haiku-5.5               
+  ok   deepseek/deepseek-v4-flash-0731          
+  ok   google/gemini-3-flash-preview@none       
+  ok   google/gemini-3.1-flash-lite@none        
+  ok   google/gemini-3.7-flash@low              
+  ok   google/gemini-3.8-flash@low              
+  ok   google/gemma-4-31b-it                    
+  ok   openai/gpt-6-luna                        
+  ok   deepseek/deepseek-v4.1-flash-1017        
+  ok   deepseek/deepseek-v4.1-flash             
+  skip nex-agi/nex-n2.5-pro                     not in --only
+  ok   openai/gpt-6-luna-pro                    
+  skip qwen/qwen3.8-flash                       incomplete 4263/4264
+  ok   xiaomi/mimo-v2.6-flash                   
+  ok   xiaomi/mimo-v2.6-pro                     
+  ok   z-ai/glm-5.3-flash                       
+4264 items, 14 candidates; hard weights: floor 0.5, effective n 3340 (equal 4012)  [1s]
+
+model                                    hard: acc%  $/1K  arena | equal: acc%  $/1K  arena
+google/gemini-3.7-flash@low                   81.1 1.910  75.16 |       91.2 1.692  83.22
+google/gemini-3.8-flash@low                   81.4 2.461  74.72 |       91.3 2.072  82.69
+deepseek/deepseek-v4.1-flash                  79.6 1.563  74.44 |       89.4 1.137  82.96
+deepseek/deepseek-v4.1-flash-1017             80.1 1.853  74.44 |       89.7 1.343  82.74
+z-ai/glm-5.3-flash                            77.8 0.848  74.21 |       87.5 0.633  82.75
+deepseek/deepseek-v4-flash-0731               78.0 1.089  73.95 |       88.6 0.829  83.06
+openai/gpt-6-luna-pro                         77.6 0.982  73.83 |       88.0 0.817  82.62
+openai/gpt-6-luna                             75.4 0.294  73.82 |       86.7 0.234  83.80
+anthropic/claude-haiku-5.5                    75.8 0.521  73.37 |       87.1 0.423  83.19
+google/gemma-4-31b-it                         73.7 0.203  72.70 |       85.3 0.185  82.98
+xiaomi/mimo-v2.6-flash                        76.4 1.204  72.46 |       86.2 0.875  81.03
+google/gemini-3-flash-preview@none            76.0 1.020  72.45 |       87.6 0.965  81.93
+xiaomi/mimo-v2.6-pro                          79.7 3.987  71.93 |       89.2 3.028  79.87
+google/gemini-3.1-flash-lite@none             72.3 0.486  70.49 |       84.4 0.457  80.79
+
+selection CV predictions for 14 candidates  [6s]
+  + google/gemini-3.7-flash@low              objective 75.16   runners-up: gemini-3.8-flash@low 74.72, deepseek-v4.1-flash 74.44, deepseek-v4.1-flash-1017 74.44
+  + deepseek/deepseek-v4.1-flash             objective 76.01   runners-up: glm-5.3-flash 75.81, deepseek-v4.1-flash-1017 75.79, gpt-6-luna 75.46
+  stop: best addition z-ai/glm-5.3-flash 76.01 (+-0.00 < 0.1)
+pool: ['google/gemini-3.7-flash@low', 'deepseek/deepseek-v4.1-flash']
+seed 0 held-out wrapper bare lam 0.005: 75.25  acc 80.9% $1.703/1K  (equal-weight 83.48)
+seed 0 held-out wrapper bare lam 0.01: 75.49  acc 80.7% $1.462/1K  (equal-weight 83.78)
+seed 0 held-out wrapper bare lam 0.02: 75.73  acc 80.8% $1.358/1K  (equal-weight 84.03)
+seed 0 held-out wrapper bare lam 0.04: 75.90  acc 80.8% $1.247/1K  (equal-weight 84.24)
+seed 0 held-out wrapper bare lam 0.08: 75.70  acc 80.3% $1.140/1K  (equal-weight 84.18)
+seed 0 held-out wrapper bare lam 0.16: 75.73  acc 80.2% $1.064/1K  (equal-weight 84.20)
+seed 0 held-out wrapper A    lam 0.005: 75.48  acc 80.9% $1.571/1K  (equal-weight 83.70)
+seed 0 held-out wrapper A    lam 0.01: 75.59  acc 80.6% $1.359/1K  (equal-weight 83.91)
+seed 0 held-out wrapper A    lam 0.02: 75.63  acc 80.5% $1.254/1K  (equal-weight 84.03)
+seed 0 held-out wrapper A    lam 0.04: 75.65  acc 80.3% $1.157/1K  (equal-weight 84.12)
+seed 0 held-out wrapper A    lam 0.08: 75.62  acc 80.1% $1.081/1K  (equal-weight 84.15)
+seed 0 held-out wrapper A    lam 0.16: 75.69  acc 80.0% $1.029/1K  (equal-weight 84.20)
+seed 0 held-out wrapper B    lam 0.005: 75.56  acc 81.0% $1.559/1K  (equal-weight 83.72)
+seed 0 held-out wrapper B    lam 0.01: 75.79  acc 81.1% $1.498/1K  (equal-weight 83.91)
+seed 0 held-out wrapper B    lam 0.02: 75.66  acc 80.8% $1.384/1K  (equal-weight 83.93)
+seed 0 held-out wrapper B    lam 0.04: 75.70  acc 80.5% $1.244/1K  (equal-weight 84.12)
+seed 0 held-out wrapper B    lam 0.08: 75.79  acc 80.4% $1.136/1K  (equal-weight 84.22)
+seed 0 held-out wrapper B    lam 0.16: 75.75  acc 80.1% $1.039/1K  (equal-weight 84.24)
+seed 1 held-out wrapper bare lam 0.005: 75.26  acc 80.9% $1.703/1K  (equal-weight 83.54)
+seed 1 held-out wrapper bare lam 0.01: 75.59  acc 80.8% $1.441/1K  (equal-weight 83.91)
+seed 1 held-out wrapper bare lam 0.02: 75.63  acc 80.7% $1.351/1K  (equal-weight 83.99)
+seed 1 held-out wrapper bare lam 0.04: 75.63  acc 80.4% $1.236/1K  (equal-weight 84.08)
+seed 1 held-out wrapper bare lam 0.08: 75.78  acc 80.4% $1.137/1K  (equal-weight 84.23)
+seed 1 held-out wrapper bare lam 0.16: 75.54  acc 79.9% $1.056/1K  (equal-weight 84.12)
+seed 1 held-out wrapper A    lam 0.005: 75.37  acc 80.7% $1.541/1K  (equal-weight 83.69)
+seed 1 held-out wrapper A    lam 0.01: 75.55  acc 80.6% $1.354/1K  (equal-weight 83.94)
+seed 1 held-out wrapper A    lam 0.02: 75.68  acc 80.5% $1.258/1K  (equal-weight 84.11)
+seed 1 held-out wrapper A    lam 0.04: 75.83  acc 80.5% $1.145/1K  (equal-weight 84.28)
+seed 1 held-out wrapper A    lam 0.08: 75.68  acc 80.1% $1.070/1K  (equal-weight 84.19)
+seed 1 held-out wrapper A    lam 0.16: 75.62  acc 79.9% $1.024/1K  (equal-weight 84.16)
+seed 1 held-out wrapper B    lam 0.005: 75.55  acc 81.0% $1.558/1K  (equal-weight 83.73)
+seed 1 held-out wrapper B    lam 0.01: 75.70  acc 81.0% $1.501/1K  (equal-weight 83.88)
+seed 1 held-out wrapper B    lam 0.02: 75.59  acc 80.7% $1.408/1K  (equal-weight 83.94)
+seed 1 held-out wrapper B    lam 0.04: 75.69  acc 80.5% $1.262/1K  (equal-weight 84.13)
+seed 1 held-out wrapper B    lam 0.08: 75.58  acc 80.1% $1.134/1K  (equal-weight 84.14)
+seed 1 held-out wrapper B    lam 0.16: 75.46  acc 79.7% $1.036/1K  (equal-weight 84.08)
+
+lam      hard   equal   (mean over 2 seeds x 3 held-out wrappers)
+0.005    75.41   83.64
+0.01     75.62   83.89
+0.02     75.65   84.01
+0.04     75.73   84.16  <-
+0.08     75.69   84.19
+0.16     75.63   84.17
+saved route_data/v6/router_v6.npz  sha256 dfe06e0557f7d275d1768df7c6cc6814d10d449d9f8d824965e12ce082c745c0  [7s]
