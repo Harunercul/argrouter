@@ -76,7 +76,7 @@ packages = ["src/argrouter"]
 line-length = 100
 target-version = "py310"
 # v4/ and v5/ are the pre-registered RouterArena pipelines: their files are frozen by sha256, so they are not reformatted
-extend-exclude = ["v4", "v5"]
+extend-exclude = ["v4", "v5", "v6"]
 
 [tool.ruff.format]
 # README orneklerindeki hizalanmis yorumlar bilerek boyle
