@@ -1,0 +1,45 @@
+-- split seed 1
+select on half 0: pool ['openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemma-4-31b-it', 'openai/gpt-6-luna', 'google/gemini-3.7-flash@minimal', 'anthropic/claude-haiku-5.5'] lam 0.04
+   hard       other half: 82.25 (acc 86.6% $0.561/1K) vs v6 pair 79.57  gain +2.68
+   ramix      other half: 86.66 (acc 91.0% $0.364/1K) vs v6 pair 84.52  gain +2.14
+   ramix_hard other half: 79.28 (acc 82.7% $0.486/1K) vs v6 pair 77.03  gain +2.25
+select on half 1: pool ['google/gemini-3.7-flash@low', 'openai/gpt-6-luna', 'z-ai/glm-5.3-flash', 'google/gemma-4-31b-it', 'openai/gpt-6.1-terra', 'anthropic/claude-haiku-5.5'] lam 0.04
+   hard       other half: 81.96 (acc 86.2% $0.564/1K) vs v6 pair 79.97  gain +1.99
+   ramix      other half: 89.00 (acc 93.9% $0.371/1K) vs v6 pair 86.53  gain +2.47
+   ramix_hard other half: 83.71 (acc 88.1% $0.504/1K) vs v6 pair 81.22  gain +2.49
+-- split seed 2
+select on half 0: pool ['openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemma-4-31b-it', 'openai/gpt-6-luna', 'google/gemini-3.7-flash@minimal', 'openai/gpt-6.1-terra'] lam 0.04
+   hard       other half: 81.26 (acc 85.4% $0.558/1K) vs v6 pair 80.29  gain +0.97
+   ramix      other half: 87.89 (acc 92.4% $0.361/1K) vs v6 pair 86.33  gain +1.56
+   ramix_hard other half: 81.82 (acc 85.8% $0.490/1K) vs v6 pair 80.35  gain +1.47
+select on half 1: pool ['openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemini-3.7-flash@low', 'deepseek/deepseek-v4.1-flash'] lam 0.16
+   hard       other half: 80.87 (acc 85.0% $0.576/1K) vs v6 pair 80.35  gain +0.51
+   ramix      other half: 87.32 (acc 91.4% $0.313/1K) vs v6 pair 85.43  gain +1.90
+   ramix_hard other half: 80.20 (acc 83.5% $0.418/1K) vs v6 pair 78.78  gain +1.42
+-- split seed 3
+select on half 0: pool ['openai/gpt-6.1-terra', 'deepseek/deepseek-v4.1-flash', 'z-ai/glm-5.3-flash', 'google/gemma-4-31b-it', 'openai/gpt-6-luna', 'openai/gpt-6.1-terra@low'] lam 0.16
+   hard       other half: 81.48 (acc 84.6% $0.329/1K) vs v6 pair 80.41  gain +1.07
+   ramix      other half: 88.04 (acc 91.5% $0.207/1K) vs v6 pair 85.53  gain +2.51
+   ramix_hard other half: 81.72 (acc 84.5% $0.275/1K) vs v6 pair 78.86  gain +2.86
+select on half 1: pool ['openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemini-3.7-flash@low'] lam 0.16
+   hard       other half: 80.64 (acc 84.8% $0.595/1K) vs v6 pair 79.78  gain +0.86
+   ramix      other half: 87.45 (acc 91.5% $0.305/1K) vs v6 pair 85.80  gain +1.65
+   ramix_hard other half: 80.49 (acc 83.8% $0.410/1K) vs v6 pair 79.25  gain +1.25
+-- split seed 4
+select on half 0: pool ['openai/gpt-6.1-terra@low', 'google/gemma-4-31b-it'] lam 0.04
+   hard       other half: 79.21 (acc 83.0% $0.600/1K) vs v6 pair 80.18  gain -0.98
+   ramix      other half: 86.57 (acc 91.3% $0.448/1K) vs v6 pair 86.13  gain +0.43
+   ramix_hard other half: 79.56 (acc 83.3% $0.543/1K) vs v6 pair 80.31  gain -0.75
+select on half 1: pool ['z-ai/glm-5.3-flash', 'openai/gpt-6-luna', 'google/gemini-3.7-flash@low'] lam 0.08
+   hard       other half: 80.06 (acc 83.5% $0.450/1K) vs v6 pair 79.33  gain +0.74
+   ramix      other half: 86.42 (acc 90.0% $0.266/1K) vs v6 pair 84.62  gain +1.80
+   ramix_hard other half: 79.18 (acc 82.1% $0.382/1K) vs v6 pair 77.57  gain +1.61
+-- split seed 5
+select on half 0: pool ['openai/gpt-6.1-terra@low', 'google/gemma-4-31b-it', 'z-ai/glm-5.3-flash', 'openai/gpt-6-luna', 'anthropic/claude-haiku-5.5', 'google/gemini-3.7-flash@low'] lam 0.04
+   hard       other half: 81.51 (acc 85.4% $0.495/1K) vs v6 pair 80.37  gain +1.15
+   ramix      other half: 87.93 (acc 92.3% $0.326/1K) vs v6 pair 86.93  gain +0.99
+   ramix_hard other half: 81.42 (acc 84.9% $0.416/1K) vs v6 pair 81.42  gain +0.00
+select on half 1: pool ['google/gemini-3.7-flash@minimal', 'deepseek/deepseek-v4.1-flash'] lam 0.02
+   hard       other half: 79.55 (acc 85.7% $1.373/1K) vs v6 pair 80.26  gain -0.70
+   ramix      other half: 84.86 (acc 92.0% $1.187/1K) vs v6 pair 84.79  gain +0.07
+   ramix_hard other half: 78.43 (acc 84.4% $1.434/1K) vs v6 pair 77.70  gain +0.73

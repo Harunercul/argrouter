@@ -1,0 +1,48 @@
+candidates: ['anthropic/claude-haiku-5.5', 'deepseek/deepseek-v4-flash-0731', 'google/gemini-3-flash-preview@none', 'google/gemini-3.1-flash-lite@none', 'google/gemini-3.7-flash@low', 'google/gemini-3.8-flash@low', 'google/gemma-4-31b-it', 'openai/gpt-6-luna', 'deepseek/deepseek-v4.1-flash', 'deepseek/deepseek-v4.1-flash-1017', 'google/gemini-4-argon', 'minimax/minimax-m3.1-flash', 'openai/gpt-6-luna-pro', 'openai/gpt-6.1-terra', 'xiaomi/mimo-v2.6-flash', 'xiaomi/mimo-v2.6-pro', 'z-ai/glm-5.3-flash']
+
+== weights hard  (qwen__qwen3-embedding-8b, cluster k=30 pseudo 5.0)
+  + google/gemini-3.7-flash@low              79.82   runners-up: gpt-6.1-terra 79.51, gemini-3.8-flash@low 79.38, gemini-4-argon 79.30
+  + deepseek/deepseek-v4.1-flash-1017        80.67   runners-up: glm-5.3-flash 80.56, deepseek-v4.1-flash 80.56, gpt-6-luna 80.54
+  + z-ai/glm-5.3-flash                       81.10   runners-up: gemini-4-argon 80.89, gpt-6.1-terra 80.83, minimax-m3.1-flash 80.73
+  + openai/gpt-6.1-terra                     81.37   runners-up: claude-haiku-5.5 81.34, gpt-6-luna 81.31, minimax-m3.1-flash 81.20
+  + openai/gpt-6-luna                        81.75   runners-up: claude-haiku-5.5 81.62, minimax-m3.1-flash 81.47, gemini-3.8-flash@low 81.41
+  + anthropic/claude-haiku-5.5               81.93   runners-up: mimo-v2.6-flash 81.85, minimax-m3.1-flash 81.83, gemini-3.8-flash@low 81.76
+  lam 0.01   80.77  acc 86.3%  $1.023/1K
+  lam 0.02   81.48  acc 86.4%  $0.768/1K
+  lam 0.04   81.93  acc 86.5%  $0.636/1K
+  lam 0.08   81.90  acc 86.0%  $0.531/1K
+  lam 0.16   81.49  acc 84.9%  $0.398/1K
+  lam 0.32   80.82  acc 83.9%  $0.351/1K
+  v6 pair under this predictor: 0.01:80.39 0.02:80.56 0.04:80.35 0.08:80.38 0.16:80.29 0.32:79.93
+  v7 pool under this predictor: 0.01:80.82 0.02:81.29 0.04:81.62 0.08:81.51 0.16:81.39 0.32:80.97
+
+== weights ramix  (qwen__qwen3-embedding-8b, cluster k=30 pseudo 5.0)
+  + z-ai/glm-5.3-flash                       85.96   runners-up: gpt-6.1-terra 85.82, gemini-3.7-flash@low 85.62, gpt-6-luna 85.53
+  + openai/gpt-6-luna                        87.38   runners-up: gpt-6.1-terra 86.97, gemma-4-31b-it 86.96, gemini-3.7-flash@low 86.94
+  + google/gemini-3.7-flash@low              87.54   runners-up: gemma-4-31b-it 87.53, gpt-6.1-terra 87.41, deepseek-v4.1-flash-1017 87.39
+  + google/gemma-4-31b-it                    87.76   runners-up: mimo-v2.6-pro 87.55, deepseek-v4.1-flash-1017 87.54, gemini-4-argon 87.54
+  stop: best addition deepseek/deepseek-v4.1-flash-1017 87.85 (+0.09)
+  lam 0.01   86.95  acc 92.9%  $0.671/1K
+  lam 0.02   87.59  acc 92.8%  $0.498/1K
+  lam 0.04   87.65  acc 92.4%  $0.408/1K
+  lam 0.08   87.76  acc 91.7%  $0.275/1K
+  lam 0.16   87.55  acc 90.9%  $0.212/1K
+  lam 0.32   87.30  acc 90.3%  $0.179/1K
+  v6 pair under this predictor: 0.01:85.99 0.02:86.03 0.04:86.00 0.08:86.03 0.16:85.89 0.32:85.81
+  v7 pool under this predictor: 0.01:86.12 0.02:86.42 0.04:86.84 0.08:86.97 0.16:87.15 0.32:86.73
+
+== weights ramix_hard  (qwen__qwen3-embedding-8b, cluster k=30 pseudo 5.0)
+  + openai/gpt-6.1-terra                     80.04   runners-up: gemini-3.7-flash@low 79.98, gemini-3.8-flash@low 79.72, gemini-4-argon 79.46
+  + z-ai/glm-5.3-flash                       81.08   runners-up: gemini-4-argon 80.83, deepseek-v4.1-flash-1017 80.73, gemma-4-31b-it 80.39
+  + google/gemini-3.7-flash@low              81.36   runners-up: gemini-3.8-flash@low 81.33, gemma-4-31b-it 81.29, deepseek-v4.1-flash-1017 81.24
+  + google/gemma-4-31b-it                    81.55   runners-up: gpt-6-luna 81.49, mimo-v2.6-flash 81.41, gemini-3.8-flash@low 81.40
+  + openai/gpt-6-luna                        81.90   runners-up: gemini-4-argon 81.56, deepseek-v4.1-flash-1017 81.55, mimo-v2.6-flash 81.54
+  stop: best addition deepseek/deepseek-v4.1-flash-1017 81.95 (+0.05)
+  lam 0.01   80.64  acc 85.5%  $0.820/1K
+  lam 0.02   81.33  acc 85.7%  $0.625/1K
+  lam 0.04   81.90  acc 86.0%  $0.534/1K
+  lam 0.08   81.76  acc 85.4%  $0.434/1K
+  lam 0.16   80.79  acc 83.7%  $0.319/1K
+  lam 0.32   80.21  acc 82.6%  $0.251/1K
+  v6 pair under this predictor: 0.01:80.10 0.02:80.04 0.04:79.89 0.08:79.75 0.16:79.59 0.32:79.28
+  v7 pool under this predictor: 0.01:80.55 0.02:80.71 0.04:80.96 0.08:80.59 0.16:80.57 0.32:79.77

@@ -1,0 +1,19 @@
+seed 1 half 0: ['gemini-4-argon', 'gpt-6.1-terra@low', 'glm-5.3-flash', 'gemini-3.7-flash@low', 'gemini-3.1-flash-lite@none', 'minimax-m3.1-flash'] lam 0.04 | other half 78.90 (acc 82.8% $0.641/1K) vs v6 76.44  gain +2.46
+seed 1 half 1: ['gemini-4-argon', 'gpt-6.1-terra', 'claude-haiku-5.5', 'gemini-3.7-flash@low'] lam 0.01 | other half 77.97 (acc 83.8% $1.428/1K) vs v6 77.01  gain +0.96
+seed 2 half 0: ['gemini-4-argon', 'gpt-6.1-terra@low', 'gemini-3.7-flash@low', 'gpt-6.1-terra'] lam 0.01 | other half 78.66 (acc 85.0% $1.572/1K) vs v6 77.50  gain +1.17
+seed 2 half 1: ['gemini-4-argon', 'gpt-6.1-terra', 'glm-5.3-flash', 'claude-haiku-5.5', 'gemini-3.1-flash-lite@none', 'gemini-3.7-flash@low'] lam 0.04 | other half 79.17 (acc 83.3% $0.673/1K) vs v6 77.30  gain +1.87
+seed 3 half 0: ['gemini-4-argon', 'gpt-6.1-terra@low', 'glm-5.3-flash', 'gemini-3.7-flash@low'] lam 0.01 | other half 78.94 (acc 84.8% $1.334/1K) vs v6 77.87  gain +1.07
+seed 3 half 1: ['gemini-4-argon', 'gpt-6.1-terra', 'glm-5.3-flash', 'gemini-3.7-flash@low', 'claude-haiku-5.5', 'gemini-3.1-flash-lite@none'] lam 0.04 | other half 78.64 (acc 82.5% $0.644/1K) vs v6 76.93  gain +1.71
+seed 4 half 0: ['gpt-6.1-terra@low', 'gemini-4-argon', 'minimax-m3.1-flash', 'gemini-3.1-flash-lite@none'] lam 0.04 | other half 77.13 (acc 81.0% $0.747/1K) vs v6 77.26  gain -0.13
+seed 4 half 1: ['gemini-4-argon', 'gpt-6-luna', 'glm-5.3-flash', 'gemini-3.8-flash@low', 'claude-haiku-5.5'] lam 0.01 | other half 78.16 (acc 83.5% $1.199/1K) vs v6 77.16  gain +1.00
+seed 5 half 0: ['gemini-4-argon', 'gemini-3.7-flash@low', 'gpt-6-luna', 'gpt-6-luna-pro', 'glm-5.3-flash', 'claude-haiku-5.5'] lam 0.04 | other half 78.34 (acc 81.8% $0.546/1K) vs v6 77.61  gain +0.73
+seed 5 half 1: ['gemini-4-argon', 'gpt-6.1-terra', 'deepseek-v4.1-flash', 'gpt-6.1-terra@low'] lam 0.02 | other half 77.76 (acc 82.5% $1.010/1K) vs v6 77.17  gain +0.59
+
+held-out gain over the v6 pair: mean +1.14, sd 0.73, n 10
+selection counts: {'google/gemini-4-argon': 10, 'google/gemini-3.7-flash@low': 7, 'z-ai/glm-5.3-flash': 6, 'openai/gpt-6.1-terra@low': 5, 'openai/gpt-6.1-terra': 5, 'anthropic/claude-haiku-5.5': 5, 'google/gemini-3.1-flash-lite@none': 4, 'minimax/minimax-m3.1-flash': 2, 'openai/gpt-6-luna': 2, 'google/gemini-3.8-flash@low': 1, 'openai/gpt-6-luna-pro': 1, 'deepseek/deepseek-v4.1-flash': 1}
+consensus  ['google/gemini-4-argon', 'openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemini-3.7-flash@low', 'openai/gpt-6.1-terra', 'anthropic/claude-haiku-5.5']
+           0.01:79.09 0.02:78.94 0.04:79.19 0.08:78.95 0.16:78.74 0.32:78.17   best lam 0.04: 79.19 acc 82.7% $0.523/1K
+greedy all ['google/gemini-4-argon', 'openai/gpt-6.1-terra', 'google/gemini-3.7-flash@low', 'z-ai/glm-5.3-flash', 'anthropic/claude-haiku-5.5', 'google/gemini-3.1-flash-lite@none']
+           0.01:79.18 0.02:79.09 0.04:79.54 0.08:78.21 0.16:76.29 0.32:74.95   best lam 0.04: 79.54 acc 83.6% $0.653/1K
+v6 pair    ['google/gemini-3.7-flash@low', 'deepseek/deepseek-v4.1-flash']
+           0.01:77.31 0.02:77.39 0.04:77.10 0.08:76.88 0.16:76.78 0.32:76.47   best lam 0.02: 77.39 acc 81.9% $0.945/1K

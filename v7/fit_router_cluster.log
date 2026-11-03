@@ -1,0 +1,34 @@
+pool ['google/gemini-4-argon', 'openai/gpt-6.1-terra@low', 'z-ai/glm-5.3-flash', 'google/gemini-3.7-flash@low', 'openai/gpt-6.1-terra', 'anthropic/claude-haiku-5.5']
+lam 0.01, k 30, pseudo 5.0, embedding google/gemini-embedding-2, objective hard@0.25
+  cluster  7 n= 337 -> google/gemini-4-argon          
+  cluster 26 n= 327 -> google/gemini-4-argon          qanta:236
+  cluster 18 n= 282 -> google/gemini-4-argon          geobench:200 opentdb:197 mmlu:171
+  cluster 20 n= 219 -> google/gemini-4-argon          
+  cluster 10 n= 199 -> openai/gpt-6.1-terra           livecodebench:200
+  cluster  8 n= 186 -> google/gemini-4-argon          socialiqa:199 superglue:5
+  cluster 19 n= 165 -> google/gemini-4-argon          arcmmlu:182
+  cluster 13 n= 156 -> openai/gpt-6.1-terra@low       aime:103 math:57 mathqa:1
+  cluster  2 n= 150 -> z-ai/glm-5.3-flash             superglue:149 ethics:117 mmlu:3
+  cluster 14 n= 147 -> google/gemini-3.7-flash@low    medmcqa:177 mmlu:13 mmlupro:9
+  cluster 23 n= 146 -> google/gemini-4-argon          
+  cluster 25 n= 143 -> z-ai/glm-5.3-flash             mathqa:197 mmlupro:41 mmlu:8
+  cluster 12 n= 142 -> google/gemini-4-argon          
+  cluster 16 n= 139 -> google/gemini-4-argon          gsm8k:200 asdiv:199 math:12
+  cluster  0 n= 135 -> google/gemini-4-argon          narrativeqa:79 qanta:8 superglue:4
+  cluster  6 n= 133 -> openai/gpt-6.1-terra           chessinstruct:133
+  cluster 21 n= 133 -> z-ai/glm-5.3-flash             pubmedqa:200
+  cluster 28 n= 133 -> google/gemini-3.7-flash@low    
+  cluster 24 n= 128 -> google/gemini-4-argon          wmt19:200 qanta:142 superglue:23
+  cluster  5 n= 127 -> openai/gpt-6.1-terra@low       
+  cluster 29 n= 117 -> google/gemini-3.7-flash@low    math:86 aime:34 mmlupro:4
+  cluster 11 n= 108 -> z-ai/glm-5.3-flash             finqa:130
+  cluster  4 n= 108 -> google/gemini-3.7-flash@low    
+  cluster  9 n= 100 -> anthropic/claude-haiku-5.5     aime:61 math:41
+  cluster  1 n=  98 -> google/gemini-4-argon          math:2
+  cluster 22 n=  92 -> openai/gpt-6.1-terra@low       narrativeqa:119 ethics:1 qanta:1
+  cluster 27 n=  91 -> google/gemini-3.7-flash@low    finqa:70
+  cluster 17 n=  80 -> google/gemini-4-argon          ethics:80
+  cluster 15 n=  67 -> google/gemini-3.7-flash@low    chessinstruct:67
+  cluster  3 n=  66 -> z-ai/glm-5.3-flash             
+clusters per model: {'google/gemini-4-argon': 13, 'openai/gpt-6.1-terra@low': 3, 'z-ai/glm-5.3-flash': 5, 'google/gemini-3.7-flash@low': 6, 'openai/gpt-6.1-terra': 2, 'anthropic/claude-haiku-5.5': 1}
+saved /Users/harun.ercul/Desktop/thriftllm-lab/route_data/v7/router_cluster.npz  sha256 0e371ad8a58ca742ec4f638f32c1a4b8c52051dd6d51ac70adfb7179610319f7

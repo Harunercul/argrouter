@@ -1,0 +1,78 @@
+{
+ "anthropic/claude-haiku-5.5": [
+  0.1,
+  0.5
+ ],
+ "deepseek/deepseek-v4-flash-0731": [
+  0.119,
+  0.238
+ ],
+ "google/gemini-3-flash-preview": [
+  0.5,
+  3
+ ],
+ "google/gemini-3.1-flash-lite": [
+  0.25,
+  1.5
+ ],
+ "google/gemini-3.7-flash": [
+  0.75,
+  3.75
+ ],
+ "google/gemini-3.8-flash": [
+  0.825,
+  4.125
+ ],
+ "google/gemma-4-31b-it": [
+  0.2,
+  0.4
+ ],
+ "openai/gpt-6-luna": [
+  0.1,
+  0.5
+ ],
+ "z-ai/glm-5.3-flash": [
+  0.0149,
+  0.1543
+ ],
+ "xiaomi/mimo-v2.6-flash": [
+  0.14,
+  0.28
+ ],
+ "nex-agi/nex-n2.5-pro": [
+  0.075,
+  0.25
+ ],
+ "deepseek/deepseek-v4.1-flash-1017": [
+  0.15,
+  0.6
+ ],
+ "deepseek/deepseek-v4.1-flash": [
+  0.045,
+  0.5
+ ],
+ "openai/gpt-6-luna-pro": [
+  0.1,
+  0.5
+ ],
+ "qwen/qwen3.8-flash": [
+  0.15,
+  0.47
+ ],
+ "xiaomi/mimo-v2.6-pro": [
+  0.435,
+  0.87
+ ],
+ "openai/gpt-6.1-terra": [
+  1.0,
+  5.0
+ ],
+ "google/gemini-4-argon": [
+  2.0,
+  10.0
+ ],
+ "minimax/minimax-m3.1-flash": [
+  0.15,
+  0.6
+ ]
+}

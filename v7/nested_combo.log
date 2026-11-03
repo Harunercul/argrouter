@@ -1,0 +1,12 @@
+select on half 0: pool ['openai/gpt-6.1-terra', 'google/gemma-4-31b-it', 'openai/gpt-6-luna', 'google/gemini-3.8-flash@low', 'z-ai/glm-5.3-flash'] lam 0.04
+   hard       other half: 81.82 (acc 86.4% $0.649/1K) vs v6 pair 80.99  gain +0.83
+   ramix      other half: 88.04 (acc 93.0% $0.421/1K) vs v6 pair 86.31  gain +1.73
+   ramix_hard other half: 82.32 (acc 86.8% $0.588/1K) vs v6 pair 80.43  gain +1.90
+select on half 1: pool ['google/gemini-3.7-flash@low', 'z-ai/glm-5.3-flash', 'openai/gpt-6.1-terra', 'deepseek/deepseek-v4.1-flash-1017'] lam 0.04
+   hard       other half: 81.12 (acc 86.3% $0.875/1K) vs v6 pair 80.22  gain +0.90
+   ramix      other half: 86.44 (acc 91.6% $0.522/1K) vs v6 pair 85.71  gain +0.73
+   ramix_hard other half: 80.20 (acc 84.8% $0.743/1K) vs v6 pair 79.30  gain +0.90
+ALL items (final pick): pool ['google/gemini-3.7-flash@low', 'z-ai/glm-5.3-flash', 'openai/gpt-6-luna', 'openai/gpt-6.1-terra', 'google/gemma-4-31b-it', 'google/gemini-4-argon'] lam 0.04
+   hard       in-sample : 82.14 (acc 87.0% $0.689/1K) vs v6 pair 80.53  gain +1.61
+   ramix      in-sample : 88.08 (acc 92.9% $0.402/1K) vs v6 pair 86.05  gain +2.03
+   ramix_hard in-sample : 82.48 (acc 87.3% $0.671/1K) vs v6 pair 80.04  gain +2.44

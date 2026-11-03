@@ -1,0 +1,6 @@
+hard       select on half 0: pool ['gemini-3.7-flash@low', 'gpt-6-luna', 'glm-5.3-flash', 'gpt-6.1-terra', 'gemini-3.8-flash@low', 'claude-haiku-5.5'] lam 0.04 | other half: selected 82.23 vs v6 pair 80.67 (gain +1.56)
+hard       select on half 1: pool ['gemini-3.7-flash@low', 'deepseek-v4.1-flash-1017', 'claude-haiku-5.5', 'glm-5.3-flash', 'gpt-6.1-terra', 'gpt-6-luna'] lam 0.04 | other half: selected 82.58 vs v6 pair 80.83 (gain +1.75)
+ramix      select on half 0: pool ['glm-5.3-flash', 'gpt-6-luna', 'gemini-3.7-flash@low', 'gemma-4-31b-it', 'deepseek-v4.1-flash-1017'] lam 0.08 | other half: selected 87.78 vs v6 pair 86.23 (gain +1.55)
+ramix      select on half 1: pool ['gpt-6.1-terra', 'glm-5.3-flash', 'gemma-4-31b-it', 'gemini-3.7-flash@low', 'gpt-6-luna'] lam 0.04 | other half: selected 88.11 vs v6 pair 85.80 (gain +2.30)
+ramix_hard select on half 0: pool ['glm-5.3-flash', 'gpt-6-luna', 'gemini-3.8-flash@low', 'gemma-4-31b-it'] lam 0.04 | other half: selected 81.64 vs v6 pair 80.07 (gain +1.57)
+ramix_hard select on half 1: pool ['gemini-4-argon', 'gemma-4-31b-it', 'deepseek-v4.1-flash'] lam 0.01 | other half: selected 80.06 vs v6 pair 80.01 (gain +0.05)

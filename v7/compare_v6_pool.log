@@ -1,0 +1,6 @@
+v6 lam 0.005: hard 80.31  acc 87.1%  $1.584/1K
+v6 lam 0.01: hard 80.49  acc 87.0%  $1.413/1K
+v6 lam 0.02: hard 80.56  acc 86.8%  $1.321/1K
+v6 lam 0.04: hard 80.44  acc 86.4%  $1.223/1K
+v6 lam 0.08: hard 80.40  acc 86.1%  $1.133/1K
+v6 lam 0.16: hard 80.28  acc 85.8%  $1.066/1K

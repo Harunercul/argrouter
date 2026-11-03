@@ -1,0 +1,12 @@
+google__gemini-embedding-2         lr   C=1.0 k=50 w=hard pool=5: best lam 0.04: 81.07 acc 86.0% $0.794/1K   all: 0.005:80.58 0.01:80.80 0.02:80.97 0.04:81.07 0.08:80.96 0.16:80.81
+google__gemini-embedding-2         cluster C=5.0 k=30 w=hard pool=5: best lam 0.04: 81.95 acc 87.1% $0.796/1K   all: 0.005:80.65 0.01:81.20 0.02:81.39 0.04:81.95 0.08:81.73 0.16:81.65
+google__gemini-embedding-2         bench C=5.0 m=60 w=hard pool=5: best lam 0.04: 81.96 acc 86.9% $0.748/1K   all: 0.005:80.85 0.01:81.23 0.02:81.53 0.04:81.96 0.08:81.77 0.16:81.42   bench-id acc 88.4%
+voyageai__voyage-4-large           lr   C=1.0 k=50 w=hard pool=5: best lam 0.16: 81.09 acc 85.3% $0.602/1K   all: 0.005:80.45 0.01:80.68 0.02:80.84 0.04:80.85 0.08:80.94 0.16:81.09
+voyageai__voyage-4-large           cluster C=5.0 k=30 w=hard pool=5: best lam 0.04: 81.75 acc 86.9% $0.800/1K   all: 0.005:80.50 0.01:81.27 0.02:81.53 0.04:81.75 0.08:81.20 0.16:80.85
+voyageai__voyage-4-large           bench C=5.0 m=60 w=hard pool=5: best lam 0.04: 82.12 acc 87.1% $0.730/1K   all: 0.005:80.94 0.01:81.45 0.02:81.77 0.04:82.12 0.08:81.93 0.16:81.53   bench-id acc 80.2%
+baai__bge-m3                       lr   C=1.0 k=50 w=hard pool=5: best lam 0.01: 81.31 acc 87.2% $1.081/1K   all: 0.005:81.11 0.01:81.31 0.02:81.29 0.04:81.01 0.08:80.99 0.16:81.05
+baai__bge-m3                       cluster C=5.0 k=30 w=hard pool=5: best lam 0.16: 81.39 acc 85.2% $0.480/1K   all: 0.005:80.40 0.01:80.75 0.02:81.05 0.04:81.36 0.08:81.29 0.16:81.39
+baai__bge-m3                       bench C=5.0 m=60 w=hard pool=5: best lam 0.04: 81.89 acc 86.9% $0.755/1K   all: 0.005:80.75 0.01:81.04 0.02:81.65 0.04:81.89 0.08:81.72 0.16:81.43   bench-id acc 75.4%
+openai__text-embedding-3-large     lr   C=1.0 k=50 w=hard pool=5: best lam 0.02: 81.25 acc 86.7% $0.934/1K   all: 0.005:80.75 0.01:81.09 0.02:81.25 0.04:81.04 0.08:81.09 0.16:80.89
+openai__text-embedding-3-large     cluster C=5.0 k=30 w=hard pool=5: best lam 0.04: 82.19 acc 87.2% $0.753/1K   all: 0.005:80.33 0.01:81.23 0.02:81.72 0.04:82.19 0.08:81.74 0.16:81.61
+openai__text-embedding-3-large     bench C=5.0 m=60 w=hard pool=5: best lam 0.04: 82.07 acc 87.1% $0.741/1K   all: 0.005:80.95 0.01:81.29 0.02:81.77 0.04:82.07 0.08:81.90 0.16:81.58   bench-id acc 85.1%

@@ -1,0 +1,21 @@
++ P='.venv/bin/python bench/v7/compare_emb.py'
++ V6='google/gemini-3.7-flash@low deepseek/deepseek-v4.1-flash'
++ for W in hard ramix ramix_hard
++ .venv/bin/python bench/v7/compare_emb.py --emb bge-small --learner lr --weights hard --pool google/gemini-3.7-flash@low deepseek/deepseek-v4.1-flash
+bge-small                          lr   C=1.0 k=50 w=hard pool=2: best lam 0.02: 80.52 acc 86.8% $1.325/1K   all: 0.005:80.36 0.01:80.48 0.02:80.52 0.04:80.41 0.08:80.44 0.16:80.33
++ for W in hard ramix ramix_hard
++ .venv/bin/python bench/v7/compare_emb.py --emb bge-small --learner lr --weights ramix --pool google/gemini-3.7-flash@low deepseek/deepseek-v4.1-flash
+bge-small                          lr   C=1.0 k=50 w=ramix pool=2: best lam 0.04: 86.18 acc 92.9% $0.943/1K   all: 0.005:85.97 0.01:86.06 0.02:86.06 0.04:86.18 0.08:86.13 0.16:86.00
++ for W in hard ramix ramix_hard
++ .venv/bin/python bench/v7/compare_emb.py --emb bge-small --learner lr --weights ramix_hard --pool google/gemini-3.7-flash@low deepseek/deepseek-v4.1-flash
+bge-small                          lr   C=1.0 k=50 w=ramix_hard pool=2: best lam 0.005: 80.02 acc 86.3% $1.384/1K   all: 0.005:80.02 0.01:79.97 0.02:80.01 0.04:79.92 0.08:79.83 0.16:79.52
++ for W in ramix ramix_hard
++ .venv/bin/python bench/v7/compare_emb.py --emb bge-small --learner lr --weights ramix
+bge-small                          lr   C=1.0 k=50 w=ramix pool=5: best lam 0.16: 86.55 acc 90.7% $0.350/1K   all: 0.005:86.00 0.01:85.94 0.02:86.18 0.04:86.43 0.08:86.50 0.16:86.55
++ .venv/bin/python bench/v7/compare_emb.py --emb qwen__qwen3-embedding-8b --learner cluster --k 30 --C 5 --weights ramix
+qwen__qwen3-embedding-8b           cluster C=5.0 k=30 w=ramix pool=5: best lam 0.16: 87.05 acc 91.0% $0.299/1K   all: 0.005:85.72 0.01:85.95 0.02:86.52 0.04:86.85 0.08:86.80 0.16:87.05
++ for W in ramix ramix_hard
++ .venv/bin/python bench/v7/compare_emb.py --emb bge-small --learner lr --weights ramix_hard
+bge-small                          lr   C=1.0 k=50 w=ramix_hard pool=5: best lam 0.005: 79.94 acc 85.6% $1.132/1K   all: 0.005:79.94 0.01:79.77 0.02:79.84 0.04:79.79 0.08:79.24 0.16:79.14
++ .venv/bin/python bench/v7/compare_emb.py --emb qwen__qwen3-embedding-8b --learner cluster --k 30 --C 5 --weights ramix_hard
+qwen__qwen3-embedding-8b           cluster C=5.0 k=30 w=ramix_hard pool=5: best lam 0.04: 81.31 acc 86.1% $0.737/1K   all: 0.005:80.17 0.01:80.40 0.02:80.82 0.04:81.31 0.08:80.56 0.16:80.39
